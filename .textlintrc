@@ -1,0 +1,35 @@
+{
+  "rules": {
+    "preset-ja-technical-writing": {
+      "sentence-length": false,
+      "no-exclamation-question-mark": false,
+      "max-kanji-continuous-len": {
+        "max": 15,
+        "allow": []
+      }
+    },
+    "preset-jtf-style": {
+      "3.1.1.全角文字と半角文字の間": false,
+      "max-kanji-continuous-len": {
+        "max": 15,
+        "allow": []
+      }
+    },
+    "preset-smarthr": {
+      "ja-space-between-half-and-full-width": false,
+      "sentence-length": false,
+      "max-kanji-continuous-len": {
+        "max": 15,
+        "allow": []
+      }
+    },
+    "preset-bengo4": {
+      "3.1.1.全角文字と半角文字の間": false,
+      "sentence-length": false,
+      "max-kanji-continuous-len": {
+        "max": 15,
+        "allow": []
+      }
+    }
+  }
+}
