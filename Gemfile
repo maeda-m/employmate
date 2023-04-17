@@ -70,7 +70,6 @@ group :development do
   gem "rubocop-rspec", require: false
   gem "rubocop-thread_safety", require: false
   gem "standard", "~> 1.0", require: false
-  gem "view_component-contrib", require: false
 end
 
 group :test do
@@ -86,3 +85,4 @@ gem "googleauth"
 gem "holiday_japan"
 gem "newspaper"
 gem "view_component"
+gem "view_component-contrib"
