@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # See: https://hub.docker.com/_/ruby
+  rails:
+    restart: 'no'
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/opt/rails
+      - ruby32:/usr/local/bundle
+      - history:/histfile
+    env_file:
+      - development.env
+    environment:
+      - HISTFILE=/histfile/.bash_history
+      - RAILS_LOG_TO_STDOUT=true
+      - RAILS_SERVE_STATIC_FILES=true
+    build:
+      context: .
+      dockerfile: Dockerfile.ap
+      args:
+        RUBY_VERSION: '3.2.2'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    command: 'bash'
+
+  # See: https://hub.docker.com/_/postgres
+  postgres:
+    restart: 'no'
+    volumes:
+      - postgres15:/var/lib/postgresql/data
+      - history:/histfile
+    env_file:
+      - development.env
+    environment:
+      - HISTFILE=/histfile/.psql_history
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --locale=ja_JP.UTF-8
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+      args:
+        POSTGRES_VERSION: '15.2'
+
+volumes:
+  ruby32:
+  postgres15:
+  history:
