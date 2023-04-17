@@ -10,6 +10,8 @@ services:
       - .:/opt/rails
       - ruby32:/usr/local/bundle
       - history:/histfile
+      - node_modules:/opt/rails/node_modules
+      - vscode:/root/.vscode-server
     env_file:
       - development.env
     environment:
@@ -48,3 +50,5 @@ volumes:
   ruby32:
   postgres15:
   history:
+  node_modules:
+  vscode:
