@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "smelukov.vscode-csstree",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "koichisasada.vscode-rdbg",
+    "bradlc.vscode-tailwindcss",
+    "taichi.vscode-textlint",
+    "anteprimorac.html-end-tag-labels",
+    "formulahendry.auto-close-tag",
+    "oderwat.indent-rainbow",
+    "deque-systems.vscode-axe-linter",
+    "htmlhint.vscode-htmlhint"
+  ]
+}

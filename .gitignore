@@ -57,6 +57,10 @@ bower.json
 
 # Ignore node_modules
 node_modules/
+.pnpm-store/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # Ignore precompiled javascript packs
 /public/packs
