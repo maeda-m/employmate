@@ -49,6 +49,34 @@ bin/setup
 bin/dev
 ```
 
+大まかな構成は下図のとおりです。
+
+```mermaid
+C4Container
+  title システム構成図
+
+  Person(customer, User, "")
+  System_Ext(openid, "OpenID Connect", "Google OAuth 2.0 API with Authorization Code Flow")
+
+  Container_Boundary(container, "Docker") {
+    Container_Boundary(web_app, "Web Application") {
+      Component(rails, "Application", "Ruby on Rails", "v7.0.4.3")
+      Component(rack, "Rack", "Ruby Web Server Interface")
+      Component(puma, "Puma", "Ruby Web Server")
+    }
+    ContainerDb(database, "Database", "PostgreSQL", "v15.2")
+  }
+
+  Rel(customer, puma, "HTTP")
+  Rel(openid, customer, "認証")
+  Rel(openid, puma, "ID Token")
+
+  Rel(puma, rack, "")
+  Rel(rack, rails, "")
+  Rel(rails, database, "")
+
+```
+
 ## License
 
 [MIT](https://github.com/maeda-m/employmate/blob/main/LICENSE) licensed.
