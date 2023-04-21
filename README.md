@@ -77,6 +77,20 @@ C4Container
 
 ```
 
+## Linter
+
+次のコマンドで lint を実行します。
+
+```shell
+bundle exec erblint app/
+bundle exec rubocop
+bundle exec brakeman
+npm run eslint
+npm run stylelint
+npm run prettier
+npm run secretlint
+```
+
 ## License
 
 [MIT](https://github.com/maeda-m/employmate/blob/main/LICENSE) licensed.

@@ -1,6 +1,15 @@
 {
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "eslint": "eslint --max-warnings=0 \"app/javascript/**/*.js\"",
+    "eslint:fix": "eslint --fix \"app/javascript/**/*.js\"",
+    "stylelint": "stylelint \"app/assets/stylesheets/**/*.css\"",
+    "stylelint:fix": "stylelint --fix \"app/assets/stylesheets/**/*.css\"",
+    "secretlint": "secretlint --secretlintignore .gitignore \"**/*\"",
+    "prettier": "prettier --check \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
+    "lint": "npm-run-all eslint stylelint prettier",
+    "lint:fix": "npm-run-all eslint:fix stylelint:fix"
+  },
   "devDependencies": {
     "@secretlint/secretlint-rule-preset-recommend": "^6.2.3",
     "debug": "^4.3.4",
@@ -8,6 +17,7 @@
     "eslint-config-prettier": "^8.8.0",
     "glob": "^10.1.0",
     "js2mermaid": "^0.9.2",
+    "npm-run-all": "^4.1.5",
     "optionator": "^0.9.1",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7",
