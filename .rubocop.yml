@@ -3,12 +3,13 @@ inherit_mode:
     - Exclude
 
 require:
-  - standard
+  - rubocop-performance
   - rubocop-rspec
   - rubocop-thread_safety
 
 inherit_gem:
-  standard: config/base.yml
+  rubocop-fjord:
+    - 'config/rubocop.yml'
 
 inherit_from:
   - .rubocop/rails.yml
