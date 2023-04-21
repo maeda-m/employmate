@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      # See: https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+      # See: https://github.com/ruby/setup-ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      # See: https://github.com/actions/setup-node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: bundle install
+      - run: npm install
+      # Ruby/JS/CSS
+      - run: bundle exec erblint app/
+      - run: bundle exec rubocop
+      - run: bundle exec brakeman
+      - run: npm run lint
