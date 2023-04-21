@@ -2,6 +2,27 @@ Lint/Debugger: # don't leave binding.pry
   Enabled: true
   Exclude: []
 
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - config.ru
+    - config/**/*
+    - Gemfile
+    - Rakefile
+
+Style/StringLiterals:
+  Exclude:
+    - config.ru
+    - config/**/*
+    - Gemfile
+    - Rakefile
+
+Style/EmptyMethod:
+  Enabled: false
+
 Bundler/OrderedGems:
   Enabled: true
 

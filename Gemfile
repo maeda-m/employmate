@@ -65,11 +65,11 @@ group :development do
   gem "erb_lint", require: false
   gem "rack-dev-mark"
   gem "rubocop", require: false
+  gem 'rubocop-fjord', require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-thread_safety", require: false
-  gem "standard", "~> 1.0", require: false
 end
 
 group :test do
@@ -84,5 +84,6 @@ gem "active_hash"
 gem "googleauth"
 gem "holiday_japan"
 gem "newspaper"
+gem "rails-i18n", "~> 7.0.0"
 gem "view_component"
 gem "view_component-contrib"
