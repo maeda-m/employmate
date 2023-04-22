@@ -12,6 +12,7 @@ Style/FrozenStringLiteralComment:
     - config/**/*
     - Gemfile
     - Rakefile
+    - spec/**/*
 
 Style/StringLiterals:
   Exclude:

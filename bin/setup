@@ -27,6 +27,7 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Setup packages =="
   system! "bin/rails yarn:install"
+  system! "npx playwright install --with-deps chromium"
 
   puts "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
