@@ -66,6 +66,7 @@ jobs:
           DATABASE_URL: postgres://dbuser:mysecretpassword@localhost:5432/dbname
         run: |
           bundle install
-          npx playwright@1.32.2 install --force --with-deps chromium
+          npm install
+          npx playwright install --with-deps chromium
           bundle exec rails db:schema:load
           bundle exec rspec
