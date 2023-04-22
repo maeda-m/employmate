@@ -11,5 +11,6 @@ class WelcomeController < ApplicationController
   end
 
   def robots
+    @disallowed_path = '/' unless ENV['ROBOTS_INDEX']
   end
 end
