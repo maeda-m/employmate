@@ -73,10 +73,10 @@ group :development do
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "capybara-playwright-driver"
+  gem "n_plus_one_control"
+  gem "rspec-rails", "~> 6.0.0"
+  gem "turnip"
 end
 
 gem "active_decorator"

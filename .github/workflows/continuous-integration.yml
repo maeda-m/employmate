@@ -27,3 +27,45 @@ jobs:
       - run: bundle exec rubocop
       - run: bundle exec brakeman
       - run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # See: https://docs.github.com/ja/actions/using-containerized-services/creating-postgresql-service-containers
+      postgres:
+        image: postgres:15.2
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          POSTGRES_USER: dbuser
+          POSTGRES_DB: dbname
+          POSTGRES_PASSWORD: mysecretpassword
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    steps:
+      # See: https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+      # See: https://github.com/ruby/setup-ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      # See: https://github.com/actions/setup-node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      # See: https://docs.github.com/ja/actions/learn-github-actions/variables
+      - name: RSpec
+        env:
+          DATABASE_URL: postgres://dbuser:mysecretpassword@localhost:5432/dbname
+        run: |
+          bundle install
+          npx playwright@1.32.2 install --force --with-deps chromium
+          bundle exec rails db:schema:load
+          bundle exec rspec
