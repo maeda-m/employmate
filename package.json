@@ -7,6 +7,7 @@
     "stylelint:fix": "stylelint --fix \"app/assets/stylesheets/**/*.css\"",
     "secretlint": "secretlint --secretlintignore .gitignore \"**/*\"",
     "prettier": "prettier --check \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
+    "prettier:fix": "prettier --write \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
     "lint": "npm-run-all eslint stylelint prettier",
     "lint:fix": "npm-run-all eslint:fix stylelint:fix"
   },
