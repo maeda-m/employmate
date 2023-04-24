@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Employmate</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'tailwind', 'inter-font', "data-turbo-track": 'reload' %>
 
-    <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
-    <%= javascript_importmap_tags %>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-  </head>
+<head>
+  <title>Employmate</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'tailwind', 'inter-font', "data-turbo-track": 'reload' %>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+  <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
+  <%= javascript_importmap_tags %>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>雇用保険給付の相棒</h1>
+    <%= image_tag('logo.svg', alt: 'ロゴ') %>
+  </header>
+  <main>
+    <%= yield %>
+  </main>
+  <footer>
+    <nav>
+      <ul>
+        <li><%= link_to '利用規約', terms_of_service_path, target: '_blank', rel: 'noopener' %></li>
+        <li><%= link_to 'プライバシーポリシー', privacy_policy_path, target: '_blank', rel: 'noopener' %></li>
+        <li><%= link_to '退会する', user_path(id: 'TODO'), data: { turbo_method: 'delete', turbo_confirm: '本当によろしいですか？' } %></li>
+      </ul>
+    </nav>
+    <p>&copy; 2023 maeda-m</p>
+  </footer>
+</body>
+
 </html>
