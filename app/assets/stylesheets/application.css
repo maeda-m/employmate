@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --font-family: 'BIZ UDPGothic', sans-serif;
+  --color-primary: #7895b2;
+  --color-secondary: #aebdca;
+  --color-light: #e8dfca;
+  --color-background: #fafafc;
+  --color-background-secondary: #f5efe6;
+  --justify-important: center;
+}
+
+body {
+  background: var(--color-background);
+}
+
+header,
+footer {
+  background-color: var(--color-background-secondary);
+  text-align: var(--justify-important);
+}
+
+footer nav,
+nav ul {
+  display: block;
+}
