@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "robots", to: "welcome#robots", defaults: { format: "txt" }
 
   resources :sessions, only: [:create]
-  resources :users, only: %i[create show destroy], module: :users do
-    resources :profiles, only: [:index]
+  resources :users, only: %i[create show destroy] do
+    resources :profiles, only: [:index], module: :users
   end
   resources :surveys, only: [], module: :surveys do
     resources :profiles, only: [:index]
