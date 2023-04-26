@@ -1,7 +1,6 @@
 name: CI
 on:
   push:
-  pull_request:
 permissions:
   contents: read
 
@@ -64,6 +63,7 @@ jobs:
       - name: RSpec
         env:
           DATABASE_URL: postgres://dbuser:mysecretpassword@localhost:5432/dbname
+          GOOGLE_OPENID_CONNECT_CLIENT_ID: ${{ secrets.GOOGLE_OPENID_CONNECT_CLIENT_ID }}
         run: |
           bundle install
           npm install
