@@ -6,7 +6,10 @@ Capybara.register_driver(:playwright) do |app|
     app,
     playwright_cli_executable_path: './node_modules/.bin/playwright',
     browser_type: :chromium,
-    headless: true
+    headless: true,
+    # See: https://playwright.dev/docs/emulation#locale--timezone
+    locale: 'ja-JP',
+    viewport: { width: 750, height: 1334 }
   )
 end
 

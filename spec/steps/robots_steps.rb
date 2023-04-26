@@ -6,10 +6,6 @@ step '環境変数:nameに:valueを設定する' do |name, value|
   ENV[name] = value
 end
 
-step 'ブラウザで:visit_pathにアクセスする' do |visit_path|
-  visit(visit_path)
-end
-
 step 'レスポンス形式が:content_typeである' do |content_type|
   expect(page.response_headers['content-type']).to include(content_type)
 end

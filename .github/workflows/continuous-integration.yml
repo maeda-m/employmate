@@ -3,6 +3,8 @@ on:
   push:
 permissions:
   contents: read
+env:
+  LANG: ja_JP.UTF-8
 
 jobs:
   lint:
@@ -59,6 +61,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      # See: https://blog.redmine.jp/articles/5_0/install/ubuntu/
+      - name: Locale
+        run: |
+          sudo locale-gen ja_JP.UTF-8
+          sudo update-locale LANG=ja_JP.UTF-8
+          locale
       # See: https://docs.github.com/ja/actions/learn-github-actions/variables
       - name: RSpec
         env:
