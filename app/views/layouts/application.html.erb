@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
   <title>Employmate</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -19,7 +20,7 @@
 <body>
   <header>
     <h1>
-      <small>雇用保険給付の相棒</small>
+      雇用保険給付の相棒
       <%= image_tag('logo.svg', alt: 'ロゴ', width: '300px') %>
     </h1>
   </header>
@@ -34,7 +35,7 @@
         <li><%= link_to '退会する', user_path(id: 'TODO'), data: { turbo_method: 'delete', turbo_confirm: '本当によろしいですか？' } %></li>
       </ul>
     </nav>
-    <p>&copy; 2023 maeda-m</p>
+    <p><small>&copy; 2023 maeda-m</small></p>
   </footer>
 </body>
 

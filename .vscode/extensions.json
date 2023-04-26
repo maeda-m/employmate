@@ -13,6 +13,9 @@
     "htmlhint.vscode-htmlhint",
     "ms-azuretools.vscode-docker",
     "ms-vscode-remote.remote-containers",
-    "eamodio.gitlens"
+    "eamodio.gitlens",
+    // See: https://karlley.hatenablog.jp/entry/2022/06/05/135045
+    "hookyqr.beautify",
+    "fnando.ruby"
   ]
 }
