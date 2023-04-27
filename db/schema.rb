@@ -10,8 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_001739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "questionnaires", force: :cascade do |t|
+    t.bigint "survey_id", null: false
+    t.string "title"
+    t.integer "position", null: false
+    t.index ["survey_id"], name: "index_questionnaires_on_survey_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "questionnaire_id", null: false
+    t.string "body"
+    t.string "answer_component_type", null: false
+    t.boolean "required", default: false
+    t.integer "position", null: false
+    t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
+  end
+
+  add_foreign_key "questions", "questionnaires"
 end
