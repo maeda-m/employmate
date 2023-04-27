@@ -2,6 +2,6 @@
 
 class StartButton::Component < ApplicationViewComponent
   def survey_id
-    'TODO'
+    Survey.profiles.first.id
   end
 end

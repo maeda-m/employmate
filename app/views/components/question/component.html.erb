@@ -1,0 +1,9 @@
+<section>
+  <hgroup>
+    <p><%= title %></p>
+    <h2><%= body %></h2>
+    <p></p>
+  </hgroup>
+
+  <%= render(ProfileAnswer::Component.new(answer_component:, required:)) %>
+</section>
