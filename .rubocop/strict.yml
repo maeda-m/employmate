@@ -5,6 +5,7 @@ Lint/Debugger: # don't leave binding.pry
 Metrics/BlockLength:
   Exclude:
     - config/**/*
+    - db/seeds.rb
 
 Style/FrozenStringLiteralComment:
   Exclude:
