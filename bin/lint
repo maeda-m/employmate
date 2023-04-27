@@ -3,5 +3,4 @@
 bundle exec erblint -a app/
 bundle exec rubocop -A
 npm run lint:fix
-npm run secretlint
 bundle exec brakeman

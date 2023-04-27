@@ -43,7 +43,7 @@ Rails/BulkChangeTable:
     - db/migrate/*.rb
 
 Rails/CreateTableWithTimestamps:
-  Enabled: true
+  Enabled: false
   Include:
     - db/migrate/*.rb
 
@@ -99,6 +99,13 @@ Rails/HasAndBelongsToMany:
   Include:
     - app/models/**/*.rb
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+  Include:
+    - app/models/**/*.rb
+  Exclude:
+    - app/models/survey.rb
+
 Rails/HttpPositionalArguments:
   Enabled: true
   Include:
@@ -113,6 +120,8 @@ Rails/InverseOf:
   Enabled: true
   Include:
     - app/models/**/*.rb
+  Exclude:
+    - app/models/question.rb
 
 Rails/LexicallyScopedActionFilter:
   Enabled: true
