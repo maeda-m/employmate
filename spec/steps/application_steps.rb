@@ -12,6 +12,12 @@ step 'ページ本文に:contentとある' do |content|
   end
 end
 
+step 'ページ本文に:contentとない' do |content|
+  within('main') do
+    expect(page).to have_no_text(content)
+  end
+end
+
 step 'ページヘッダーに:contentとある' do |content|
   within('header') do
     expect(page).to have_text(content)
@@ -39,4 +45,8 @@ step 'ボタン:nameがある' do |name|
       expect(page).to have_selector(:link_or_button, name)
     end
   end
+end
+
+step 'ボタン:nameをクリックする' do |name|
+  click_on(name)
 end

@@ -5,5 +5,9 @@
     <p></p>
   </hgroup>
 
-  <%= render(ProfileAnswer::Component.new(answer_component:, required:)) %>
+  <%= render(field_component.new(required:)) %>
+
+  <hr>
+  <%= link_to('戻る', back_survey_question_path(survey_id:, id:), data: { turbo_method: 'post' }) %>
+  <%= link_to('次へ', next_survey_question_path(survey_id:, id:), data: { turbo_method: 'post' }) unless automatable? %>
 </section>

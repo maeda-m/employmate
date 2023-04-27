@@ -3,7 +3,7 @@
 class Survey < ActiveYaml::Base
   include ActiveHash::Associations
 
-  has_many :questionnaires, dependent: :destroy
+  has_many :questionnaires
 
   scope :profiles, lambda {
     where(survey_type: 'profile').order(:id)
