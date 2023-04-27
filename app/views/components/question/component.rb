@@ -12,4 +12,8 @@ class Question::Component < ApplicationViewComponent
     @survey_id = survey_id
     @title = title
   end
+
+  def frame_id
+    dom_id(@question)
+  end
 end

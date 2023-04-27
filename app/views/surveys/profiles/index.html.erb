@@ -1,1 +1,5 @@
-<%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
+<%= turbo_frame_tag 'survey-profiles', data: { controller: 'survey-profiles' } do %>
+  <%= form_with(model: nil) do |form| %>
+    <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
+  <% end %>
+<% end %>

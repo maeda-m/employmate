@@ -1,3 +1,4 @@
+<%= turbo_frame_tag(frame_id, hidden: true) do %>
 <section>
   <hgroup>
     <p><%= title %></p>
@@ -8,6 +9,7 @@
   <%= render(field_component.new(required:)) %>
 
   <hr>
-  <%= link_to('戻る', back_survey_question_path(survey_id:, id:), data: { turbo_method: 'post' }) %>
-  <%= link_to('次へ', next_survey_question_path(survey_id:, id:), data: { turbo_method: 'post' }) unless automatable? %>
+  <%= button_tag('戻る', formaction: back_survey_question_path(survey_id:, id:), data: { action: 'click->survey-profiles#hide', frame_id: }) %>
+  <%= button_tag('次へ', formaction: next_survey_question_path(survey_id:, id:), data: { action: 'click->survey-profiles#hide', frame_id: }) unless automatable? %>
 </section>
+<% end %>
