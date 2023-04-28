@@ -56,3 +56,7 @@ end
 step 'ボタン:nameをクリックする' do |name|
   click_on(name)
 end
+
+step 'フィールド:labelに:valueと入力する' do |label, value|
+  fill_in(label, with: value)
+end

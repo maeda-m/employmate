@@ -1,0 +1,9 @@
+<%= fields_for(record_name) do |f| %>
+  <hgroup>
+    <p><%= description %></p>
+    <h2><%= f.label(:value, subject) %></h2>
+    <p></p>
+  </hgroup>
+
+  <%= f.date_field(:value, required:) %>
+<% end %>
