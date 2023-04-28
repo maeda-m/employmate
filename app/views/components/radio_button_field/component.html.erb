@@ -1,0 +1,14 @@
+<hgroup>
+  <p><%= description %></p>
+  <h2><%= subject %></h2>
+  <p></p>
+</hgroup>
+
+<%= fields_for(record_name) do |f| %>
+  <% choices.each do |value, caption| %>
+    <%= f.label(:value, value:) do %>
+      <%= caption %>
+      <%= f.radio_button(:value, value, required:, data: { action: 'input->survey-profiles#hideWithInput' }) %>
+    <% end %>
+  <% end %>
+<% end %>
