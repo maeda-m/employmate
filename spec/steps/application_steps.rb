@@ -60,3 +60,7 @@ end
 step 'フィールド:labelに:valueと入力する' do |label, value|
   fill_in(label, with: value)
 end
+
+step '単一選択ボタン:labelを選ぶ' do |label|
+  choose(label)
+end
