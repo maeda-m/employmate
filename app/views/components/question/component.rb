@@ -2,7 +2,7 @@
 
 class Question::Component < ApplicationViewComponent
   delegate :id, :body, :answer_component, :required, to: :@question
-  delegate :field_component, :automatable?, to: :answer_component
+  delegate :field_component, to: :answer_component
 
   attr_reader :survey_id, :title
 
