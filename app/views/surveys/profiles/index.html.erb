@@ -1,6 +1,5 @@
-<%= turbo_frame_tag 'survey-profiles', data: { controller: 'survey-profiles' } do %>
-  <%= form_with(model: nil) do |form| %>
-    <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
-    <%= form.submit '結果を見る', formaction: survey_answers_path(survey_id: @survey.id), hidden: true %>
-  <% end %>
+<%# See: https://github.com/hotwired/turbo/issues/757 %>
+<%= form_with(url: survey_answers_path(survey_id: @survey.id), method: :post, data: { controller: 'survey-profiles', turbo: false }) do |form| %>
+  <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
+  <%= form.submit '結果を見る', hidden: true %>
 <% end %>
