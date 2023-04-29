@@ -9,18 +9,18 @@ class Survey < ActiveYaml::Base
     where(survey_type: 'profile').order(:id)
   }
 
-  def next_question(question_id)
-    navigate_question(question_id, 1)
+  def next_question(question)
+    navigate_question(question, 1)
   end
 
-  def prev_question(question_id)
-    navigate_question(question_id, -1)
+  def prev_question(question)
+    navigate_question(question, -1)
   end
 
   private
 
-  def navigate_question(question_id, direction)
-    position = Question.find(question_id).position + direction
+  def navigate_question(question, direction)
+    position = question.position + direction
     questionnaire = questionnaires.eager_load(:questions)
                                   .merge(Question.where(position:))
                                   .first

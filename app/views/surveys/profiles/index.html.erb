@@ -1,6 +1,7 @@
-<%= turbo_frame_tag 'survey-profiles', data: { controller: 'survey-profiles' } do %>
-  <%= form_with(model: nil) do |form| %>
-    <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
-    <%= form.submit '結果を見る', formaction: survey_answers_path(survey_id: @survey.id), hidden: true %>
+<%= form_with(url: survey_answers_path(survey_id: @survey.id), method: :post, data: { controller: 'survey-profiles', action: 'turbo:submit-end->survey-profiles#restoreOriginFormAction' }) do |form| %>
+  <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
+
+  <%= turbo_frame_tag('survey-profiles') do %>
+    <%= form.submit '結果を見る', hidden: true, data: { turbo: false } %>
   <% end %>
 <% end %>
