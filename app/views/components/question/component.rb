@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
 class Question::Component < ApplicationViewComponent
-  delegate :id, :body, :answer_component, :required, to: :@question
+  delegate :id, :body, :survey_id, :answer_component, :required, to: :@question
   delegate :field_component, to: :answer_component
 
-  attr_reader :survey_id, :title
+  attr_reader :title
 
-  def initialize(component:, survey_id:, title:)
+  def initialize(component:, title:)
     super
     @question = component
-    @survey_id = survey_id
     @title = title
   end
 
-  def frame_id
+  def question_id
     dom_id(@question)
   end
 end
