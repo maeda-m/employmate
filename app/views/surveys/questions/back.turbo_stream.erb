@@ -1,9 +1,0 @@
-<% if @question %>
-  <%= render(partial: 'navigate', locals: { question: @question }) %>
-<% else %>
-  <%= turbo_stream.append 'survey-profiles' do %>
-    <script>
-      location.href = "<%= root_url %>"
-    </script>
-  <% end %>
-<% end %>
