@@ -27,13 +27,9 @@ class Surveys::QuestionsController < ApplicationController
     current_question = Question.find(params[:id])
     prev_question = Survey.find(params[:survey_id]).prev_question(current_question)
 
-    if prev_question
-      render turbo_stream: [
-        turbo_stream.append(current_question, partial: 'hide_question', locals: { question: current_question }),
-        turbo_stream.append(prev_question, partial: 'show_question', locals: { question: prev_question })
-      ]
-    else
-      render turbo_stream: turbo_stream.append('survey-profiles', partial: 'visit_welcome')
-    end
+    render turbo_stream: [
+      turbo_stream.append(current_question, partial: 'hide_question', locals: { question: current_question }),
+      turbo_stream.append(prev_question, partial: 'show_question', locals: { question: prev_question })
+    ]
   end
 end

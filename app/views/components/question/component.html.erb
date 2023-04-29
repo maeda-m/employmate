@@ -3,7 +3,9 @@
   <%= render(field_component.new(record_name: "answers[#{id}]", subject: body, description: title, required:)) %>
 
   <hr>
-  <%= button_tag('戻る', formaction: back_survey_question_path(survey_id:, id:), formnovalidate: true) %>
+
+  <%= link_to('戻る', root_path, class: 'visit-welcome', hidden: true, data: { turbo: false }) %>
+  <%= button_tag('戻る', class: 'show-prev-question', formaction: back_survey_question_path(survey_id:, id:), formnovalidate: true) %>
   <%= button_tag('次へ', data: { action: 'click->survey-profiles#showNextQuestionWithCurrentQuestionValid:prevent' }) %>
 </section>
 <% end %>

@@ -4,7 +4,11 @@ export default class extends Controller {
   initialize() {
     this.originFormAction = this.form.action
     this.originFormValidate = this.form.noValidate
-    this.form.querySelectorAll('turbo-frame')[0].hidden = false
+
+    const firstQuestion = this.form.querySelectorAll('turbo-frame')[0]
+    firstQuestion.querySelector('.visit-welcome').hidden = false
+    firstQuestion.querySelector('.show-prev-question').hidden = true
+    firstQuestion.hidden = false
   }
 
   get form() {
