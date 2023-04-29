@@ -39,7 +39,7 @@ end
 step 'ボタン:nameがある' do |name|
   within('main') do
     case name
-    when 'Googleでログイン'
+    when 'Googleでログイン', 'Googleで登録'
       expect(page).to have_selector('iframe[title="[Googleでログイン]ボタン"]')
     else
       expect(page).to have_selector(:link_or_button, name)

@@ -9,4 +9,8 @@ class AnswerComponent < ActiveYaml::Base
   def automatable?
     %w[yes_or_no yes_or_no_with_not_applicable].include?(type)
   end
+
+  def overtime?
+    type.inquiry.overtime?
+  end
 end
