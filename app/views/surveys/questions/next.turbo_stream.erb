@@ -5,5 +5,9 @@
 
   <%= render(partial: 'navigate', locals: { question: @question }) %>
 <% else %>
-  <%# TODO %>
+  <%= turbo_stream.append 'survey-profiles' do %>
+    <script>
+      document.querySelector('input[type="submit"]').hidden = false
+    </script>
+  <% end %>
 <% end %>
