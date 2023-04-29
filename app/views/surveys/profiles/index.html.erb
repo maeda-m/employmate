@@ -2,6 +2,6 @@
   <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
 
   <%= turbo_frame_tag('survey-profiles') do %>
-    <%= form.submit '結果を見る', hidden: true %>
+    <%= form.submit '結果を見る', hidden: true, data: { turbo: false } %>
   <% end %>
 <% end %>
