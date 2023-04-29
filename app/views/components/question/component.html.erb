@@ -4,6 +4,6 @@
 
   <hr>
   <%= button_tag('戻る', formaction: back_survey_question_path(survey_id:, id:), data: { action: 'click->survey-profiles#hide' }, formnovalidate: true) %>
-  <%= button_tag('次へ', data: { action: 'click->survey-profiles#hideWithValid' }, formnovalidate: true) unless automatable? %>
+  <%= button_tag('次へ', data: { action: 'click->survey-profiles#hideWithValid' }, formnovalidate: true) %>
 </section>
 <% end %>
