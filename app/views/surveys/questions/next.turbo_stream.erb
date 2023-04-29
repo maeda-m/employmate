@@ -1,4 +1,8 @@
 <% if @question %>
+  <% if @question.answer_component.overtime? %>
+    <%= render(partial: '/components/overtime_field/field_show', locals: { question: @question, prev_answer: @current_answer_value }) %>
+  <% end %>
+
   <%= render(partial: 'navigate', locals: { question: @question }) %>
 <% else %>
   <%# TODO %>
