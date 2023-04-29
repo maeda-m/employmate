@@ -2,40 +2,76 @@ import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   initialize() {
-    this.element.querySelectorAll('turbo-frame')[0].hidden = false
+    this.element.querySelectorAll('section')[0].hidden = false
   }
 
   get form() {
     return this.element.querySelector('form')
   }
 
-  frame(event) {
-    return event.target.closest('turbo-frame')
+  question(event) {
+    return event.target.closest('section')
   }
 
-  hide(event) {
-    this.frame(event).hidden = true
+  get csrfToken() {
+    const token = document.head.querySelector('meta[name="csrf-token"]')
+    return token.content
   }
 
-  hideWithValid(event) {
-    const fields = this.frame(event).querySelectorAll('input,select')
+  back(event) {
+    this.showQuestion(event, {
+      shown: () => {
+        this.question(event).hidden = true
+      },
+      nobody: () => {
+        Turbo.visit('/', { action: 'replace' })
+      },
+    })
+  }
+
+  next(event) {
+    const currentQuestion = this.question(event)
+    const fields = currentQuestion.querySelectorAll('input,select')
     const isValid = Array.from(fields).every((field) => {
       return field.reportValidity()
     })
 
     if (isValid) {
-      this.hide(event)
-      this.form.action = this.frame(event).dataset.formaction
+      currentQuestion.hidden = true
+      this.showQuestion(event, {
+        shown: (nextQuestion) => {
+          nextQuestion.dispatchEvent(
+            new CustomEvent('show:question', { detail: currentQuestion })
+          )
+          currentQuestion.hidden = true
+        },
+        nobody: () => {
+          document.querySelector('input[type="submit"]').hidden = false
+        },
+      })
     } else {
       event.preventDefault()
     }
   }
 
-  hideWithInput(event) {
-    this.hide(event)
-    this.form.action = this.frame(event).dataset.formaction
-    this.form.noValidate = true
-    this.form.requestSubmit()
-    this.form.noValidate = false
+  showQuestion(event, options = {}) {
+    const url = event.target.href || event.target.dataset.url
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': this.csrfToken,
+      },
+      body: new FormData(this.element),
+    })
+      .then((response) => response.text())
+      .then((question_id) => {
+        if (question_id) {
+          const question = document.querySelector(`#${question_id}`)
+          question.hidden = false
+          options.shown(question)
+        } else {
+          options.nobody()
+        }
+      })
   }
 }

@@ -1,5 +1,0 @@
-<%= turbo_stream.append 'survey-profiles' do %>
-  <script>
-    document.querySelector(`#${<%== dom_id(question).to_json %>}`).hidden = false
-  </script>
-<% end %>
