@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class Users::ProfilesController < ApplicationController
-  def index
+  def show
   end
 end
