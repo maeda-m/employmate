@@ -5,8 +5,7 @@
 </hgroup>
 
 <% 6.times do |i| %>
-  <%= fields(record_name, index: i) do |f| %>
-    <%= f.label(:value, '') %>
-    <%= f.number_field(:value, value: 0, class: 'overtime', required:, max: 720, min: 0, step: 1) %>
-  <% end %>
+  <% name = "#{record_name}[values][#{i}]" %>
+  <%= label_tag(name) %>
+  <%= number_field_tag(name, 0, class: 'overtime', required:, max: 720, min: 0, step: 1, placeholder: 60) %>
 <% end %>
