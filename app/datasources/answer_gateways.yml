@@ -1,0 +1,15 @@
+- id: 1
+  rule: unemployed_on
+  name: 退職日
+- id: 2
+  rule: recommended_to_extension_of_benefit_receivable_period
+  name: 受給期間延長を推奨
+- id: 3
+  rule: recommended_to_public_vocational_training
+  name: 公共職業訓練を推奨
+- id: 4
+  rule: unemployed_with_special_eligible
+  name: 特定受給資格者
+- id: 5
+  rule: unemployed_with_special_reason
+  name: 特定理由離職者

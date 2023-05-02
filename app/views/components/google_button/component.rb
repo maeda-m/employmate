@@ -12,7 +12,21 @@ class GoogleButton::Component < ApplicationViewComponent
     ENV['GOOGLE_OPENID_CONNECT_CLIENT_ID']
   end
 
+  def redirect_url
+    if signin?
+      sessions_url
+    else
+      users_url
+    end
+  end
+
   def caption
     "#{context}_with"
+  end
+
+  private
+
+  def signin?
+    @context.inquiry.signin?
   end
 end

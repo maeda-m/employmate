@@ -6,8 +6,12 @@ class Survey < ActiveYaml::Base
   has_many :questionnaires
 
   scope :profiles, lambda {
-    where(survey_type: 'profile').order(:id)
+    where(type: 'profile').order(:id)
   }
+
+  def type_of_profile?
+    type.inquiry.profile?
+  end
 
   def next_question(question)
     navigate_question(question, 1)
