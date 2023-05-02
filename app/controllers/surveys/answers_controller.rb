@@ -11,10 +11,14 @@ class Surveys::AnswersController < ApplicationController
 
         attrs = AnswerGateway.to_profile_attributes(survey, answers_params)
         user.create_profile!(attrs)
+
+        reset_session
+        Current.user = user
+        cookies.signed[:user_id] = { value: user.id, httponly: true }
       end
     end
 
-    redirect_to user_profile_url(user_id: 'TODO')
+    redirect_to user_profile_url(user_id: Current.user.id)
   end
 
   private

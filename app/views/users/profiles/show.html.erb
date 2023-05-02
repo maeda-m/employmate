@@ -1,5 +1,7 @@
+<%= render(Profile::Component.new(record: Current.user.profile)) %>
+
 <section>
-  <h2>あなたの状況や希望に合う雇用保険制度は</h2>
+  <h3>今後の予定は次のとおりです。</h3>
 </section>
 
 <%= render(StartButton::Component.new(caption: 'やりなおす')) %>

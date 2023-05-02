@@ -1,5 +1,5 @@
 step '未ログインである' do
-  # TODO
+  Current.user = nil
 end
 
 step 'ブラウザで:visit_pathにアクセスする' do |visit_path|
