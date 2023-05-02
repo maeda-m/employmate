@@ -4,7 +4,15 @@ class Surveys::AnswersController < ApplicationController
   def create
     survey = Survey.find(params[:survey_id])
 
-    raise NotImplementedError if survey.type_of_profile?
+    if survey.type_of_profile?
+      ActiveRecord::Base.transaction do
+        user = User.create!
+        Answer.create!(user:, survey:)
+
+        attrs = AnswerGateway.to_profile_attributes(survey, answers_params)
+        user.create_profile!(attrs)
+      end
+    end
 
     redirect_to user_profile_url(user_id: 'TODO')
   end
