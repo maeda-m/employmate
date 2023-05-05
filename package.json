@@ -9,7 +9,7 @@
     "prettier": "prettier --check \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
     "prettier:fix": "prettier --write \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
     "lint": "npm-run-all eslint stylelint prettier",
-    "lint:fix": "npm-run-all eslint:fix stylelint:fix"
+    "lint:fix": "npm-run-all eslint:fix stylelint:fix prettier:fix"
   },
   "devDependencies": {
     "@secretlint/secretlint-rule-preset-recommend": "^6.2.3",
