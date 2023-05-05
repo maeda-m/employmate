@@ -53,7 +53,13 @@ end
 
 step 'ページフッターにリンク:nameとある' do |name|
   within('footer') do
-    expect(page).to have_link(name)
+    expect(page).to have_selector(:link_or_button, name)
+  end
+end
+
+step 'ページフッターにリンク:nameがない' do |name|
+  within('footer') do
+    expect(page).to have_no_selector(:link_or_button, name)
   end
 end
 
@@ -74,8 +80,16 @@ step 'ボタン:nameがない' do |name|
   end
 end
 
-step 'ボタン:nameをクリックする' do |name|
+step '(ボタン)(リンク):nameをクリックする' do |name|
   click_on(name)
+end
+
+step 'リンク:nameをクリックした後、確認ダイアログの内容に:actionする' do |name, action|
+  raise NotImplementedError, action unless action == '同意'
+
+  accept_confirm do
+    click_on(name)
+  end
 end
 
 step 'フィールド:labelに:valueと入力する' do |label, value|
@@ -84,4 +98,12 @@ end
 
 step '単一選択ボタン:labelを選ぶ' do |label|
   choose(label)
+end
+
+step '疑似的に:visit_pathへDELETEメソッドのリクエストを送信する' do |visit_path|
+  stub_delete_method_submit(visit_path)
+end
+
+step '404エラーになる' do
+  expect(page).to have_text('NotFound')
 end

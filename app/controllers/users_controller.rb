@@ -3,6 +3,8 @@
 class UsersController < ApplicationController
   include GoogleOpenIdConnect
 
+  before_action :require_registered_user, except: :create
+
   def show
   end
 
@@ -21,5 +23,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user_id = params[:id]
+    raise ActiveRecord::RecordNotFound, user_id unless user_id == Current.user.id.to_s
+
+    Current.user.destroy!
+
+    redirect_to root_url, notice: '退会しました。'
   end
 end

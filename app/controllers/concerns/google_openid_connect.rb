@@ -5,7 +5,7 @@ module GoogleOpenIdConnect
 
   included do
     # rubocop:disable Rails/LexicallyScopedActionFilter
-    protect_from_forgery except: :create
+    skip_before_action :verify_authenticity_token, only: :create
     skip_before_action :set_current_state, only: :create
     before_action :protect_id_token_forgery, only: :create
     # rubocop:enable Rails/LexicallyScopedActionFilter
