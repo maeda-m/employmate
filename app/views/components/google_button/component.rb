@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class GoogleButton::Component < ApplicationViewComponent
-  attr_reader :context
+  attr_reader :context, :state
 
-  def initialize(context:)
+  def initialize(context:, state:)
     super
     @context = context
+    @state = state
   end
 
   def client_id

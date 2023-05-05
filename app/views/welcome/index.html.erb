@@ -17,5 +17,5 @@
 
 <section>
   <h3>会員登録済みの方は、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定を確認できます。</h3>
-  <%= render(GoogleButton::Component.new(context: 'signin')) %>
+  <%= render(GoogleButton::Component.new(context: 'signin', state: Current.session.token)) %>
 </section>
