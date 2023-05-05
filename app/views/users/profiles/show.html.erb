@@ -6,4 +6,4 @@
 
 <%= render(StartButton::Component.new(caption: 'やりなおす')) %>
 
-<%= render(GoogleButton::Component.new(context: 'signup')) %>
+<%= render(GoogleButton::Component.new(context: 'signup', state: Current.session.token)) %>

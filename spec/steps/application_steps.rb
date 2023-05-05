@@ -1,9 +1,30 @@
 step '未ログインである' do
-  Current.user = nil
+  expect(session_private_id_from_cookie_value).to eq nil
+end
+
+step 'ユーザー:nameでログインする' do |name|
+  case name
+  when '初回分析回答直後', 'GoogleID連携済み'
+    visit('/')
+    user = User.create!
+    user.create_profile!
+
+    user.register('fake-id') if name == 'GoogleID連携済み'
+
+    Session.find_by!(session_id: session_private_id_from_cookie_value).signin_by(user)
+  else
+    raise NotImplementedError, name
+  end
 end
 
 step 'ブラウザで:visit_pathにアクセスする' do |visit_path|
-  visit(visit_path)
+  case visit_path
+  when '/users/:user_id/profile'
+    user = Session.find_by!(session_id: session_private_id_from_cookie_value).user
+    visit(visit_path.sub(':user_id', user.id.to_s))
+  else
+    visit(visit_path)
+  end
 end
 
 step 'ページ本文に:contentとある' do |content|

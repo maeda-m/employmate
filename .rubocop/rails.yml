@@ -62,6 +62,7 @@ Rails/DynamicFindBy:
   Enabled: true
   Whitelist:
     - find_by_sql
+    - find_by_hash_google_id
 
 Rails/EnumUniqueness:
   Enabled: true
