@@ -78,6 +78,7 @@ end
 
 gem "active_decorator"
 gem "active_hash"
+gem 'activerecord-session_store'
 gem "googleauth"
 gem "holiday_japan"
 gem "newspaper"
