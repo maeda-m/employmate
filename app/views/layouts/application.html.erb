@@ -32,7 +32,7 @@
       <ul>
         <li><%= link_to '利用規約', terms_of_service_path, target: '_blank', rel: 'noopener' %></li>
         <li><%= link_to 'プライバシーポリシー', privacy_policy_path, target: '_blank', rel: 'noopener' %></li>
-        <li><%= link_to '退会する', user_path(id: 'TODO'), data: { turbo_method: 'delete', turbo_confirm: '本当によろしいですか？' } %></li>
+        <li><%= render(DeleteUserButton::Component.new(user: Current.user)) %></li>
       </ul>
     </nav>
     <p><small>&copy; 2023 maeda-m</small></p>
