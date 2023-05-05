@@ -4,21 +4,20 @@ class Surveys::AnswersController < ApplicationController
   def create
     survey = Survey.find(params[:survey_id])
 
-    if survey.type_of_profile?
-      ActiveRecord::Base.transaction do
-        user = User.create!
-        Answer.create!(user:, survey:)
+    raise NotImplementedError unless survey.type_of_profile?
 
-        attrs = AnswerGateway.to_profile_attributes(survey, answers_params)
-        user.create_profile!(attrs)
+    anonymous_user = nil
+    ActiveRecord::Base.transaction do
+      anonymous_user = User.create!
+      Answer.create!(user: anonymous_user, survey:)
 
-        reset_session
-        Current.user = user
-        cookies.signed[:user_id] = { value: user.id, httponly: true }
-      end
+      attrs = AnswerGateway.to_profile_attributes(survey, answers_params)
+      anonymous_user.create_profile!(attrs)
     end
 
-    redirect_to user_profile_url(user_id: Current.user.id)
+    signin_by(anonymous_user)
+
+    redirect_to user_profile_url(user_id: anonymous_user.id)
   end
 
   private
