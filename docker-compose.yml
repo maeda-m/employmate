@@ -13,6 +13,7 @@ services:
       - node_modules:/opt/rails/node_modules
       - vscode:/root/.vscode-server
     env_file:
+      - .env
       - development.env
     environment:
       - HISTFILE=/histfile/.bash_history
