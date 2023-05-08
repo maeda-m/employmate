@@ -1,0 +1,4 @@
+# frozen_string_literal: true
+
+require_relative 'national_government_organization_holiday/version'
+require_relative 'national_government_organization_holiday/integer_patch'
