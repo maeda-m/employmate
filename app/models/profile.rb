@@ -32,4 +32,17 @@ class Profile < ApplicationRecord
     # TODO: [ 11, 12, 21, 22, 23, 31, 32, 33, 34 ].include?(reason_code_for_loss_of_employment)
     2.months
   end
+
+  def scheduled_transfer_on
+    beginning_day = [
+      first_unemployment_certification_on,
+      employment_insurance_eligibility_card_issuance_on
+    ].compact.max
+
+    ScheduledTransferDay.new(beginning_day:).to_date
+  end
+
+  def employment_insurance_eligibility_card_issuance_on
+    # TODO: user.issuances.where(done: true).first&.created_on
+  end
 end
