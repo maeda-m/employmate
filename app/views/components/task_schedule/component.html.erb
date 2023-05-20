@@ -1,0 +1,25 @@
+<section>
+  <h3>今後の予定は次のとおりです。</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>いつ頃</th>
+        <th>どこで</th>
+        <th>なにをどうする</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tasks.each do |task| %>
+        <tr>
+          <td><%= task.about_when %></td>
+          <td><%= task.location %></td>
+          <td>
+            <%= task.title %>
+            <%= simple_format task.help %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
