@@ -48,3 +48,13 @@ RSpec/NestedGroups:
 
 RSpec/RepeatedExampleGroupBody:
   Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+Lint/ScriptPermission:
+  Exclude:
+    - 'lib/national_government_organization_holiday/bin/**/*'

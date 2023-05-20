@@ -81,6 +81,7 @@ gem "active_hash"
 gem 'activerecord-session_store'
 gem "googleauth"
 gem "holiday_japan"
+gem "national_government_organization_holiday", path: 'lib/national_government_organization_holiday'
 gem "newspaper"
 gem "rails-i18n", "~> 7.0.0"
 gem "view_component"
