@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_054227) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_233751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_054227) do
     t.boolean "unemployed_with_special_eligible", default: false
     t.boolean "unemployed_with_special_reason", default: false
     t.date "explanitory_seminar_on_for_employment_insurance"
-    t.date "first_unemployment_certification_on"
+    t.date "fixed_first_unemployment_certification_on"
     t.string "week_type_for_unemployment_certification"
     t.string "day_of_week_for_unemployment_certification"
     t.string "reason_code_for_loss_of_employment"
