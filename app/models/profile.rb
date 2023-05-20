@@ -11,6 +11,11 @@ class Profile < ApplicationRecord
     after_unemployed_on + 10.days
   end
 
+  def explanitory_seminar_on_for_employment_insurance
+    fixed_explanitory_seminar_on_for_employment_insurance.presence ||
+      draft_explanitory_seminar_on_for_employment_insurance
+  end
+
   def draft_explanitory_seminar_on_for_employment_insurance
     issuanced_on_of_release_form + 7.national_gov_org_weekdays
   end
@@ -33,7 +38,7 @@ class Profile < ApplicationRecord
     2.months
   end
 
-  def scheduled_transfer_on
+  def first_scheduled_transfer_on
     beginning_day = [
       first_unemployment_certification_on,
       employment_insurance_eligibility_card_issuance_on

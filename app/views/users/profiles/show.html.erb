@@ -1,9 +1,10 @@
 <%= render(Profile::Component.new(record: Current.user.profile)) %>
 
-<section>
-  <h3>今後の予定は次のとおりです。</h3>
-</section>
+<%= render(TaskSchedule::Component.new(user: Current.user)) %>
 
 <%= render(StartButton::Component.new(caption: 'やりなおす')) %>
 
-<%= render(GoogleButton::Component.new(context: 'signup', state: Current.session.token)) %>
+<section>
+  <h3>会員登録いただくと、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定がわかります。</h3>
+  <%= render(GoogleButton::Component.new(context: 'signup', state: Current.session.token)) %>
+</section>
