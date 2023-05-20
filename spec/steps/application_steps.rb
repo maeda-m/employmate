@@ -7,7 +7,7 @@ step 'ユーザー:nameでログインする' do |name|
   when '初回分析回答直後', 'GoogleID連携済み'
     visit('/')
     user = User.create!
-    user.create_profile!
+    user.create_profile!(unemployed_on: Time.zone.today)
 
     user.register('fake-id') if name == 'GoogleID連携済み'
 
