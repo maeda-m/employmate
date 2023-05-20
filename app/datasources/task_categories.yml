@@ -1,0 +1,23 @@
+- id: 1
+  name: いますぐ
+  label_attribute:
+- id: 2
+  name: 退職日の翌日
+  label_attribute: after_unemployed_on
+  label_suffix: 以降
+- id: 3
+  name: 離職票発行日
+  label_attribute: issuanced_on_of_release_form
+  label_suffix: 頃
+- id: 4
+  name: 雇用保険説明会日
+  label_attribute: explanitory_seminar_on_for_employment_insurance
+  label_suffix: 頃
+- id: 5
+  name: 初回失業認定日
+  label_attribute: first_unemployment_certification_on
+  label_suffix: の週
+- id: 6
+  name: 初回給付金振込予定日
+  label_attribute: first_scheduled_transfer_on
+  label_suffix: 頃

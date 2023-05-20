@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_233751) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_005050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_233751) do
     t.boolean "recommended_to_public_vocational_training", default: false
     t.boolean "unemployed_with_special_eligible", default: false
     t.boolean "unemployed_with_special_reason", default: false
-    t.date "explanitory_seminar_on_for_employment_insurance"
+    t.date "fixed_explanitory_seminar_on_for_employment_insurance"
     t.date "fixed_first_unemployment_certification_on"
     t.string "week_type_for_unemployment_certification"
     t.string "day_of_week_for_unemployment_certification"
@@ -67,6 +67,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_233751) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.bigint "task_category_id", null: false
+    t.bigint "survey_id"
+    t.boolean "done", default: false
+    t.integer "position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_tasks_on_survey_id"
+    t.index ["task_category_id"], name: "index_tasks_on_task_category_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "google_id"
     t.datetime "created_at", null: false
@@ -76,4 +90,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_233751) do
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "questionnaires"
   add_foreign_key "sessions", "users"
+  add_foreign_key "tasks", "users"
 end
