@@ -4,6 +4,6 @@ class Surveys::ProfilesController < ApplicationController
   def index
     survey = Survey.profiles.find(params[:survey_id])
     @answer = Answer.new(survey:)
-    @questionnaires = survey.questionnaires.includes([:questions]).order(:position)
+    @questionnaires = survey.questionnaires.includes([:questions])
   end
 end

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_005050) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_051023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_conditions", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.boolean "answered", default: false
+    t.boolean "equal", default: false
+    t.bigint "condition_question_id", null: false
+    t.string "condition_answer_value"
+    t.index ["condition_question_id"], name: "index_answer_conditions_on_condition_question_id"
+    t.index ["question_id"], name: "index_answer_conditions_on_question_id", unique: true
+  end
 
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -86,6 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_005050) do
     t.datetime "created_at", null: false
   end
 
+  add_foreign_key "answer_conditions", "questions"
+  add_foreign_key "answer_conditions", "questions", column: "condition_question_id"
   add_foreign_key "answers", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "questionnaires"

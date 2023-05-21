@@ -26,7 +26,7 @@ class Profile < ApplicationRecord
   end
 
   def draft_unemployment_certification_on
-    beginning_day = draft_explanitory_seminar_on_for_employment_insurance + benefit_restriction_period
+    beginning_day = draft_explanitory_seminar_on_for_employment_insurance
     UnemploymentCertificationDay.new(beginning_day:).to_date
   end
 
@@ -40,7 +40,7 @@ class Profile < ApplicationRecord
 
   def first_scheduled_transfer_on
     beginning_day = [
-      first_unemployment_certification_on,
+      first_unemployment_certification_on + benefit_restriction_period,
       employment_insurance_eligibility_card_issuance_on
     ].compact.max
 
