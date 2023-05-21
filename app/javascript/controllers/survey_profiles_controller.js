@@ -7,7 +7,7 @@ export default class extends Controller {
 
     const firstQuestion = this.form.querySelectorAll('turbo-frame')[0]
     firstQuestion.querySelector('.visit-welcome').hidden = false
-    firstQuestion.querySelector('.show-prev-question').hidden = true
+    firstQuestion.querySelector('.show-prev-question').remove()
     firstQuestion.hidden = false
   }
 
@@ -29,6 +29,12 @@ export default class extends Controller {
   }
 
   showNextQuestionWithCurrentQuestionValid(event) {
+    if (this.frame(event).hidden) {
+      // Note: Enter キー押下でのフォーム送信（非表示の1問目の次へボタン経由）を拒否する
+      // See: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#implicit-submission
+      return
+    }
+
     const fields = this.frame(event).querySelectorAll('input,select')
     const isValid = Array.from(fields).every((field) => {
       return field.reportValidity()
