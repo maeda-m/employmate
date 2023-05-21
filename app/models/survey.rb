@@ -13,24 +13,24 @@ class Survey < ActiveYaml::Base
     type.inquiry.profile?
   end
 
-  def next_question(question)
-    navigate_question(question, 1)
+  def questionnaires_with_questions(position)
+    questionnaires.eager_load(:questions).merge(Question.where(position:)).map(&:questions).flatten
   end
 
-  def prev_question(question)
-    navigate_question(question, -1)
+  def next_question(current_question, answer_values)
+    position = current_question.position + 1
+    question = questionnaires_with_questions(position).first
+
+    return nil unless question
+    return question if question.answer_condition_fulfilled?(answer_values)
+
+    next_question(question, answer_values)
   end
 
-  private
+  def prev_question(current_question, answer_values)
+    position = Range.new(nil, current_question.position - 1)
+    questions = questionnaires_with_questions(position)
 
-  def navigate_question(question, direction)
-    position = question.position + direction
-    questionnaire = questionnaires.eager_load(:questions)
-                                  .merge(Question.where(position:))
-                                  .first
-
-    return nil unless questionnaire
-
-    questionnaire.questions.first
+    questions.reverse.find { |question| question.answer_condition_fulfilled?(answer_values) }
   end
 end

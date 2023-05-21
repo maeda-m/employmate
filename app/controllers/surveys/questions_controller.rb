@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class Surveys::QuestionsController < ApplicationController
+  include AnswerParameter
+
   def next
     current_question = Question.find(params[:id])
-    next_question = Survey.find(params[:survey_id]).next_question(current_question)
+    next_question = Survey.find(params[:survey_id]).next_question(current_question, answer_values_without_next_questions(current_question))
 
     streams = [
       turbo_stream.append(current_question, partial: 'hide_question', locals: { question: current_question })
@@ -25,7 +27,7 @@ class Surveys::QuestionsController < ApplicationController
 
   def back
     current_question = Question.find(params[:id])
-    prev_question = Survey.find(params[:survey_id]).prev_question(current_question)
+    prev_question = Survey.find(params[:survey_id]).prev_question(current_question, answer_values)
 
     render turbo_stream: [
       turbo_stream.append(current_question, partial: 'hide_question', locals: { question: current_question }),
