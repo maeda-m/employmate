@@ -2,7 +2,7 @@
 
 class AnswerGateway < ActiveYaml::Base
   def self.to_profile_attributes(survey, answers)
-    questionnaires = survey.questionnaires.eager_load(:questions).order(:position)
+    questionnaires = survey.questionnaires.eager_load(:questions)
     questions = questionnaires.merge(Question.where.not(answer_gateway_rule: nil)).map(&:questions).flatten
 
     to_profile_value = proc { |question| question.to_profile_value(answers[question.id.to_s]) }
