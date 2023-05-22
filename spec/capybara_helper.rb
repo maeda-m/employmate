@@ -44,6 +44,14 @@ def session_private_id_from_cookie_value
   session_private_id
 end
 
+def current_session_store
+  Session.find_by!(session_id: session_private_id_from_cookie_value)
+end
+
+def current_user
+  current_session_store.user
+end
+
 def stub_delete_method_submit(visit_path)
   page.evaluate_script(<<~JAVASCRIPT)
     (() => {
