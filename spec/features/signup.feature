@@ -15,6 +15,7 @@ Feature: Google で登録する
 
   Scenario: すでにGoogleID連携済みのユーザーで「Googleで登録」を試みる
     Given ユーザー"GoogleID連携済み"でログインする
+    And 会員登録時にやることリストが退職日"2023/02/28"として作成されている
 
     When ブラウザで"/users/:user_id/profile"にアクセスする
     Then ボタン"Googleで登録"がない
