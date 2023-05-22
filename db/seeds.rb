@@ -3,7 +3,7 @@
 ActiveRecord::Base.transaction do
   records = [
     {
-      survey: Survey.profiles.first,
+      survey: Survey.initial_profile,
       questionnaires: [
         {
           title: 'あなたの状況や希望を教えてください。',

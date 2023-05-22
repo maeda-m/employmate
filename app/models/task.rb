@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
+  default_scope { order(:position) }
+
   belongs_to :user
   belongs_to :task_category
   belongs_to :survey, optional: true
