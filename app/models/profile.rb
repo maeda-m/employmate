@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Profile < ApplicationRecord
+  INVOLUNTARILY_REASON_CODES = %w[11 12 21 22 23 31 32 33 34].freeze
+  SERIOUS_REASON_CODES = '50'..'59'
+
   belongs_to :user
 
   def after_unemployed_on
@@ -30,17 +33,33 @@ class Profile < ApplicationRecord
     UnemploymentCertificationDay.new(beginning_day:).to_date
   end
 
-  def benefit_restriction_period
-    return 0.days if unemployed_with_special_eligible?
-    return 0.days if unemployed_with_special_reason?
+  def next_unemployment_certification_on(beginning_day)
+    UnemploymentCertificationDay.new(
+      beginning_day:,
+      week_type: week_type_for_unemployment_certification.to_i,
+      day_of_week: day_of_week_for_unemployment_certification.to_i
+    ).to_date
+  end
 
-    # TODO: [ 11, 12, 21, 22, 23, 31, 32, 33, 34 ].include?(reason_code_for_loss_of_employment)
+  def final_benefit_restriction_on
+    first_unemployment_certification_on + benefit_restriction_period
+  end
+
+  def benefit_restriction_period
+    if reason_code_for_loss_of_employment
+      return 0.days if INVOLUNTARILY_REASON_CODES.include?(reason_code_for_loss_of_employment)
+      return 3.months if SERIOUS_REASON_CODES.cover?(reason_code_for_loss_of_employment)
+    else
+      return 0.days if unemployed_with_special_eligible?
+      return 0.days if unemployed_with_special_reason?
+    end
+
     2.months
   end
 
   def first_scheduled_transfer_on
     beginning_day = [
-      first_unemployment_certification_on + benefit_restriction_period,
+      final_benefit_restriction_on,
       employment_insurance_eligibility_card_issuance_on
     ].compact.max
 
