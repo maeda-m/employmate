@@ -19,3 +19,4 @@ Feature: Google で登録する
     When ブラウザで"/users/:user_id/profile"にアクセスする
     Then ボタン"Googleで登録"がない
     And ボタン"はじめる"がない
+    And ページ本文に"初回の給付金振込予定日は"とある

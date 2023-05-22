@@ -6,11 +6,32 @@ class Survey < ActiveYaml::Base
   has_many :questionnaires
 
   scope :profiles, lambda {
-    where(type: 'profile').order(:id)
+    where(type: 'initial_profile')
   }
 
+  scope :approvals, lambda {
+    where(type: 'approved_release_form')
+  }
+
+  scope :issuances, lambda {
+    where(type: 'issued_employment_insurance_eligibility_card')
+  }
+
+  def self.initial_profile
+    profiles.first
+  end
+
+  def self.approved_release_form
+    approvals.first
+  end
+
+  def self.issued_employment_insurance_eligibility_card
+    issuances.first
+  end
+
   def type_of_profile?
-    type.inquiry.profile?
+    ActiveSupport::Deprecation.warn('TODO: 後で消す')
+    type.inquiry.initial_profile?
   end
 
   def questionnaires_with_questions(position)

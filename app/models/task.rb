@@ -1,9 +1,19 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
+  default_scope { order(:position) }
+
   belongs_to :user
   belongs_to :task_category
   belongs_to :survey, optional: true
+
+  scope :todo, lambda {
+    where(done: false)
+  }
+
+  scope :done, lambda {
+    where(done: true)
+  }
 
   def about_when
     return task_category.name if task_category.now?

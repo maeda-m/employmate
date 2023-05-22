@@ -3,25 +3,24 @@ step '未ログインである' do
 end
 
 step 'ユーザー:nameでログインする' do |name|
-  case name
-  when '初回分析回答直後', 'GoogleID連携済み'
-    visit('/')
-    user = User.create!
-    user.create_profile!(unemployed_on: Time.zone.today)
+  anonymous_users = %w[初回分析回答直後]
+  registered_users = %w[GoogleID連携済み 初回分析で特定理由離職者と推定 給付制限あり]
+  raise NotImplementedError, name unless (anonymous_users + registered_users).include?(name)
 
-    user.register('fake-id') if name == 'GoogleID連携済み'
+  visit('/')
+  user = User.create!
+  user.create_profile!(unemployed_on: Date.new(2023, 2, 28))
+  user.profile.update!(unemployed_with_special_reason: true) if name == '初回分析で特定理由離職者と推定'
+  user.profile.update!(unemployed_with_special_eligible: false, unemployed_with_special_reason: false) if name == '給付制限あり'
+  user.register('fake-id') if registered_users.include?(name)
 
-    Session.find_by!(session_id: session_private_id_from_cookie_value).signin_by(user)
-  else
-    raise NotImplementedError, name
-  end
+  current_session_store.signin_by(user)
 end
 
 step 'ブラウザで:visit_pathにアクセスする' do |visit_path|
   case visit_path
   when '/users/:user_id/profile'
-    user = Session.find_by!(session_id: session_private_id_from_cookie_value).user
-    visit(visit_path.sub(':user_id', user.id.to_s))
+    visit(visit_path.sub(':user_id', current_user.id.to_s))
   else
     visit(visit_path)
   end
@@ -82,6 +81,10 @@ end
 
 step '(ボタン)(リンク):nameをクリックする' do |name|
   click_on(name)
+end
+
+step 'チェックボックス:nameをクリックする' do |name|
+  check(name)
 end
 
 step 'リンク:nameをクリックした後、確認ダイアログの内容に:actionする' do |name, action|
