@@ -4,8 +4,10 @@
     <h2><%= @scheduled_transfer_label %></h2>
     <p>です。</p>
   </hgroup>
-
-  <p>今後の予定は次のとおりです。完了したらチェックを入れてください。</p>
 </section>
 
-<%= render(partial: 'tasks', locals: { tasks_with_category: @tasks_with_category, done_tasks: @done_tasks }) %>
+<% if @tasks_with_category.blank? %>
+  <%= render(TransferSchedule::Component.new(user: Current.user)) %>
+<% else %>
+  <%= render(partial: 'tasks', locals: { tasks_with_category: @tasks_with_category, done_tasks: @done_tasks }) %>
+<% end %>

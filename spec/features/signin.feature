@@ -15,6 +15,7 @@ Feature: Googleでログインする
 
   Scenario: すでにGoogleID連携済みのユーザーで「Googleでログイン」をする
     Given ユーザー"GoogleID連携済み"でログインする
+    And 会員登録時にやることリストが退職日"2023/02/28"として作成されている
 
     When ブラウザで"/"にアクセスする
     Then ボタン"Googleでログイン"がない

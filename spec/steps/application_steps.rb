@@ -4,14 +4,14 @@ end
 
 step 'ユーザー:nameでログインする' do |name|
   anonymous_users = %w[初回分析回答直後]
-  registered_users = %w[GoogleID連携済み 初回分析で特定理由離職者と推定 給付制限あり]
+  registered_users = %w[GoogleID連携済み 初回分析で特定理由離職者と推定 初回分析で給付制限ありと推定]
   raise NotImplementedError, name unless (anonymous_users + registered_users).include?(name)
 
   visit('/')
   user = User.create!
-  user.create_profile!(unemployed_on: Date.new(2023, 2, 28))
+  user.create_profile!(unemployed_on: Time.zone.now)
   user.profile.update!(unemployed_with_special_reason: true) if name == '初回分析で特定理由離職者と推定'
-  user.profile.update!(unemployed_with_special_eligible: false, unemployed_with_special_reason: false) if name == '給付制限あり'
+  user.profile.update!(unemployed_with_special_eligible: false, unemployed_with_special_reason: false) if name == '初回分析で給付制限ありと推定'
   user.register('fake-id') if registered_users.include?(name)
 
   current_session_store.signin_by(user)
@@ -109,4 +109,29 @@ end
 
 step '404エラーになる' do
   expect(page).to have_text('NotFound')
+end
+
+step '次のとおり、表がある:' do |table|
+  expected_rows = table.rows
+
+  rows = all('table tbody tr')
+  rows.each.with_index do |row, i|
+    expected_cells = expected_rows[i]
+
+    cells = row.all('td')
+    cells.each.with_index do |cell, n|
+      expect(cell.text).to include expected_cells[n]
+    end
+
+    expect(cells.count).to eq expected_cells.count
+  end
+  expect(rows.count).to eq expected_rows.count
+
+  expected_headers = table.headers
+
+  headers = find('table thead tr').all('th')
+  headers.each.with_index do |header, m|
+    expect(header.text).to include expected_headers[m]
+  end
+  expect(headers.count).to eq expected_headers.count
 end

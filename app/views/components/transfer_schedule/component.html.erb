@@ -1,0 +1,18 @@
+<p>今後の失業認定日と給付金振込予定日は次のとおりです。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>失業認定日</th>
+      <th>給付金振込予定日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% values.each do |value| %>
+      <tr>
+        <td><%= l(value.unemployment_certification_date) %></td>
+        <td><%= l(value.scheduled_transfer_date) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
