@@ -7,6 +7,14 @@ class Task < ApplicationRecord
   belongs_to :task_category
   belongs_to :survey, optional: true
 
+  scope :todo, lambda {
+    where(done: false)
+  }
+
+  scope :done, lambda {
+    where(done: true)
+  }
+
   def about_when
     return task_category.name if task_category.now?
 

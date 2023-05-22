@@ -1,0 +1,30 @@
+<% tasks_with_category.each do |category, tasks| %>
+  <section class="todo">
+    <h2><%= tasks.first.about_when %></h2>
+
+    <% tasks.each do |task| %>
+      <% field_id = dom_id(task) %>
+      <%= form_with(model: task, data: { controller: 'tasks' }) do |f| %>
+        <%= label_tag(field_id) do %>
+          <%= f.check_box(:done, id: field_id, data: { action: 'input->tasks#done' }) %>
+          <%= task.title %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </section>
+<% end %>
+
+<section class="done">
+  <h2>完了分</h2>
+
+  <% if done_tasks.blank? %>
+    <p>完了した予定はありません。</p>
+  <% end %>
+
+  <% done_tasks.each do |task| %>
+    <label>
+      <%= check_box(:task, :done, checked: true, disabled: true) %>
+      <%= task.title %>
+    </label>
+  <% end %>
+</section>

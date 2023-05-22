@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   before_action :require_registered_user, except: :create
 
   def show
+    user = Current.session.user
+
+    @scheduled_transfer_label = user.tasks.new(task_category: TaskCategory.sixth).about_when
+    @tasks_with_category = user.tasks.todo.group_by(&:task_category)
+    @done_tasks = user.tasks.done
   end
 
   def create
