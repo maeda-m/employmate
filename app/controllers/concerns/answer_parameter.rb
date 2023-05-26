@@ -65,7 +65,7 @@ module AnswerParameter
   def answer_values_without_next_questions(current_question)
     position = Range.new(nil, current_question.position)
     survey = current_question.questionnaire.survey
-    questions = survey.questionnaires_with_questions(position)
+    questions = survey.questions_by(position:)
 
     answer_values.slice(questions.map(&:id))
   end

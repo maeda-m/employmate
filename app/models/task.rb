@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
-  default_scope { order(:position) }
-
   belongs_to :user
   belongs_to :task_category
   belongs_to :survey, optional: true
 
+  scope :default_order, lambda {
+    order(:position)
+  }
+
   scope :todo, lambda {
-    where(done: false)
+    where(done: false).default_order
   }
 
   scope :done, lambda {
-    where(done: true)
+    where(done: true).default_order
   }
 
   def done!
