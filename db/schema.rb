@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_051023) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_26_000208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,8 +29,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_051023) do
     t.bigint "survey_id", null: false
     t.datetime "created_at", null: false
     t.index ["survey_id"], name: "index_answers_on_survey_id"
-    t.index ["user_id", "survey_id"], name: "index_answers_on_user_id_and_survey_id", unique: true
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "approvals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "survey_id", null: false
+    t.date "created_on", null: false
+    t.index ["survey_id"], name: "index_approvals_on_survey_id"
+    t.index ["user_id", "survey_id"], name: "index_approvals_on_user_id_and_survey_id", unique: true
+    t.index ["user_id"], name: "index_approvals_on_user_id"
+  end
+
+  create_table "issuances", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "survey_id", null: false
+    t.boolean "done", default: false
+    t.date "created_on", comment: "交付履歴として仮発行があるためNULL制約は不要と判断した"
+    t.index ["survey_id"], name: "index_issuances_on_survey_id"
+    t.index ["user_id", "survey_id", "done"], name: "index_issuances_on_user_id_and_survey_id_and_done", unique: true
+    t.index ["user_id"], name: "index_issuances_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -99,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_051023) do
   add_foreign_key "answer_conditions", "questions"
   add_foreign_key "answer_conditions", "questions", column: "condition_question_id"
   add_foreign_key "answers", "users"
+  add_foreign_key "approvals", "users"
+  add_foreign_key "issuances", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "questionnaires"
   add_foreign_key "sessions", "users"

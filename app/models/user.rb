@@ -2,9 +2,12 @@
 
 class User < ApplicationRecord
   has_one :profile, dependent: :destroy
+  has_one :approval, dependent: :destroy
+
   has_many :answers, dependent: :destroy
   has_many :sessions, dependent: :destroy
   has_many :tasks, dependent: :destroy
+  has_many :issuances, dependent: :destroy
 
   validates :google_id, uniqueness: true, allow_nil: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
