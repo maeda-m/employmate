@@ -87,7 +87,6 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     authentication-zero (2.16.26)
-    bcrypt (3.1.18)
     better_html (2.0.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -193,7 +192,6 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    newspaper (0.2.0)
     nio4r (2.5.9)
     nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
@@ -359,7 +357,6 @@ DEPENDENCIES
   active_hash
   activerecord-session_store
   authentication-zero
-  bcrypt (~> 3.1.7)
   bootsnap
   brakeman
   bullet
@@ -368,11 +365,9 @@ DEPENDENCIES
   erb_lint
   factory_bot_rails
   googleauth
-  holiday_japan
   importmap-rails
   n_plus_one_control
   national_government_organization_holiday!
-  newspaper
   pg (~> 1.1)
   puma (~> 5.0)
   rack-dev-mark

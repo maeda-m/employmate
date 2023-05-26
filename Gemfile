@@ -30,7 +30,7 @@ gem "stimulus-rails"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-gem "bcrypt", "~> 3.1.7"
+# gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -81,9 +81,7 @@ gem "active_decorator"
 gem "active_hash"
 gem 'activerecord-session_store'
 gem "googleauth"
-gem "holiday_japan"
 gem "national_government_organization_holiday", path: 'lib/national_government_organization_holiday'
-gem "newspaper"
 gem "rails-i18n", "~> 7.0.0"
 gem "view_component"
 gem "view_component-contrib"
