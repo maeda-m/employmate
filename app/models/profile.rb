@@ -10,7 +10,7 @@ class Profile < ApplicationRecord
     unemployed_on.next_day
   end
 
-  def issuanced_on_of_release_form
+  def issued_on_of_release_form
     after_unemployed_on + 10.days
   end
 
@@ -20,7 +20,7 @@ class Profile < ApplicationRecord
   end
 
   def draft_explanitory_seminar_on_for_employment_insurance
-    issuanced_on_of_release_form + 7.national_gov_org_weekdays
+    issued_on_of_release_form + 7.national_gov_org_weekdays
   end
 
   def first_unemployment_certification_on

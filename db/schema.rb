@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_000208) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_26_001904) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,7 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_000208) do
     t.bigint "questionnaire_id", null: false
     t.string "body"
     t.string "answer_component_type", null: false
-    t.boolean "required", default: false
     t.integer "position", null: false
     t.string "answer_gateway_rule"
     t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"

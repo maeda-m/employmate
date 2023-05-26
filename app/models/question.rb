@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
-  default_scope { order(:position) }
-
   belongs_to :questionnaire
   belongs_to :answer_component, foreign_key: :answer_component_type, primary_key: :type
   belongs_to :answer_gateway, foreign_key: :answer_gateway_rule, primary_key: :rule, optional: true
 
   has_one :answer_condition, dependent: :destroy
+
+  scope :default_order, lambda {
+    order(:position)
+  }
 
   def answer_condition_fulfilled?(answer_values)
     return true if answer_condition.nil?

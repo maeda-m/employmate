@@ -43,31 +43,35 @@ class Survey < ActiveYaml::Base
     id == Survey.issued_employment_insurance_eligibility_card.id
   end
 
-  def questionnaires_with_questions(position)
-    questionnaires.eager_load(:questions).merge(Question.where(position:)).map(&:questions).flatten
+  def questionnaires_with_questions(position:)
+    questionnaires.with_questions(position)
+  end
+
+  def questions_by(position:)
+    questionnaires_with_questions(position:).map(&:questions).flatten
+  end
+
+  def all_questions
+    questions_by(position: Range.new(nil, nil))
   end
 
   def next_question(current_question, answer_values)
-    position = current_question.position + 1
-    question = questionnaires_with_questions(position).first
+    position = Range.new(current_question.position + 1, nil)
+    questions = questions_by(position:)
 
-    return nil unless question
-    return question if question.answer_condition_fulfilled?(answer_values)
-
-    next_question(question, answer_values)
+    questions.find { |question| question.answer_condition_fulfilled?(answer_values) }
   end
 
   def prev_question(current_question, answer_values)
     position = Range.new(nil, current_question.position - 1)
-    questions = questionnaires_with_questions(position)
+    questions = questions_by(position:)
 
+    answer_values = available_question_answer_values(answer_values:)
     questions.reverse.find { |question| question.answer_condition_fulfilled?(answer_values) }
   end
 
   def answer_values_to_profile_attributes(answer_values:)
     answer_values = available_question_answer_values(answer_values:)
-
-    all_questions = questionnaires_with_questions(Range.new(nil, nil))
     questions_with_gateway = all_questions.select(&:answer_gateway_rule).group_by(&:answer_gateway)
 
     results = {}
@@ -82,8 +86,6 @@ class Survey < ActiveYaml::Base
   private
 
   def available_question_answer_values(answer_values:)
-    all_questions = questionnaires_with_questions(Range.new(nil, nil))
-
     available_question_ids = []
     current_question = all_questions.first
     all_questions.size.times do

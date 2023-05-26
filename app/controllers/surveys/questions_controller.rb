@@ -3,6 +3,8 @@
 class Surveys::QuestionsController < ApplicationController
   include AnswerParameter
 
+  before_action :require_not_registered_user
+
   def next
     current_question = Question.find(params[:id])
     next_question = Survey.find(params[:survey_id]).next_question(current_question, answer_values_without_next_questions(current_question))

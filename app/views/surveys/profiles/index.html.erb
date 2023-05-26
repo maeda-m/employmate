@@ -1,5 +1,5 @@
 <%= form_with(model: [:survey, @answer], method: :post, data: { controller: 'survey-profiles', action: 'turbo:submit-end->survey-profiles#restoreOriginFormAction' }) do |form| %>
-  <%= render(Questionnaire::Component.with_collection(@questionnaires)) %>
+  <%= render(partial: 'question', collection: @questions, as: :question) %>
 
   <%= turbo_frame_tag('survey-profiles') do %>
     <%= form.submit '結果を見る', hidden: true, data: { turbo: false }, formnovalidate: true %>
