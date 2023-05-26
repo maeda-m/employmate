@@ -8,7 +8,7 @@
   <% choices.each do |value, caption| %>
     <%= f.label(:value, value:) do %>
       <%= caption %>
-      <%= f.radio_button(:value, value, required:, data: { action: 'input->survey-profiles#showNextQuestionWithoutCurrentQuestionValid' }) %>
+      <%= f.radio_button(:value, value, required:, data: { action: choice_action }) %>
     <% end %>
   <% end %>
 <% end %>
