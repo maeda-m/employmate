@@ -5,5 +5,9 @@
     <p></p>
   </hgroup>
 
-  <%= f.month_field(:value, required:) %>
+  <div data-controller="month-field">
+    <%= select_year(default_value, { start_year: min_year }, required:, data: { action: 'change->month-field#syncValue' }) %>
+    <%= select_month(default_value, { use_two_digit_numbers: true }, required:, data: { action: 'change->month-field#syncValue' }) %>
+    <%= f.month_field(:value, hidden: true) %>
+  </div>
 <% end %>

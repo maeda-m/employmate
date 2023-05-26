@@ -107,6 +107,14 @@ step 'セレクトボックス:labelの:optionを選ぶ' do |label, option|
   select(option, from: label)
 end
 
+step 'セレクトボックス「年選択」の:optionを選ぶ' do |option|
+  find('select#date_year').select(option)
+end
+
+step 'セレクトボックス「月選択」の:optionを選ぶ' do |option|
+  find('select#date_month').select(option)
+end
+
 step '疑似的に:visit_pathへDELETEメソッドのリクエストを送信する' do |visit_path|
   stub_delete_method_submit(visit_path)
 end
@@ -138,4 +146,8 @@ step '次のとおり、表がある:' do |table|
     expect(header.text).to include expected_headers[m]
   end
   expect(headers.count).to eq expected_headers.count
+end
+
+step 'スクリーンショットをとる' do
+  page.save_screenshot
 end
