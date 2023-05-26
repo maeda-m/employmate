@@ -4,15 +4,7 @@
   <section class="todo">
     <h2><%= tasks.first.about_when %></h2>
 
-    <% tasks.each do |task| %>
-      <% field_id = dom_id(task) %>
-      <%= form_with(model: task, data: { controller: 'tasks' }) do |f| %>
-        <%= label_tag(field_id) do %>
-          <%= f.check_box(:done, id: field_id, data: { action: 'input->tasks#done' }) %>
-          <%= task.title %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render(Task::Component.with_collection(tasks)) %>
   </section>
 <% end %>
 

@@ -10,10 +10,6 @@ class AnswerComponent < ActiveYaml::Base
     type.inquiry.date?
   end
 
-  def yes_or_no?
-    type.inquiry.yes_or_no?
-  end
-
   def overtime?
     type.inquiry.overtime?
   end

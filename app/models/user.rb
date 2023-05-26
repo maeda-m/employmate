@@ -2,9 +2,12 @@
 
 class User < ApplicationRecord
   has_one :profile, dependent: :destroy
+  has_one :approval, dependent: :destroy
+
   has_many :answers, dependent: :destroy
   has_many :sessions, dependent: :destroy
   has_many :tasks, dependent: :destroy
+  has_many :issuances, dependent: :destroy
 
   validates :google_id, uniqueness: true, allow_nil: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
@@ -36,5 +39,14 @@ class User < ApplicationRecord
       tasks.create!(position: 8, task_category: TaskCategory.fourth, title: '雇用保険受給資格者証を入手する', survey: Survey.issued_employment_insurance_eligibility_card)
       tasks.create!(position: 9, task_category: TaskCategory.fifth, title: 'ハローワークで失業認定申告書を提出する')
     end
+  end
+
+  def update_profile_by!(survey:, answer_values:)
+    attrs = survey.answer_values_to_profile_attributes(answer_values:)
+    profile.update!(attrs)
+  end
+
+  def find_todo_task(survey:)
+    tasks.todo.find_by!(survey_id: survey.id)
   end
 end

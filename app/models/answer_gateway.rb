@@ -1,27 +1,15 @@
 # frozen_string_literal: true
 
 class AnswerGateway < ActiveYaml::Base
-  def self.to_profile_attributes(survey, answer_values)
-    questionnaires = survey.questionnaires.eager_load(:questions)
-    questions = questionnaires.merge(Question.where.not(answer_gateway_rule: nil)).map(&:questions).flatten
+  def to_profile(values)
+    return Profile.new[rule] if values.empty?
 
-    to_profile_value = proc { |question| question.to_profile_value(answer_values[question.id]) }
-    questions_with_answer_gateways = questions.group_by(&:answer_gateway)
-    questions_with_answer_gateways.each_with_object({}).each do |questions_with_answer_gateway, attributes|
-      gateway = questions_with_answer_gateway.first
-      questions = questions_with_answer_gateway.last
-
-      value = if gateway.rule.inquiry.unemployed_on?
-                questions.map(&to_profile_value).first
-              else
-                questions.map(&to_profile_value).all?
-              end
-
-      attributes[gateway.rule] = value
-    end
+    multiple_questions ? values.all? : values.first
   end
 
   def eval_date(value)
+    return nil if value.blank?
+
     Date.parse(value)
   end
 
@@ -43,4 +31,13 @@ class AnswerGateway < ActiveYaml::Base
 
     result
   end
+
+  def eval_with_compact_blank(value)
+    return nil if value.blank?
+
+    value
+  end
+  alias eval_week_type eval_with_compact_blank
+  alias eval_day_of_week eval_with_compact_blank
+  alias eval_reason_code eval_with_compact_blank
 end

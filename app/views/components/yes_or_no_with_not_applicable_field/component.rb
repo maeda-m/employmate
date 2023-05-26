@@ -8,4 +8,8 @@ class YesOrNoWithNotApplicableField::Component < RadioButtonField::Component
       not_applicable: 'わからない'
     }
   end
+
+  def choice_action
+    'input->survey-profiles#showNextQuestionWithoutCurrentQuestionValid'
+  end
 end

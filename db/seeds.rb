@@ -118,6 +118,65 @@ ActiveRecord::Base.transaction do
           ]
         }
       ]
+    },
+    {
+      survey: Survey.approved_release_form,
+      questionnaires: [
+        {
+          title: 'しおりの表紙について教えてください。',
+          questions: [
+            {
+              body: 'しおりを受け取った日',
+              answer_component_type: 'date'
+            },
+            {
+              body: '雇用保険説明会の日付',
+              answer_component_type: 'date',
+              answer_gateway_rule: 'fixed_explanitory_seminar_on_for_employment_insurance'
+            },
+            {
+              body: '失業認定日の型',
+              answer_component_type: 'week_type',
+              answer_gateway_rule: 'week_type_for_unemployment_certification'
+            },
+            {
+              body: '失業認定日の曜日',
+              answer_component_type: 'day_of_week',
+              answer_gateway_rule: 'day_of_week_for_unemployment_certification'
+            },
+            {
+              body: '最初の失業認定日',
+              answer_component_type: 'date',
+              answer_gateway_rule: 'fixed_first_unemployment_certification_on'
+            }
+          ],
+          conditions: []
+        }
+      ]
+    },
+    {
+      survey: Survey.issued_employment_insurance_eligibility_card,
+      questionnaires: [
+        {
+          title: '雇用保険受給資格者証について教えてください。',
+          questions: [
+            {
+              body: '仮である記載やしるしがありますか？',
+              answer_component_type: 'issued_or_not'
+            },
+            {
+              body: '離職理由の番号',
+              answer_component_type: 'reason_code',
+              answer_gateway_rule: 'reason_code_for_loss_of_employment'
+            },
+            {
+              body: '交付の日付',
+              answer_component_type: 'date'
+            }
+          ],
+          conditions: []
+        }
+      ]
     }
   ]
 

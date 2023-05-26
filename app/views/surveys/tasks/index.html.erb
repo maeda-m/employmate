@@ -1,0 +1,8 @@
+<%= form_with(model: [:survey, @approval || @issuance], data: { controller: 'survey-tasks' }) do |form| %>
+  <p><%= @questions.first.questionnaire.title %></p>
+
+  <%= render(partial: 'question', collection: @questions, as: :question,
+             locals: { user: Current.user }) %>
+
+  <%= form.submit '完了にする' %>
+<% end %>

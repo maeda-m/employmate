@@ -1,15 +1,40 @@
 - id: 1
   rule: unemployed_on
   name: 退職日
+  multiple_questions: false
 - id: 2
   rule: recommended_to_extension_of_benefit_receivable_period
   name: 受給期間延長を推奨
+  multiple_questions: true
 - id: 3
   rule: recommended_to_public_vocational_training
   name: 公共職業訓練を推奨
+  multiple_questions: true
 - id: 4
   rule: unemployed_with_special_eligible
   name: 特定受給資格者
+  multiple_questions: false
 - id: 5
   rule: unemployed_with_special_reason
   name: 特定理由離職者
+  multiple_questions: true
+- id: 6
+  rule: fixed_explanitory_seminar_on_for_employment_insurance
+  name: 雇用保険説明会の日
+  multiple_questions: false
+- id: 7
+  rule: week_type_for_unemployment_certification
+  name: 失業認定日の型
+  multiple_questions: false
+- id: 8
+  rule: day_of_week_for_unemployment_certification
+  name: 失業認定日の曜日
+  multiple_questions: false
+- id: 9
+  rule: fixed_first_unemployment_certification_on
+  name: 初回の失業認定日
+  multiple_questions: false
+- id: 10
+  rule: reason_code_for_loss_of_employment
+  name: 離職理由コード
+  multiple_questions: false

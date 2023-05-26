@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Current < ActiveSupport::CurrentAttributes
-  attribute :session, :user
+  attribute :session
 
-  def session=(session)
-    super
-    self.user = session.user
+  def user
+    session&.user
+  end
+
+  def signin?
+    !user.nil?
   end
 end
