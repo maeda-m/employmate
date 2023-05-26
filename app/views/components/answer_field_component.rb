@@ -1,14 +1,24 @@
 # frozen_string_literal: true
 
 class AnswerFieldComponent < ApplicationViewComponent
-  attr_reader :record_name, :subject, :description, :required
+  attr_reader :description
 
-  def initialize(record_name:, required:, subject:, description: nil, user: nil)
+  def initialize(question:, description: nil, user: nil)
     super
-    @record_name = record_name
-    @subject = subject
+    @question = question
     @description = description
-    @required = required
     @user = user
+  end
+
+  def record_name
+    "answers[#{@question.id}]"
+  end
+
+  def subject
+    @question.body
+  end
+
+  def required
+    true
   end
 end

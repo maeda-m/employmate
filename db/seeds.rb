@@ -11,26 +11,22 @@ ActiveRecord::Base.transaction do
             {
               body: 'Q. 退職日または予定日はいつですか？',
               answer_component_type: 'date',
-              answer_gateway_rule: 'unemployed_on',
-              required: true
+              answer_gateway_rule: 'unemployed_on'
             },
             {
               body: 'Q. 病気やケガで労働が困難な状況ですか？',
               answer_component_type: 'yes_or_no',
-              answer_gateway_rule: 'unemployed_with_special_reason',
-              required: true
+              answer_gateway_rule: 'unemployed_with_special_reason'
             },
             {
               body: 'Q. 1か月以上は治療が必要な状況ですか？',
               answer_component_type: 'yes_or_no',
-              answer_gateway_rule: 'recommended_to_extension_of_benefit_receivable_period',
-              required: true
+              answer_gateway_rule: 'recommended_to_extension_of_benefit_receivable_period'
             },
             {
               body: 'Q. これまでの職務経歴から異なる技能習得によって再就職を目指したいですか？',
               answer_component_type: 'yes_or_no',
-              answer_gateway_rule: 'recommended_to_public_vocational_training',
-              required: true
+              answer_gateway_rule: 'recommended_to_public_vocational_training'
             }
           ],
           conditions: [
@@ -47,19 +43,16 @@ ActiveRecord::Base.transaction do
           questions: [
             {
               body: 'Q. 退職前の勤務実績で、休職期間を除いた6か月間のうち45時間以上の時間外労働がひと月でもありましたか？',
-              answer_component_type: 'yes_or_no_with_not_applicable',
-              required: true
+              answer_component_type: 'yes_or_no_with_not_applicable'
             },
             {
               body: 'Q. 退職前の勤務実績で、最後に勤務した月を教えてください。',
-              answer_component_type: 'month',
-              required: true
+              answer_component_type: 'month'
             },
             {
               body: 'Q. 6か月間の残業時間（時間外労働）を教えてください。',
               answer_component_type: 'overtime',
-              answer_gateway_rule: 'unemployed_with_special_eligible',
-              required: true
+              answer_gateway_rule: 'unemployed_with_special_eligible'
             }
           ],
           conditions: [
@@ -82,19 +75,16 @@ ActiveRecord::Base.transaction do
             {
               body: 'Q. 医師の診断書などで退職時に仕事が困難であったかを証明できますか？',
               answer_component_type: 'yes_or_no',
-              answer_gateway_rule: 'unemployed_with_special_reason',
-              required: true
+              answer_gateway_rule: 'unemployed_with_special_reason'
             },
             {
               body: 'Q. あなたの病気やケガに対して会社側から勤務可能な業務に配置転換がありましたか？',
-              answer_component_type: 'yes_or_no',
-              required: true
+              answer_component_type: 'yes_or_no'
             },
             {
               body: 'Q. 配置転換後の業務や通勤が続けられず退職しましたか？',
               answer_component_type: 'yes_or_no',
-              answer_gateway_rule: 'unemployed_with_special_reason',
-              required: true
+              answer_gateway_rule: 'unemployed_with_special_reason'
             }
           ],
           conditions: [
