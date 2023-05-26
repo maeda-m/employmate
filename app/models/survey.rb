@@ -61,6 +61,7 @@ class Survey < ActiveYaml::Base
     position = Range.new(nil, current_question.position - 1)
     questions = questionnaires_with_questions(position)
 
+    answer_values = available_question_answer_values(answer_values:)
     questions.reverse.find { |question| question.answer_condition_fulfilled?(answer_values) }
   end
 
