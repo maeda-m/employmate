@@ -7,7 +7,7 @@
   label_suffix: 以降
 - id: 3
   name: 離職票発行日
-  label_attribute: issuanced_on_of_release_form
+  label_attribute: issued_on_of_release_form
   label_suffix: 頃
 - id: 4
   name: 雇用保険説明会日
