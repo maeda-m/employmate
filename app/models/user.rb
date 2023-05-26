@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :issuances, dependent: :destroy
 
-  validates :google_id, uniqueness: true, allow_nil: true # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :google_id, uniqueness: true, allow_nil: true
 
   def self.find_by_hash_google_id(google_id)
     hash = Digest::SHA512.hexdigest(google_id)
@@ -25,6 +25,10 @@ class User < ApplicationRecord
 
   def registered?
     !!google_id
+  end
+
+  def anonymous?
+    !registered?
   end
 
   def create_tasks

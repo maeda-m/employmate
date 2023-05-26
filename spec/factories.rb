@@ -1,4 +1,23 @@
 FactoryBot.define do
+  factory :user do
+    trait :with_registered do
+      sequence :google_id do |n|
+        "fake-id-#{n}"
+      end
+      profile { build(:profile) }
+    end
+
+    trait :with_anonymous do
+      profile { build(:profile) }
+    end
+  end
+
+  factory :profile do
+    unemployed_on { Time.zone.now }
+    unemployed_with_special_reason { false }
+    unemployed_with_special_eligible { false }
+  end
+
   factory :questionnaire do
     sequence :position do |n|
       n

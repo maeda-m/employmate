@@ -26,6 +26,7 @@ module GoogleOpenIdConnect
     payload['sub']
   end
 
+  # NOTE: このモジュールを利用するコントローラーの create アクションは IdP となる Google が POST する
   def protect_id_token_forgery
     # See: https://developers.google.com/identity/gsi/web/guides/verify-google-id-token?hl=ja
     if cookies['g_csrf_token'].blank? || params[:g_csrf_token].blank? || cookies['g_csrf_token'] != params[:g_csrf_token]
@@ -42,7 +43,7 @@ module GoogleOpenIdConnect
     end
 
     user = authenticated_session.user
-    @anonymous_user = user unless user&.registered?
+    @anonymous_user = user if user&.anonymous?
   end
 
   def anonymous_user
