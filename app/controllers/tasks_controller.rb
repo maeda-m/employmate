@@ -3,14 +3,8 @@
 class TasksController < ApplicationController
   def update
     task = Current.session.user.tasks.todo.find(params[:id])
-    task.update!(task_params)
+    task.done!
 
     redirect_to user_url(id: Current.session.user.id)
-  end
-
-  private
-
-  def task_params
-    params.require(:task).permit(:done)
   end
 end

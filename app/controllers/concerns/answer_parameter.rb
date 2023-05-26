@@ -4,8 +4,11 @@ module AnswerParameter
   extend ActiveSupport::Concern
 
   class AnswerCollection
+    delegate :map, :reject, to: :@answers
+
     def initialize(answers)
-      @answers = answers.to_h.map do |question_id, answer|
+      @origin_answers = answers.to_h
+      @answers = @origin_answers.map do |question_id, answer|
         question_id = question_id.to_i
         AnswerValue.new(question_id, answer)
       end
@@ -13,6 +16,11 @@ module AnswerParameter
 
     def [](question_id)
       @answers.find { |answer| answer.question_id == question_id }
+    end
+
+    def slice(ids)
+      keys = ids.map(&:to_s)
+      AnswerCollection.new(@origin_answers.slice(*keys))
     end
   end
 
@@ -22,6 +30,14 @@ module AnswerParameter
     def initialize(question_id, answer)
       @question_id = question_id
       @answer = answer
+    end
+
+    def to_profile
+      question.to_profile_value(self)
+    end
+
+    def question
+      @question ||= Question.find(question_id)
     end
 
     def to_s
@@ -50,8 +66,12 @@ module AnswerParameter
     position = Range.new(nil, current_question.position)
     survey = current_question.questionnaire.survey
     questions = survey.questionnaires_with_questions(position)
-    question_ids = questions.map { |question| question.id.to_s }
 
-    AnswerCollection.new(answers_params.slice(*question_ids))
+    answer_values.slice(questions.map(&:id))
+  end
+
+  def answer_values_to_event_history
+    answer_values.reject { |answer| answer.question.answer_gateway_rule }
+                 .find { |answer| answer.question.answer_component.date? }.to_s
   end
 end

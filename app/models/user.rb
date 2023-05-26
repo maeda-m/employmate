@@ -40,4 +40,13 @@ class User < ApplicationRecord
       tasks.create!(position: 9, task_category: TaskCategory.fifth, title: 'ハローワークで失業認定申告書を提出する')
     end
   end
+
+  def update_profile_by!(survey:, answer_values:)
+    attrs = survey.answer_values_to_profile_attributes(answer_values:)
+    profile.update!(attrs)
+  end
+
+  def find_todo_task(survey:)
+    tasks.todo.find_by!(survey_id: survey.id)
+  end
 end

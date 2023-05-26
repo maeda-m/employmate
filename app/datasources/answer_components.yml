@@ -22,3 +22,6 @@
 - id: 8
   type: reason_code
   name: 離職理由コード
+- id: 9
+  type: issued_or_not
+  name: 雇用保険受給資格者証の交付有無

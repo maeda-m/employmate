@@ -16,15 +16,10 @@ class Question < ApplicationRecord
   end
 
   def to_profile_value(answer)
-    case true # rubocop:disable Lint/LiteralAsCondition
-    when answer_component.date?
-      answer_gateway.eval_date(answer.to_s)
-    when answer_component.yes_or_no?
-      answer_gateway.eval_yes_or_no(answer.to_s)
-    when answer_component.overtime?
+    if answer_component.overtime?
       answer_gateway.eval_overtime(answer.to_a.map(&:to_i))
     else
-      raise NotImplementedError
+      answer_gateway.send("eval_#{answer_component.type}", answer.to_s)
     end
   end
 end

@@ -2,7 +2,7 @@
 
 class Profile < ApplicationRecord
   INVOLUNTARILY_REASON_CODES = %w[11 12 21 22 23 31 32 33 34].freeze
-  SERIOUS_REASON_CODES = '50'..'59'
+  SERIOUS_REASON_CODES = %w[50 55].freeze
 
   belongs_to :user
 
@@ -48,7 +48,7 @@ class Profile < ApplicationRecord
   def benefit_restriction_period
     if reason_code_for_loss_of_employment
       return 0.days if INVOLUNTARILY_REASON_CODES.include?(reason_code_for_loss_of_employment)
-      return 3.months if SERIOUS_REASON_CODES.cover?(reason_code_for_loss_of_employment)
+      return 3.months if SERIOUS_REASON_CODES.include?(reason_code_for_loss_of_employment)
     else
       return 0.days if unemployed_with_special_eligible?
       return 0.days if unemployed_with_special_reason?
@@ -67,6 +67,6 @@ class Profile < ApplicationRecord
   end
 
   def employment_insurance_eligibility_card_issuance_on
-    # TODO: user.issuances.where(done: true).first&.created_on
+    user.issuances.where(done: true).first&.created_on
   end
 end

@@ -4,6 +4,7 @@ class Survey < ActiveYaml::Base
   include ActiveHash::Associations
 
   has_many :questionnaires
+  has_many :tasks
 
   scope :profiles, lambda {
     where(type: 'initial_profile')
@@ -15,6 +16,11 @@ class Survey < ActiveYaml::Base
 
   scope :issuances, lambda {
     where(type: 'issued_employment_insurance_eligibility_card')
+  }
+
+  scope :tasks, lambda {
+    # NOTE: ActiveYaml のため approvals.or(Survey.issuances) は使用できない
+    where(type: %w[approved_release_form issued_employment_insurance_eligibility_card])
   }
 
   def self.initial_profile
@@ -29,9 +35,12 @@ class Survey < ActiveYaml::Base
     issuances.first
   end
 
-  def type_of_profile?
-    ActiveSupport::Deprecation.warn('TODO: 後で消す')
-    type.inquiry.initial_profile?
+  def approved_release_form?
+    id == Survey.approved_release_form.id
+  end
+
+  def issued_employment_insurance_eligibility_card?
+    id == Survey.issued_employment_insurance_eligibility_card.id
   end
 
   def questionnaires_with_questions(position)
@@ -53,5 +62,37 @@ class Survey < ActiveYaml::Base
     questions = questionnaires_with_questions(position)
 
     questions.reverse.find { |question| question.answer_condition_fulfilled?(answer_values) }
+  end
+
+  def answer_values_to_profile_attributes(answer_values:)
+    answer_values = available_question_answer_values(answer_values:)
+
+    all_questions = questionnaires_with_questions(Range.new(nil, nil))
+    questions_with_gateway = all_questions.select(&:answer_gateway_rule).group_by(&:answer_gateway)
+
+    results = {}
+    questions_with_gateway.each do |gateway, questions|
+      values = answer_values.slice(questions.map(&:id)).map(&:to_profile)
+      results[gateway.rule] = gateway.to_profile(values)
+    end
+
+    results
+  end
+
+  private
+
+  def available_question_answer_values(answer_values:)
+    all_questions = questionnaires_with_questions(Range.new(nil, nil))
+
+    available_question_ids = []
+    current_question = all_questions.first
+    all_questions.size.times do
+      available_question_ids << current_question.id
+      current_question = next_question(current_question, answer_values)
+
+      break if current_question.nil?
+    end
+
+    answer_values.slice(available_question_ids)
   end
 end

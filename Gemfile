@@ -71,6 +71,7 @@ end
 
 group :test do
   gem "capybara-playwright-driver"
+  gem "factory_bot_rails"
   gem "n_plus_one_control"
   gem "rspec-rails", "~> 6.0.0"
   gem "turnip"

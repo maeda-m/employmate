@@ -15,6 +15,10 @@ class Task < ApplicationRecord
     where(done: true)
   }
 
+  def done!
+    update!(done: true)
+  end
+
   def about_when
     return task_category.name if task_category.now?
 

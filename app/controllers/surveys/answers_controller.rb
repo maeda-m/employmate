@@ -6,19 +6,15 @@ class Surveys::AnswersController < ApplicationController
   def create
     survey = Survey.find(params[:survey_id])
 
-    raise NotImplementedError unless survey.type_of_profile?
-
-    anonymous_user = nil
     ActiveRecord::Base.transaction do
-      anonymous_user = User.create!
-      Answer.create!(user: anonymous_user, survey:)
+      # NOTE: 初回分析調査への回答時に匿名ユーザーとして登録する
+      signin_by(AnonymousUser.create!) unless Current.signin?
 
-      attrs = AnswerGateway.to_profile_attributes(survey, answer_values)
-      anonymous_user.create_profile!(attrs)
+      user = Current.user
+      Answer.create!(user:, survey:)
+      user.update_profile_by!(survey:, answer_values:)
     end
 
-    signin_by(anonymous_user)
-
-    redirect_to user_profile_url(user_id: anonymous_user.id)
+    redirect_to user_profile_url(user_id: Current.user.id)
   end
 end
