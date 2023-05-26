@@ -103,6 +103,10 @@ step '単一選択ボタン:labelを選ぶ' do |label|
   choose(label)
 end
 
+step 'セレクトボックス:labelの:optionを選ぶ' do |label, option|
+  select(option, from: label)
+end
+
 step '疑似的に:visit_pathへDELETEメソッドのリクエストを送信する' do |visit_path|
   stub_delete_method_submit(visit_path)
 end
