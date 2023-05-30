@@ -16,12 +16,48 @@
 
 :root {
   --font-family: 'BIZ UDPGothic', sans-serif;
-  --color-primary: #7895b2;
-  --color-secondary: #aebdca;
-  --color-light: #e8dfca;
-  --color-background: #fafafc;
-  --color-background-secondary: #f5efe6;
-  --justify-important: center;
+  --primary: hsl(42deg 59% 51% / 100%) !important;
+  --primary-hover: hsl(42deg 90% 32%) !important;
+  --primary-focus: rgb(245 239 230 / 12.5%) !important;
+}
+
+body > header,
+body > footer {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+body > header {
+  background-color: #f5efe6;
+}
+
+body > header > h1 {
+  font-size: 1.25em;
+  margin-bottom: 0;
+}
+
+body > main {
+  padding: 1rem 0;
+}
+
+body > footer {
+  border-top: var(--border-width) solid var(--blockquote-border-color);
+}
+
+body > footer a,
+body > footer button {
+  font-size: 14px;
+  padding: var(--form-element-spacing-vertical)
+    var(--form-element-spacing-horizontal);
+}
+
+body > footer form {
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+body > footer p {
+  margin-top: var(--typography-spacing-vertical);
 }
 
 button[role='link'] {

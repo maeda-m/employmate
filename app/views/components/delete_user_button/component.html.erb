@@ -1,5 +1,6 @@
 <%= button_to('退会する', user_path(id: user_id),
               method: :delete,
+              role: 'link',
               data: {
                 turbo: false,
                 turbo_confirm: '本当によろしいですか？',
