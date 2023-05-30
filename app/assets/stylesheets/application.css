@@ -23,3 +23,10 @@
   --color-background-secondary: #f5efe6;
   --justify-important: center;
 }
+
+button[role='link'] {
+  --background-color: transparent;
+  --border-color: transparent;
+  --color: var(--primary);
+  --border-width: 0;
+}

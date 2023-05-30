@@ -1,0 +1,58 @@
+.survey section {
+  margin-bottom: 0.5rem;
+}
+
+.survey hgroup {
+  --typography-spacing-vertical: 0.5rem;
+}
+
+.survey h2 {
+  --font-size: 1.25rem;
+  --typography-spacing-vertical: 0.5rem;
+}
+
+.survey label {
+  --form-label-font-weight: 700;
+}
+
+label.overtime {
+  text-align: right;
+}
+
+label.with-radio,
+label.with-checkbox {
+  --border-color: var(--form-element-border-color);
+  --color: var(--form-element-color);
+
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  outline: 0;
+  background-color: var(--background-color);
+  padding: var(--spacing);
+}
+
+section label.with-radio:last-child {
+  margin-bottom: 1.5rem;
+}
+
+label.with-radio:hover:not(:has(input:disabled)),
+label.with-checkbox:hover:not(:has(input:disabled)) {
+  cursor: pointer;
+}
+
+.grid {
+  align-items: baseline;
+  grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
+}
+
+a.visit-welcome,
+button.show-prev-question {
+  text-align: left;
+  display: inline-block;
+  padding: 0;
+  margin-bottom: var(--spacing);
+}
+
+a[role='button'] {
+  display: block;
+}

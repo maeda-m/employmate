@@ -4,11 +4,13 @@
   <p></p>
 </hgroup>
 
-<%= fields_for(record_name) do |f| %>
-  <% choices.each do |value, caption| %>
-    <%= f.label(:value, value:) do %>
-      <%= caption %>
-      <%= f.radio_button(:value, value, required:, data: { action: choice_action }) %>
+<div class="<%= choice_wrapper %>">
+  <%= fields_for(record_name) do |f| %>
+    <% choices.each do |value, caption| %>
+      <%= f.label(:value, value:, class: 'with-radio') do %>
+        <%= f.radio_button(:value, value, required:, data: { action: choice_action }) %>
+        <%= caption %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>

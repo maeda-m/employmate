@@ -6,8 +6,14 @@
   </hgroup>
 
   <div data-controller="month-field">
-    <%= select_year(default_value, { start_year: min_year }, required:, data: { action: 'change->month-field#syncValue' }) %>
-    <%= select_month(default_value, { use_two_digit_numbers: true }, required:, data: { action: 'change->month-field#syncValue' }) %>
+    <div class="grid">
+      <%= select_year(default_value, { start_year: min_year }, required:, data: { action: 'change->month-field#syncValue' }) %>
+      <span>年</span>
+    </div>
+    <div class="grid">
+      <%= select_month(default_value, { use_two_digit_numbers: true }, required:, data: { action: 'change->month-field#syncValue' }) %>
+      <span>月</span>
+    </div>
     <%= f.month_field(:value, hidden: true) %>
   </div>
 <% end %>

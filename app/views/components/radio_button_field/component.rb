@@ -8,4 +8,8 @@ class RadioButtonField::Component < AnswerFieldComponent
   def choice_action
     raise NotImplementedError
   end
+
+  def choice_wrapper
+    ''
+  end
 end

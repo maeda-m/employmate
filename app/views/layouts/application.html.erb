@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
-  <title>Employmate</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.classless.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap" rel="stylesheet">
-
-  <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
-  <%= javascript_importmap_tags %>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-</head>
+<%= render(partial: '/layouts/head') %>
 
 <body>
   <header>
@@ -24,7 +10,7 @@
       <%= image_tag('logo.svg', alt: 'ロゴ', width: '300px') %>
     </h1>
   </header>
-  <main>
+  <main class="container <%= controller_name_to_css %>">
     <%= yield %>
   </main>
   <footer>
