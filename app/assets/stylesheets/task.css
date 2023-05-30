@@ -1,0 +1,28 @@
+section:not(.todo, .done) {
+  margin-bottom: 1rem;
+}
+
+section.todo {
+  margin-bottom: 1.5rem;
+}
+
+.todo h2,
+.done h2 {
+  --typography-spacing-vertical: 0.5rem;
+
+  font-size: 18px;
+}
+
+.todo form {
+  margin-bottom: 0;
+}
+
+.todo label.with-checkbox,
+.done label.with-checkbox {
+  font-size: 14px !important;
+}
+
+.done input[type='checkbox']:disabled {
+  --background-color: var(--form-element-disabled-background-color) !important;
+  --border-color: var(--form-element-disabled-border-color) !important;
+}

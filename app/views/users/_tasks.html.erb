@@ -16,7 +16,7 @@
   <% end %>
 
   <% done_tasks.each do |task| %>
-    <label>
+    <label class="with-checkbox">
       <%= check_box(:task, :done, checked: true, disabled: true) %>
       <%= task.title %>
     </label>
