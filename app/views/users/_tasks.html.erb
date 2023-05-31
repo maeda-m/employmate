@@ -1,4 +1,4 @@
-<p>今後の予定は次のとおりです。完了したらチェックを入れてください。</p>
+<%= help_message(title: '今後の予定は次のとおりです。完了したらチェックを入れてください。') %>
 
 <% tasks_with_category.each do |category, tasks| %>
   <section class="todo">
@@ -11,9 +11,7 @@
 <section class="done">
   <h2>完了分</h2>
 
-  <% if done_tasks.blank? %>
-    <p>完了した予定はありません。</p>
-  <% end %>
+  <%= help_message(title: '完了した予定はありません。') if done_tasks.blank? %>
 
   <% done_tasks.each do |task| %>
     <label class="with-checkbox">

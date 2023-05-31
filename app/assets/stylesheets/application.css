@@ -77,19 +77,24 @@ button[role='link'] {
 }
 
 .help {
-  --font-size: 8px;
-  --typography-spacing-vertical: 0.5rem;
+  --font-size: 0.5rem;
 
-  padding: 0.5rem;
+  padding: calc(var(--spacing) / 2);
   background-color: #eef1f4;
   border-radius: var(--border-radius);
-  margin-top: var(--typography-spacing-vertical);
+  margin: var(--typography-spacing-vertical) 0;
 }
 
 .help h4 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  text-align: center;
-
   --color: #aebdca;
+  --font-size: 0.5rem;
+
+  padding-top: var(--typography-spacing-vertical);
+  text-align: center;
+}
+
+.help h4 i {
+  font-size: 0.75rem;
+  margin-right: 0.125rem;
+  vertical-align: bottom;
 }
