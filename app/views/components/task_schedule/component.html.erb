@@ -1,23 +1,18 @@
 <section>
-  <h3>今後の予定は次のとおりです。</h3>
+  <%= help_message(title: '今後の予定は次のとおりです。') %>
 
-  <table>
+  <table class="task-schedule">
     <thead>
       <tr>
         <th>いつ頃</th>
-        <th>どこで</th>
         <th>なにをどうする</th>
       </tr>
     </thead>
     <tbody>
       <% tasks.each do |task| %>
         <tr>
-          <td><%= task.about_when %></td>
-          <td><%= task.location %></td>
-          <td>
-            <%= task.title %>
-            <%= simple_format task.help %>
-          </td>
+          <td class="date"><%= task.about_when %></td>
+          <%= simple_format(task.title, {}, wrapper_tag: 'td') %>
         </tr>
       <% end %>
     </tbody>

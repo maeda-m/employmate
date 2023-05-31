@@ -1,9 +1,9 @@
-<section>
-  <hgroup>
-    <p>初回の給付金振込予定日は</p>
-    <h2><%= @scheduled_transfer_label %></h2>
-    <p>です。</p>
-  </hgroup>
+<section class="transfer-schedule">
+  <h2>
+    <small>初回の給付金振込予定日は</small>
+    <mark><%= @scheduled_transfer_label %></mark>
+    <small>です。</small>
+  </h2>
 </section>
 
 <% if @tasks_with_category.blank? %>

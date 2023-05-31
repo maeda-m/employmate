@@ -1,0 +1,27 @@
+article > ol,
+article p,
+article address {
+  margin-left: var(--spacing);
+}
+
+article ul li {
+  list-style-type: square !important;
+  margin-left: calc(var(--spacing) * 2);
+}
+
+article ol > ol > li {
+  list-style-type: none;
+  counter-increment: listCounter;
+}
+
+article ol li:only-of-type {
+  list-style-type: none;
+}
+
+article ol > ol {
+  counter-reset: listCounter;
+}
+
+article ol > ol > li::before {
+  content: '(' counter(listCounter) ') ';
+}

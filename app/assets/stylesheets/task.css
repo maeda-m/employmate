@@ -1,0 +1,18 @@
+.transfer-schedule h2 {
+  font-size: 1.5rem;
+}
+
+.todo label.with-checkbox,
+.done label.with-checkbox {
+  font-size: var(--discreet-font-size);
+}
+
+.todo input[type='checkbox'],
+.done input[type='checkbox'] {
+  font-size: var(--font-size);
+}
+
+.done input[type='checkbox']:disabled {
+  --background-color: var(--form-element-disabled-background-color) !important;
+  --border-color: var(--form-element-disabled-border-color) !important;
+}

@@ -1,40 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
-  <title>Employmate</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.classless.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&display=swap" rel="stylesheet">
-
-  <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
-  <%= javascript_importmap_tags %>
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-</head>
+<%= render(partial: '/layouts/head') %>
 
 <body>
   <header>
-    <h1>
-      雇用保険給付の相棒
-      <%= image_tag('logo.svg', alt: 'ロゴ', width: '300px') %>
-    </h1>
+    <h1>雇用保険給付の相棒</h1>
+    <%= image_tag('logo.svg', alt: 'ロゴ', width: '300px') %>
   </header>
-  <main>
+  <main class="container">
     <%= yield %>
   </main>
   <footer>
-    <nav>
-      <ul>
-        <li><%= link_to '利用規約', terms_of_service_path, target: '_blank', rel: 'noopener' %></li>
-        <li><%= link_to 'プライバシーポリシー', privacy_policy_path, target: '_blank', rel: 'noopener' %></li>
-        <li><%= render(DeleteUserButton::Component.new(user: Current.user)) %></li>
-      </ul>
-    </nav>
+    <%= link_to_terms_of_service %>
+    <%= link_to_privacy_policy %>
+    <%= render(DeleteUserButton::Component.new(user: Current.user)) %>
+    <p></p>
     <p><small>&copy; 2023 maeda-m</small></p>
   </footer>
 </body>

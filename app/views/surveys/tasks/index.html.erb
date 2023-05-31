@@ -1,5 +1,5 @@
 <%= form_with(model: [:survey, @approval || @issuance], data: { controller: 'survey-tasks' }) do |form| %>
-  <p><%= @questions.first.questionnaire.title %></p>
+  <h1><%= @questions.first.questionnaire.title %></h1>
 
   <%= render(partial: 'question', collection: @questions, as: :question,
              locals: { user: Current.user }) %>

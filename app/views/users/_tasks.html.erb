@@ -1,22 +1,20 @@
-<p>今後の予定は次のとおりです。完了したらチェックを入れてください。</p>
+<%= help_message(title: '今後の予定は次のとおりです。完了したらチェックを入れてください。') %>
 
 <% tasks_with_category.each do |category, tasks| %>
   <section class="todo">
-    <h2><%= tasks.first.about_when %></h2>
+    <h3><%= tasks.first.about_when %></h3>
 
     <%= render(Task::Component.with_collection(tasks)) %>
   </section>
 <% end %>
 
 <section class="done">
-  <h2>完了分</h2>
+  <h3>完了分</h3>
 
-  <% if done_tasks.blank? %>
-    <p>完了した予定はありません。</p>
-  <% end %>
+  <%= help_message(title: '完了した予定はありません。') if done_tasks.blank? %>
 
   <% done_tasks.each do |task| %>
-    <label>
+    <label class="with-checkbox">
       <%= check_box(:task, :done, checked: true, disabled: true) %>
       <%= task.title %>
     </label>
