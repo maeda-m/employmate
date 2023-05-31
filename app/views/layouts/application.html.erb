@@ -8,13 +8,14 @@
     <h1>雇用保険給付の相棒</h1>
     <%= image_tag('logo.svg', alt: 'ロゴ', width: '300px') %>
   </header>
-  <main class="container <%= controller_name_to_css %>">
+  <main class="container">
     <%= yield %>
   </main>
   <footer>
     <%= link_to_terms_of_service %>
     <%= link_to_privacy_policy %>
     <%= render(DeleteUserButton::Component.new(user: Current.user)) %>
+    <p></p>
     <p><small>&copy; 2023 maeda-m</small></p>
   </footer>
 </body>

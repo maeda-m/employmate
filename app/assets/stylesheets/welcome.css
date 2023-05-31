@@ -1,28 +1,12 @@
-main.welcome h2 {
-  font-size: 18px;
-}
-
-main.welcome h3 {
-  margin-top: 3rem;
-  font-size: 16px;
-}
-
-main.welcome h2,
-main.welcome h3 {
-  margin-bottom: 0.5rem;
-}
-
-main.welcome section {
-  margin-bottom: 0;
-}
-
-article > ol, article p, article address {
-  margin-left: 1rem;
+article > ol,
+article p,
+article address {
+  margin-left: var(--spacing);
 }
 
 article ul li {
   list-style-type: square !important;
-  margin-left: 2em;
+  margin-left: calc(var(--spacing) * 2);
 }
 
 article ol > ol > li {

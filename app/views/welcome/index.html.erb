@@ -2,6 +2,7 @@
   <h2>病気やケガで退職した（する）あなたの事情に合った雇用保険の失業等給付金を探します。</h2>
 </section>
 
+<hr>
 <section>
   <h3>あなたの状況や希望を教えてもらうことで、雇用保険制度とあなたをつなげます。</h3>
   <%= render(StartButton::Component.new(caption: 'はじめる')) %>
@@ -16,6 +17,7 @@
   <% end %>
 </section>
 
+<hr>
 <section>
   <h3>会員登録済みの方は、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定を確認できます。</h3>
   <%= render(GoogleButton::Component.new(context: 'signin', state: Current.session.token)) %>

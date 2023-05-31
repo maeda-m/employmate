@@ -4,6 +4,7 @@
 
 <%= render(StartButton::Component.new(caption: 'やりなおす')) %>
 
+<hr>
 <section>
   <h3>会員登録いただくと、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定がわかります。</h3>
   <%= render(GoogleButton::Component.new(context: 'signup', state: Current.session.token)) %>

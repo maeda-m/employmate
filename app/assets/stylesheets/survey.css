@@ -1,14 +1,10 @@
-.survey section {
-  margin-bottom: 0.5rem;
+.survey section hgroup:first-child {
+  --font-size: 0.75rem;
 }
 
-.survey hgroup {
-  --typography-spacing-vertical: 0.5rem;
-}
-
-.survey h2 {
-  --font-size: 1.25rem;
-  --typography-spacing-vertical: 0.5rem;
+.survey h1 {
+  --font-size: 0.75rem;
+  --font-weight: 400;
 }
 
 .survey label {
@@ -28,21 +24,34 @@ label.with-checkbox {
   border-radius: var(--border-radius);
   outline: 0;
   background-color: var(--background-color);
-  padding: var(--spacing);
 }
 
-section label.with-radio:last-child {
-  margin-bottom: 1.5rem;
+label.with-radio {
+  padding: var(--form-element-spacing-vertical)
+    var(--form-element-spacing-horizontal);
 }
 
-label.with-radio:hover:not(:has(input:disabled)),
-label.with-checkbox:hover:not(:has(input:disabled)) {
-  cursor: pointer;
+label.with-checkbox {
+  padding: calc(var(--form-element-spacing-vertical) * 1.5)
+    var(--form-element-spacing-horizontal);
 }
 
 .grid {
   align-items: baseline;
   grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
+}
+
+.grid label.with-radio {
+  text-align: center;
+}
+
+section label.with-radio:last-child {
+  margin-bottom: var(--spacing);
+}
+
+label.with-radio:hover:not(:has(input:disabled)),
+label.with-checkbox:hover:not(:has(input:disabled)) {
+  cursor: pointer;
 }
 
 a.visit-welcome,
@@ -53,10 +62,14 @@ button.show-prev-question {
   margin-bottom: var(--spacing);
 }
 
-input[type='submit'].show-user-profile {
-  margin-top: var(--spacing);
+table.task-schedule th,
+table.task-schedule td,
+table.transfer-schedule th {
+  font-size: var(--discreet-font-size);
 }
 
-a[role='button'] {
-  display: block;
+table.task-schedule tr th:first-child,
+table.task-schedule tr td:first-child {
+  padding-left: 0;
+  padding-right: 0;
 }

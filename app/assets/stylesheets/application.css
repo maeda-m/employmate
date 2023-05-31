@@ -15,29 +15,30 @@
  */
 
 :root {
-  --font-family: 'BIZ UDPGothic', sans-serif;
+  --font-size: 20px;
+  --discreet-font-size: 13px;
+  --font-family: 'BIZ UDGothic', sans-serif;
   --primary: hsl(42deg 59% 51% / 100%) !important;
   --primary-hover: hsl(42deg 90% 32%) !important;
   --primary-focus: rgb(245 239 230 / 12.5%) !important;
+  --form-element-spacing-vertical: 0.5rem !important;
+  --form-element-spacing-horizontal: 0.75rem !important;
+  --typography-spacing-vertical: 0.5rem !important;
+}
+
+body > header,
+body > main,
+body > footer {
+  --block-spacing-vertical: var(--spacing);
 }
 
 body > header,
 body > footer {
-  padding: 1rem 0;
   text-align: center;
 }
 
 body > header {
   background-color: #f5efe6;
-}
-
-body > header > h1 {
-  font-size: 1.25em;
-  margin-bottom: 0;
-}
-
-body > main {
-  padding: 1rem 0;
 }
 
 body > main:not(:has(article)) {
@@ -50,18 +51,39 @@ body > footer {
 
 body > footer a,
 body > footer button {
-  font-size: 14px;
-  padding: var(--form-element-spacing-vertical)
-    var(--form-element-spacing-horizontal);
+  font-size: var(--discreet-font-size);
+  padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
 }
 
 body > footer form {
-  margin-bottom: 0;
   display: inline-block;
 }
 
-body > footer p {
-  margin-top: var(--typography-spacing-vertical);
+section {
+  --block-spacing-vertical: calc(var(--spacing) * 0.5);
+}
+
+hr {
+  margin-bottom: calc(var(--typography-spacing-vertical) * 3);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  --typography-spacing-vertical: 0.5rem;
+}
+
+h1 {
+  --font-size: 1.25rem;
+}
+
+h2 {
+  --font-size: 0.825rem;
+}
+
+h3 {
+  --font-size: 0.75rem;
 }
 
 button[role='link'] {
@@ -71,9 +93,13 @@ button[role='link'] {
   --border-width: 0;
 }
 
+a[role='button'] {
+  display: block;
+}
+
 .look-like-google-button {
   height: 44px;
-  font-size: 14px;
+  font-size: var(--discreet-font-size);
 }
 
 .help {
@@ -97,4 +123,9 @@ button[role='link'] {
   font-size: 0.75rem;
   margin-right: 0.125rem;
   vertical-align: bottom;
+}
+
+table th,
+table td.date {
+  text-align: center;
 }

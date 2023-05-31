@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def controller_name_to_css
-    controller_path.sub('/', '-')
-  end
-
   def help_message(title: nil)
     tag.div(class: 'help') do
       header = tag.h4 do
