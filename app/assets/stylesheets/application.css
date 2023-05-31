@@ -40,6 +40,10 @@ body > main {
   padding: 1rem 0;
 }
 
+body > main:not(:has(article)) {
+  width: 400px !important;
+}
+
 body > footer {
   border-top: var(--border-width) solid var(--blockquote-border-color);
 }
@@ -65,4 +69,27 @@ button[role='link'] {
   --border-color: transparent;
   --color: var(--primary);
   --border-width: 0;
+}
+
+.look-like-google-button {
+  height: 44px;
+  font-size: 14px;
+}
+
+.help {
+  --font-size: 8px;
+  --typography-spacing-vertical: 0.5rem;
+
+  padding: 0.5rem;
+  background-color: #eef1f4;
+  border-radius: var(--border-radius);
+  margin-top: var(--typography-spacing-vertical);
+}
+
+.help h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+
+  --color: #aebdca;
 }

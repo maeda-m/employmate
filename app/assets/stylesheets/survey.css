@@ -53,6 +53,10 @@ button.show-prev-question {
   margin-bottom: var(--spacing);
 }
 
+input[type='submit'].show-user-profile {
+  margin-top: var(--spacing);
+}
+
 a[role='button'] {
   display: block;
 }

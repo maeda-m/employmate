@@ -1,7 +1,3 @@
-main:not(:has(article)) {
-  width: 400px !important;
-}
-
 main.welcome h2 {
   font-size: 18px;
 }
@@ -18,13 +14,4 @@ main.welcome h3 {
 
 main.welcome section {
   margin-bottom: 0;
-}
-
-main.welcome .help {
-  --font-size: 8px;
-
-  margin-top: 1rem;
-  margin-left: 1rem;
-
-  --typography-spacing-vertical: 0.5rem;
 }
