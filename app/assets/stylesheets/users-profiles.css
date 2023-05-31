@@ -1,0 +1,26 @@
+main.users-profiles h2 {
+  font-size: 18px;
+}
+
+main.users-profiles h3 {
+  margin-top: 3rem;
+  font-size: 16px;
+}
+
+main.users-profiles h2,
+main.users-profiles h3 {
+  margin-bottom: 0.5rem;
+}
+
+main.users-profiles section {
+  margin-bottom: 0;
+}
+
+main.users-profiles table th,
+main.users-profiles table td {
+  font-size: 14px;
+}
+
+main.users-profiles table tr td:first-child {
+  padding: 0;
+}

@@ -5,7 +5,6 @@
     <thead>
       <tr>
         <th>いつ頃</th>
-        <th>どこで</th>
         <th>なにをどうする</th>
       </tr>
     </thead>
@@ -13,11 +12,7 @@
       <% tasks.each do |task| %>
         <tr>
           <td><%= task.about_when %></td>
-          <td><%= task.location %></td>
-          <td>
-            <%= task.title %>
-            <%= simple_format task.help %>
-          </td>
+          <%= simple_format(task.title, {}, wrapper_tag: 'td') %>
         </tr>
       <% end %>
     </tbody>

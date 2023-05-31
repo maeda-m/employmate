@@ -7,21 +7,14 @@ class TaskSchedule::Component < ApplicationViewComponent
   end
 
   def tasks
-    location = 'ハローワーク'
     [
-      { task_category: TaskCategory.first, title: '就労可否の証明書を入手する', location: },
-      { task_category: TaskCategory.first, title: '求職者マイページアカウント登録をする', location: '自宅' },
-      { task_category: TaskCategory.third, title: '離職票を提出する', help: help_message, location: },
-      { task_category: TaskCategory.fourth, title: '雇用保険説明会に出席する', location: },
-      { task_category: TaskCategory.fifth, title: '失業認定申告書を提出する', location: },
-      { task_category: TaskCategory.sixth, title: '初回の給付金振込予定日です', location: }
-    ].map do |attrs|
-      task = @user.tasks.new
-      ActiveDecorator::Decorator.instance.decorate(task)
-      task.attributes = attrs
-
-      task
-    end
+      @user.tasks.new(task_category: TaskCategory.first, title: 'ハローワークで就労可否の証明書を入手する'),
+      @user.tasks.new(task_category: TaskCategory.first, title: '求職者マイページアカウント登録をする'),
+      @user.tasks.new(task_category: TaskCategory.third, title: "離職票をハローワークに提出する\n#{help_message}"),
+      @user.tasks.new(task_category: TaskCategory.fourth, title: 'ハローワークで雇用保険説明会に出席する'),
+      @user.tasks.new(task_category: TaskCategory.fifth, title: 'ハローワークで失業認定申告書を提出する'),
+      @user.tasks.new(task_category: TaskCategory.sixth, title: '初回の給付金振込予定日です')
+    ]
   end
 
   def help_message
