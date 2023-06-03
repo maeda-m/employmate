@@ -3,16 +3,17 @@ step '未ログインである' do
 end
 
 step 'ユーザー:nameでログインする' do |name|
-  anonymous_users = %w[初回分析回答直後]
-  registered_users = %w[GoogleID連携済み 初回分析で特定理由離職者と推定 初回分析で給付制限ありと推定]
-  raise NotImplementedError, name unless (anonymous_users + registered_users).include?(name)
-
   visit('/')
-  user = User.create!
-  user.create_profile!(unemployed_on: Time.zone.now)
-  user.profile.update!(unemployed_with_special_reason: true) if name == '初回分析で特定理由離職者と推定'
-  user.profile.update!(unemployed_with_special_eligible: false, unemployed_with_special_reason: false) if name == '初回分析で給付制限ありと推定'
-  user.register('fake-id') if registered_users.include?(name)
+  user = case name
+         when '初回分析回答直後'
+           FactoryBot.create(:user, :with_anonymous)
+         when 'GoogleID連携済み', '初回分析で給付制限ありと推定'
+           FactoryBot.create(:user, :with_registered)
+         when '初回分析で特定理由離職者と推定'
+           FactoryBot.create(:user, :with_registered, :with_special_reason_profile)
+         else
+           raise NotImplementedError, name
+         end
 
   current_session_store.signin_by(user)
 end

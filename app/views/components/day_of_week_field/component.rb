@@ -8,11 +8,4 @@ class DayOfWeekField::Component < RadioButtonField::Component
       [day_of_week, CAPTIONS[day_of_week]]
     end
   end
-
-  def choice_action
-  end
-
-  def choice_wrapper
-    'grid'
-  end
 end

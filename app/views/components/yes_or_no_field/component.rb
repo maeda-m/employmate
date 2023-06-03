@@ -7,8 +7,4 @@ class YesOrNoField::Component < RadioButtonField::Component
       no: 'いいえ'
     }
   end
-
-  def choice_action
-    'input->survey-profiles#showNextQuestionWithoutCurrentQuestionValid'
-  end
 end

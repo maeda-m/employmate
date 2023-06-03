@@ -6,11 +6,4 @@ class WeekTypeField::Component < RadioButtonField::Component
       [value, value]
     end
   end
-
-  def choice_action
-  end
-
-  def choice_wrapper
-    'grid'
-  end
 end

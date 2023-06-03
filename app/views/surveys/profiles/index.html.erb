@@ -1,4 +1,4 @@
-<%= form_with(model: [:survey, @answer], method: :post, data: { controller: 'survey-profiles', action: 'turbo:submit-end->survey-profiles#restoreOriginFormAction' }) do |form| %>
+<%= form_with(model: [:survey, @answer], method: :post, data: { controller: 'survey-profiles', action: 'turbo:submit-end->survey-profiles#withoutDisable' }) do |form| %>
   <%= render(partial: 'question', collection: @questions, as: :question) %>
 
   <%= turbo_frame_tag('survey-profiles', hidden: true) do %>
@@ -11,3 +11,5 @@
     <%= form.submit '結果を見る', class: 'show-user-profile', data: { turbo: false }, formnovalidate: true %>
   <% end %>
 <% end %>
+
+<%= form_with(id: 'visit-start-page', url: @start_page_path, method: :get) %>

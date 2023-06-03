@@ -42,7 +42,7 @@ RSpec.describe WeekType, type: :model do
   end
 
   describe '.from_date' do
-    describe '引数で与えられた日付が属する年の1月1日の型が1のとき' do
+    context '引数で与えられた日付が属する年の1月1日の型が1のとき' do
       context '引数で与えられた日付が1型のとき' do
         it '戻り値が 1 である（日曜日）' do
           expect(described_class.from_date(Date.new(2023, 1, 1))).to eq 1
@@ -84,7 +84,7 @@ RSpec.describe WeekType, type: :model do
       end
     end
 
-    describe '引数で与えられた日付が属する年の1月1日の型が1でないとき' do
+    context '引数で与えられた日付が属する年の1月1日の型が1でないとき' do
       context '引数で与えられた日付が1型のとき' do
         it '戻り値が 1 である（日曜日）' do
           expect(described_class.from_date(Date.new(2022, 1, 2))).to eq 1
