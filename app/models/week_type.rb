@@ -13,7 +13,7 @@ class WeekType
 
   def add
     if @value == VALUES.last
-      @value = 1
+      @value = VALUES.first
     else
       @value += 1
     end

@@ -7,7 +7,6 @@ class Profile::Component < ApplicationViewComponent
   end
 
   def recommenders
-    # TODO: 受給期間延長
     words = ['基本手当']
 
     if @record.recommended_to_public_vocational_training?

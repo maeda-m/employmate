@@ -113,24 +113,28 @@ RSpec.describe NationalGovernmentOrganizationHoliday do
   end
 
   describe 'Duration#initialize' do
-    it '整数以外は指定できない' do
-      expect { NationalGovernmentOrganizationHoliday::Duration.new(nil) }.to raise_error(TypeError)
-      expect { NationalGovernmentOrganizationHoliday::Duration.new('5') }.to raise_error(TypeError)
-      expect { NationalGovernmentOrganizationHoliday::Duration.new(5.0) }.to raise_error(TypeError)
+    context '引数が整数以外のとき' do
+      it '整数以外は指定できない' do
+        expect { NationalGovernmentOrganizationHoliday::Duration.new(nil) }.to raise_error(TypeError)
+        expect { NationalGovernmentOrganizationHoliday::Duration.new('5') }.to raise_error(TypeError)
+        expect { NationalGovernmentOrganizationHoliday::Duration.new(5.0) }.to raise_error(TypeError)
 
-      expect { nil.national_gov_org_weekdays }.to raise_error(NoMethodError)
-      expect { '5'.national_gov_org_weekdays }.to raise_error(NoMethodError)
-      expect { 5.0.national_gov_org_weekdays }.to raise_error(NoMethodError)
+        expect { nil.national_gov_org_weekdays }.to raise_error(NoMethodError)
+        expect { '5'.national_gov_org_weekdays }.to raise_error(NoMethodError)
+        expect { 5.0.national_gov_org_weekdays }.to raise_error(NoMethodError)
+      end
     end
 
-    it '7開庁日が上限である' do
-      expect(7.national_gov_org_weekdays).to be_truthy
-      expect { 8.national_gov_org_weekdays }.to raise_error(ArgumentError)
-    end
+    context '引数が整数であるが限界値を超えるとき' do
+      it '上限の7開庁日を超える整数は指定できない' do
+        expect(7.national_gov_org_weekdays).to be_truthy
+        expect { 8.national_gov_org_weekdays }.to raise_error(ArgumentError)
+      end
 
-    it '1開庁日が下限である' do
-      expect(1.national_gov_org_weekdays).to be_truthy
-      expect { 0.national_gov_org_weekdays }.to raise_error(ArgumentError)
+      it '下限の1開庁日を下回る整数は指定できない' do
+        expect(1.national_gov_org_weekdays).to be_truthy
+        expect { 0.national_gov_org_weekdays }.to raise_error(ArgumentError)
+      end
     end
   end
 end

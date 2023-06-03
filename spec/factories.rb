@@ -10,12 +10,20 @@ FactoryBot.define do
     trait :with_anonymous do
       profile { build(:profile) }
     end
+
+    trait :with_special_reason_profile do
+      profile { build(:profile, :with_special_reason) }
+    end
   end
 
   factory :profile do
     unemployed_on { Time.zone.now }
     unemployed_with_special_reason { false }
     unemployed_with_special_eligible { false }
+
+    trait :with_special_reason do
+      unemployed_with_special_reason { true }
+    end
   end
 
   factory :questionnaire do
