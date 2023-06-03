@@ -92,6 +92,8 @@ button[role='link'] {
   --border-color: transparent;
   --color: var(--primary);
   --border-width: 0;
+
+  width: auto;
 }
 
 a[role='button'] {

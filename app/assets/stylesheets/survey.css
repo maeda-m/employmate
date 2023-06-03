@@ -63,7 +63,7 @@ input[type='number']::-webkit-inner-spin-button {
   appearance: none;
 }
 
-a.visit-welcome,
+button.visit-start-page,
 button.show-prev-question {
   text-align: left;
   display: inline-block;

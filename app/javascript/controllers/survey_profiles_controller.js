@@ -2,30 +2,21 @@ import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   initialize() {
-    this.originFormAction = this.form.action
-    this.originFormValidate = this.form.noValidate
-
-    const firstQuestion = this.form.querySelectorAll('turbo-frame')[0]
-    firstQuestion.querySelector('.visit-welcome').hidden = false
-    firstQuestion.querySelector('.show-prev-question').remove()
-    firstQuestion.hidden = false
-  }
-
-  get form() {
-    return this.element
-  }
-
-  restoreOriginFormAction() {
-    this.form.action = this.originFormAction
-    this.form.noValidate = this.originFormValidate
+    const boundSubmitWithButtonDisable = this.submitWithButtonDisable.bind(this)
+    const noValidateButtonSelector =
+      '.visit-start-page,.show-prev-question,.show-user-profile'
+    this.element
+      .querySelectorAll(noValidateButtonSelector)
+      .forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault()
+          boundSubmitWithButtonDisable(event)
+        })
+      })
   }
 
   frame(event) {
     return event.target.closest('turbo-frame')
-  }
-
-  showNextQuestionAction(event) {
-    return this.frame(event).dataset.formaction
   }
 
   showNextQuestionWithCurrentQuestionValid(event) {
@@ -41,13 +32,31 @@ export default class extends Controller {
     })
 
     if (isValid) {
-      this.showNextQuestionWithoutCurrentQuestionValid(event)
+      this.submitWithButtonDisable(event)
     }
   }
 
-  showNextQuestionWithoutCurrentQuestionValid(event) {
-    this.form.action = this.showNextQuestionAction(event)
-    this.form.noValidate = true
-    this.form.requestSubmit()
+  submitWithButtonDisable(event) {
+    this.withDisable()
+    const submitter = event.target.closest('button') || event.target
+    submitter.form.requestSubmit(submitter)
+  }
+
+  withDisable() {
+    this.setDisabled(true)
+  }
+
+  withoutDisable() {
+    this.setDisabled(false)
+  }
+
+  setDisabled(value) {
+    // NOTE: requestSubmit する button や turbo: false な submit は disable_with が効かない
+    //       また submitter に disabled を付与するとフォーム送信自体が止まる
+    // See: https://github.com/hotwired/turbo/pull/386
+    const buttons = this.element.querySelectorAll('button,input[type="submit"]')
+    buttons.forEach((button) => {
+      button.disabled = value
+    })
   }
 }
