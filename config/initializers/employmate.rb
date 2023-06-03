@@ -1,0 +1,8 @@
+module Employmate
+  def config
+    Rails.configuration.x.employmate
+  end
+  module_function :config
+end
+
+Employmate.config.google_measurement_id = ENV['GOOGLE_ANALYTICS_MEASUREMENT_ID'].presence
