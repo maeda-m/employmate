@@ -20,7 +20,7 @@
   --font-family: 'BIZ UDGothic', sans-serif;
   --primary: hsl(42deg 59% 51% / 100%) !important;
   --primary-hover: hsl(42deg 90% 32%) !important;
-  --primary-focus: rgb(245 239 230 / 12.5%) !important;
+  --primary-focus: rgb(193 149 16 / 12.5%) !important;
   --form-element-spacing-vertical: 0.5rem !important;
   --form-element-spacing-horizontal: 0.75rem !important;
   --typography-spacing-vertical: 0.5rem !important;

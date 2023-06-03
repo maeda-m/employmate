@@ -5,10 +5,17 @@
 </hgroup>
 
 <% FIELD_COUNT.times do |i| %>
-  <div class="grid">
+  <div class="grid" data-controller="overtime-field">
     <% name = "#{record_name}[values][#{i}]" %>
     <%= label_tag(name, nil, class: 'overtime') %>
-    <%= number_field_tag(name, 0, class: 'overtime', required:, max: 720, min: 0, step: 1, placeholder: 60, autocomplete: 'off') %>
+    <%= number_field_tag(name, 0,
+                         class: 'overtime', required:,
+                         max: 720, min: 0, step: 1,
+                         placeholder: 60, autocomplete: 'off',
+                         data: {
+                           action: 'focus->overtime-field#selectAll',
+                           overtime_field_target: 'overtime'
+                         }) %>
     <span>時間</span>
   </div>
 <% end %>

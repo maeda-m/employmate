@@ -54,6 +54,15 @@ label.with-checkbox:hover:not(:has(input:disabled)) {
   cursor: pointer;
 }
 
+input[type='number'].overtime {
+  text-align: right;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+}
+
 a.visit-welcome,
 button.show-prev-question {
   text-align: left;
