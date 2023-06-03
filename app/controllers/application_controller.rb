@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  rescue_from ActiveHash::RecordNotFound, with: :active_hash_record_not_found
   protect_from_forgery with: :exception
   before_action :set_current_state
 
   private
+
+  def active_hash_record_not_found(error)
+    raise ActiveRecord::RecordNotFound, error.message
+  end
 
   def set_current_state
     reset_session unless current_session_id
