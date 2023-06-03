@@ -2,7 +2,7 @@
 
 <%= render(TaskSchedule::Component.new(user: Current.user)) %>
 
-<%= render(StartButton::Component.new(caption: 'やりなおす')) %>
+<%= render(StartButton::Component.new(context: StartButton::Component::STARTED_BY_REDO)) %>
 
 <hr>
 <section>
