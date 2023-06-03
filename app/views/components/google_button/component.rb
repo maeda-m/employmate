@@ -10,7 +10,7 @@ class GoogleButton::Component < ApplicationViewComponent
   end
 
   def client_id
-    ENV['GOOGLE_OPENID_CONNECT_CLIENT_ID']
+    Employmate.config.google_client_id
   end
 
   def redirect_url

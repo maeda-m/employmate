@@ -14,8 +14,7 @@ module GoogleOpenIdConnect
   private
 
   def authenticated_google_id
-    google_client_id = ENV['GOOGLE_OPENID_CONNECT_CLIENT_ID']
-    payload = Google::Auth::IDTokens.verify_oidc(params[:credential], aud: google_client_id)
+    payload = Google::Auth::IDTokens.verify_oidc(params[:credential], aud: Employmate.config.google_client_id)
   rescue StandardError => e
     # See: https://www.rubydoc.info/github/google/google-auth-library-ruby/Google%2FAuth%2FIDTokens.verify_oidc
     # See: https://github.com/googleapis/google-auth-library-ruby/blob/main/test/id_tokens/verifier_test.rb

@@ -42,7 +42,8 @@ body > header {
 }
 
 body > main:not(:has(article)) {
-  width: 400px !important;
+  max-width: 400px !important;
+  width: 100%;
 }
 
 body > footer {
