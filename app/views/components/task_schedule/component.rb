@@ -7,8 +7,10 @@ class TaskSchedule::Component < ApplicationViewComponent
   end
 
   def tasks
-    [
-      @user.tasks.new(task_category: TaskCategory.first, title: 'ハローワークで就労可否の証明書を入手する'),
+    results = []
+    results << @user.tasks.new(task_category: TaskCategory.first, title: 'ハローワークで就労可否の証明書を入手する') if @user.profile.unemployed_with_special_reason?
+
+    results + [
       @user.tasks.new(task_category: TaskCategory.first, title: '求職者マイページアカウント登録をする'),
       @user.tasks.new(task_category: TaskCategory.third, title: "離職票をハローワークに提出する\n#{required_items.join("\n")}"),
       @user.tasks.new(task_category: TaskCategory.fourth, title: 'ハローワークで雇用保険説明会に出席する'),
