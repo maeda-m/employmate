@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: https://ogp.me/ns#">
 
 <%= render(partial: '/layouts/head') %>
 
 <body>
   <header>
-    <h1>雇用保険給付の相棒</h1>
-    <%= image_tag('logo.svg', alt: 'ロゴ', width: '300px') %>
+    <h1>
+      <%= @page_title || image_tag('logo.svg', alt: '雇用保険給付の相棒') %>
+    </h1>
   </header>
   <main class="container">
     <%= yield %>

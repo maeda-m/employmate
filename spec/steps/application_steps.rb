@@ -45,6 +45,12 @@ step 'ページヘッダーに:contentとある' do |content|
   end
 end
 
+step 'ページヘッダーに画像:altとある' do |alt|
+  within('body > header') do
+    expect(page).to have_selector("img[alt='#{alt}']")
+  end
+end
+
 step 'ページフッターに:contentとある' do |content|
   within('footer') do
     expect(page).to have_text(content)
