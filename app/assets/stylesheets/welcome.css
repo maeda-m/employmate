@@ -1,27 +1,26 @@
-article > ol,
-article p,
+article {
+  margin: 0;
+  box-shadow: none;
+}
+
+article footer {
+  background-color: transparent;
+}
+
+article p:not(:first-child),
 article address {
   margin-left: var(--spacing);
 }
 
-article ul li {
-  list-style-type: square !important;
-  margin-left: calc(var(--spacing) * 2);
-}
-
-article ol > ol > li {
-  list-style-type: none;
-  counter-increment: listCounter;
+article ol,
+article ul {
+  margin-left: calc(var(--spacing) * 1.5);
 }
 
 article ol li:only-of-type {
   list-style-type: none;
 }
 
-article ol > ol {
-  counter-reset: listCounter;
-}
-
-article ol > ol > li::before {
-  content: '(' counter(listCounter) ') ';
+article ol > li > ol > li::marker {
+  content: '(' counter(list-item) ') ';
 }

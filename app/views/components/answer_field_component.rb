@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 class AnswerFieldComponent < ApplicationViewComponent
-  attr_reader :description
-
-  def initialize(question:, description: nil, user: nil)
+  def initialize(question:, user: nil)
     super
     @question = question
-    @description = description
     @user = user
   end
 

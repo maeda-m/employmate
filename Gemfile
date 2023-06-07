@@ -81,6 +81,7 @@ gem "active_decorator"
 gem "active_hash"
 gem 'activerecord-session_store'
 gem "googleauth"
+gem "meta-tags"
 gem "national_government_organization_holiday", path: 'lib/national_government_organization_holiday'
 gem "rails-i18n", "~> 7.0.0"
 gem "view_component"

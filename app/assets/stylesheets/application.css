@@ -18,12 +18,26 @@
   --font-size: 20px;
   --discreet-font-size: 13px;
   --font-family: 'BIZ UDGothic', sans-serif;
-  --primary: hsl(42deg 59% 51% / 100%) !important;
-  --primary-hover: hsl(42deg 90% 32%) !important;
-  --primary-focus: rgb(193 149 16 / 12.5%) !important;
+  --primary: #2772a4 !important;
+  --primary-hover: #3498db !important;
+  --primary-focus: #c2e0f4 !important;
   --form-element-spacing-vertical: 0.5rem !important;
   --form-element-spacing-horizontal: 0.75rem !important;
   --typography-spacing-vertical: 0.5rem !important;
+}
+
+@media (width <= 600px) {
+  :root {
+    --font-size: 18px;
+  }
+}
+
+body > header {
+  padding: calc(var(--spacing) / 2);
+}
+
+body > header hgroup > :last-child {
+  font-size: 0.5rem;
 }
 
 body > header,
@@ -37,8 +51,8 @@ body > footer {
   text-align: center;
 }
 
-body > header {
-  background-color: #f5efe6;
+body > main {
+  padding-top: 0;
 }
 
 body > main:not(:has(article)) {
@@ -76,7 +90,7 @@ h4 {
 }
 
 h1 {
-  --font-size: 1.25rem;
+  --font-size: 1rem;
 }
 
 h2 {
@@ -100,7 +114,7 @@ a[role='button'] {
   display: block;
 }
 
-.look-like-google-button {
+a.look-like-google-button {
   height: 44px;
   font-size: var(--discreet-font-size);
 }
@@ -114,7 +128,7 @@ a[role='button'] {
   margin: var(--typography-spacing-vertical) 0;
 }
 
-.help h4 {
+.help p.title {
   --color: #aebdca;
   --font-size: 0.5rem;
 
@@ -122,7 +136,7 @@ a[role='button'] {
   text-align: center;
 }
 
-.help h4 i {
+.help p.title i {
   font-size: 0.75rem;
   margin-right: 0.125rem;
   vertical-align: bottom;
@@ -131,4 +145,9 @@ a[role='button'] {
 table th,
 table td.date {
   text-align: center;
+}
+
+table th,
+table td {
+  padding: calc(var(--spacing) / 2) calc(var(--spacing) / 2);
 }
