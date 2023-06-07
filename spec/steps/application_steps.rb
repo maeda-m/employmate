@@ -40,8 +40,14 @@ step 'ページ本文に:contentとない' do |content|
 end
 
 step 'ページヘッダーに:contentとある' do |content|
-  within('header') do
+  within('body > header') do
     expect(page).to have_text(content)
+  end
+end
+
+step 'ページヘッダーに:contentとない' do |content|
+  within('body > header') do
+    expect(page).to have_no_text(content)
   end
 end
 

@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja" prefix="og: https://ogp.me/ns#">
 
-<%= render(partial: '/layouts/head') %>
+<head>
+  <%= display_meta_tags(default_meta_tags) %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap" rel="stylesheet">
 
+  <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
+  <%= javascript_importmap_tags %>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://kit.fontawesome.com/ca1daf3f2f.js" crossorigin="anonymous"></script>
+
+  <% measurement_id = Employmate.config.google_measurement_id %>
+  <%= render(partial: '/layouts/head/google_analytics', locals: { measurement_id: }) if measurement_id %>
+</head>
 <body>
   <header>
-    <h1>
-      <%= @page_title || image_tag('logo.svg', alt: '雇用保険給付の相棒') %>
-    </h1>
+    <%= header_content(@page_title) %>
   </header>
   <main class="container">
     <%= yield %>

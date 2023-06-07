@@ -31,6 +31,17 @@ class User < ApplicationRecord
     !registered?
   end
 
+  def recommend
+    words = ['基本手当']
+
+    if profile.recommended_to_public_vocational_training?
+      words << '技能習得手当'
+      words << '寄宿手当'
+    end
+
+    words.to_sentence
+  end
+
   def create_tasks
     ActiveRecord::Base.transaction do
       tasks.create!(position: 1, task_category: TaskCategory.first, title: 'ハローワークで就労可否の証明書を入手する') if profile.unemployed_with_special_reason?

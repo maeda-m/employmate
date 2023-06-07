@@ -1,13 +1,4 @@
-.survey section hgroup:first-child {
-  --font-size: 0.75rem;
-}
-
-.survey h1 {
-  --font-size: 0.75rem;
-  --font-weight: 400;
-}
-
-.survey label {
+label {
   --form-label-font-weight: 700;
 }
 
@@ -69,6 +60,10 @@ button.show-prev-question {
   display: inline-block;
   padding: 0;
   margin-bottom: var(--spacing);
+}
+
+form:has(button.visit-start-page) {
+  margin-bottom: 0;
 }
 
 table.task-schedule th,

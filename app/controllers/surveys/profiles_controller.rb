@@ -3,8 +3,6 @@
 class Surveys::ProfilesController < ApplicationController
   before_action :require_not_registered_user
 
-  layout 'survey'
-
   def index
     survey = Survey.profiles.find(params[:survey_id])
     @answer = Answer.new(survey:)
@@ -14,5 +12,6 @@ class Surveys::ProfilesController < ApplicationController
                        else
                          root_path
                        end
+    @page_title = @questions.first.questionnaire.title
   end
 end

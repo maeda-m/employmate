@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def header_content(page_title)
+    return tag.h1(image_tag('logo.svg', alt: '雇用保険給付の相棒')) unless page_title
+
+    end_of_sentence = '。'
+    return tag.h1(page_title) unless page_title.end_with?(end_of_sentence)
+
+    lines = page_title.split(end_of_sentence).map { |line| "#{line}#{end_of_sentence}" }
+    tag.hgroup do
+      concat(tag.h1(lines[0]))
+      concat(tag.p(lines[1]))
+    end
+  end
+
   def default_meta_tags
     {
       reverse: true,
@@ -27,7 +40,7 @@ module ApplicationHelper
 
   def help_message(title: nil)
     tag.div(class: 'help') do
-      header = tag.h4 do
+      header = tag.p(class: 'title') do
         concat(tag.i(class: 'fa-solid fa-circle-info'))
         concat(title)
       end

@@ -2,11 +2,10 @@
   <%= render(partial: 'question', collection: @questions, as: :question) %>
 
   <%= turbo_frame_tag('survey-profiles', hidden: true) do %>
-    <div class="help">
-      <h4><i class="fa-solid fa-circle-info"></i></h4>
+    <%= help_message do %>
       <p>本サービスは、ユーザーの入力した情報に基づき一般的な参考情報の提供を行うサービスであるため、専門家の助言に代わるものではありません。</p>
       <p>本サービスは、初回の失業認定日までの予定を表示しますが、公共職業安定所によっては一致しない場合もありますので、必ず公共職業安定所の窓口でご確認のうえ、自己の責任において本サービスを利用してください。</p>
-    </div>
+    <% end %>
 
     <%= form.submit '結果を見る', class: 'show-user-profile', data: { turbo: false }, formnovalidate: true %>
   <% end %>

@@ -1,9 +1,5 @@
 <%= fields_for(record_name) do |f| %>
-  <hgroup>
-    <p><%= description %></p>
-    <h2><%= f.label(:value, subject) %></h2>
-    <p></p>
-  </hgroup>
+  <h2><%= f.label(:value, subject) %></h2>
 
   <div data-controller="month-field">
     <div class="grid">

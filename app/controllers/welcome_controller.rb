@@ -7,9 +7,11 @@ class WelcomeController < ApplicationController
   end
 
   def terms_of_service
+    @page_title = '利用規約'
   end
 
   def privacy_policy
+    @page_title = 'プライバシーポリシー'
   end
 
   def robots

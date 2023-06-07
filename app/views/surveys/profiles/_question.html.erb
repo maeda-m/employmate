@@ -9,7 +9,7 @@
     <% end %>
   </header>
   <section>
-    <%= render(question.field_component.new(question:, description: question.questionnaire.title)) %>
+    <%= render(question.field_component.new(question:)) %>
   </section>
   <footer>
     <%= button_tag('次へ', data: { action: 'click->survey-profiles#showNextQuestionWithCurrentQuestionValid:prevent' }, formaction: next_survey_question_path(survey_id:, id: question.id), formnovalidate: true) %>

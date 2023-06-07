@@ -1,11 +1,9 @@
-<%= render(Profile::Component.new(record: Current.user.profile)) %>
-
 <%= render(TaskSchedule::Component.new(user: Current.user)) %>
 
 <%= render(StartButton::Component.new(context: StartButton::Component::STARTED_BY_REDO)) %>
 
 <hr>
 <section>
-  <h3>会員登録いただくと、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定がわかります。</h3>
+  <h2>会員登録いただくと、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定がわかります。</h2>
   <%= render(GoogleButton::Component.new(context: 'signup', state: Current.session.token)) %>
 </section>
