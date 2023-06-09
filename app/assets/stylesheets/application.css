@@ -34,6 +34,7 @@
 
 body > header {
   padding: calc(var(--spacing) / 2);
+  border-top: 5px solid var(--primary);
 }
 
 body > header hgroup > :last-child {
