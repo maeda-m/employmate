@@ -9,7 +9,7 @@ Capybara.register_driver(:playwright) do |app|
     headless: true,
     # See: https://playwright.dev/docs/emulation#locale--timezone
     locale: 'ja-JP',
-    viewport: { width: 750, height: 1334 }
+    viewport: { width: 375, height: 667 }
   )
 
   if ENV['VIDEO']
@@ -50,31 +50,4 @@ end
 
 def current_user
   current_session_store.user
-end
-
-def stub_delete_method_submit(visit_path)
-  page.evaluate_script(<<~JAVASCRIPT)
-    (() => {
-      const form = document.createElement('form')
-      form.method = 'post'
-      form.action = "#{visit_path}"
-
-      const methodDelete = document.createElement('input')
-      methodDelete.type = 'hidden'
-      methodDelete.name = '_method'
-      methodDelete.value = 'delete'
-
-      const button = document.createElement('button')
-      button.type = 'submit'
-      button.dataset.turbo = false
-      button.append(document.createTextNode('疑似的にDELETEメソッド'))
-
-      form.append(methodDelete)
-      form.append(button)
-
-      document.querySelector('body').append(form)
-    })()
-  JAVASCRIPT
-
-  click_on('疑似的にDELETEメソッド')
 end

@@ -128,14 +128,6 @@ step 'セレクトボックス「月選択」の:optionを選ぶ' do |option|
   find('select#date_month').select(option)
 end
 
-step '疑似的に:visit_pathへDELETEメソッドのリクエストを送信する' do |visit_path|
-  stub_delete_method_submit(visit_path)
-end
-
-step '404エラーになる' do
-  expect(page).to have_text('NotFound')
-end
-
 step '次のとおり、表がある:' do |table|
   expected_rows = table.rows
 
