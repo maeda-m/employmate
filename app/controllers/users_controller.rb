@@ -36,4 +36,13 @@ class UsersController < ApplicationController
 
     redirect_to root_url, notice: '退会しました。'
   end
+
+  private
+
+  def anonymous_user
+    @anonymous_user ||= begin
+      user = @authenticated_session.user
+      user&.anonymous? ? user : nil
+    end
+  end
 end

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def set_current_state
     reset_session unless current_session_id
-    Current.session = Session.find_by!(session_id: current_session_id)
+    Current.session = Session.authenticate_by_session_id(current_session_id)
   rescue ActiveRecord::RecordNotFound
     reset_session
     retry
@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   def signin_by(user)
     # See: https://guides.rubyonrails.org/security.html#session-fixation
     reset_session
-    Current.session = Session.find_by!(session_id: current_session_id)
+    Current.session = Session.authenticate_by_session_id(current_session_id)
     Current.session.signin_by(user)
   end
 end

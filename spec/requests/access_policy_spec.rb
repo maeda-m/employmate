@@ -34,8 +34,8 @@ RSpec.describe '会員登録状況によってアクセス制御をする', type
       expect(response).to have_http_status(:ok)
     end
 
-    # ログイン処理は別テストで実施する
-    # 会員登録処理は別テストで実施する
+    # ログイン処理はGoogleがPOSTするため、常に未ログイン状態になる
+    # 会員登録処理はGoogleがPOSTするため、常に未ログイン状態になる
     # 退会処理は別テストで実施する
 
     it '初回分析調査ページはマイページにリダイレクトされる' do
@@ -98,8 +98,8 @@ RSpec.describe '会員登録状況によってアクセス制御をする', type
       expect(response).to have_http_status(:ok)
     end
 
-    # ログイン処理は別テストで実施する
-    # 会員登録処理は別テストで実施する
+    # ログイン処理はGoogleがPOSTするため、常に未ログイン状態になる
+    # 会員登録処理はGoogleがPOSTするため、常に未ログイン状態になる
 
     it '退会処理はウェルカムページにリダイレクトされる' do
       delete '/users/123'
