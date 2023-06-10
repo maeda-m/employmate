@@ -39,6 +39,12 @@ step 'ページ本文に:contentとない' do |content|
   end
 end
 
+step 'トースト:contentがある' do |content|
+  within(find('div.swal2-container')) do
+    expect(page).to have_text(content)
+  end
+end
+
 step 'ページヘッダーに:contentとある' do |content|
   within('body > header') do
     expect(page).to have_text(content)

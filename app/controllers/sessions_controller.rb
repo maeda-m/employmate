@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
       redirect_to user_url(id: user.id), notice: 'ログインしました。'
     else
-      redirect_to root_url, alert: 'ログインできませんでした。'
+      redirect_to root_url, notice: 'ログインできませんでした。'
     end
   end
 end
