@@ -11,6 +11,24 @@ class User < ApplicationRecord
 
   validates :google_id, uniqueness: true, allow_nil: true
 
+  # See: https://github.com/Sorcery/sorcery/blob/v0.16.5/lib/sorcery/model.rb#L86
+  def self.authenticate(*credentials, &block)
+    google_id = credentials[0]
+    return authentication_response(return_value: false, failure: :invalid_login, &block) if google_id.blank?
+
+    user = find_by_hash_google_id(google_id)
+    return authentication_response(failure: :invalid_login, &block) unless user
+
+    authentication_response(user:, return_value: user, &block)
+  end
+
+  # See: https://github.com/Sorcery/sorcery/blob/v0.16.5/lib/sorcery/model.rb#L144
+  def self.authentication_response(options = {})
+    yield(options[:user], options[:failure]) if block_given?
+
+    options[:return_value]
+  end
+
   def self.find_by_hash_google_id(google_id)
     hash = Digest::SHA512.hexdigest(google_id)
 

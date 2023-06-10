@@ -15,13 +15,13 @@ step 'ユーザー:nameでログインする' do |name|
            raise NotImplementedError, name
          end
 
-  current_session_store.signin_by(user)
+  current_session_store.current_user = user
 end
 
 step 'ブラウザで:visit_pathにアクセスする' do |visit_path|
   case visit_path
   when '/users/:user_id/profile'
-    visit(visit_path.sub(':user_id', current_user.id.to_s))
+    visit(visit_path.sub(':user_id', current_session_user.id.to_s))
   else
     visit(visit_path)
   end

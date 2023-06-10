@@ -30,7 +30,7 @@
   <footer>
     <%= link_to_terms_of_service %>
     <%= link_to_privacy_policy %>
-    <%= render(DeleteUserButton::Component.new(user: Current.user)) %>
+    <%= render(DeleteUserButton::Component.new(user: current_user)) %>
     <p></p>
     <p><small>&copy; 2023 maeda-m</small></p>
   </footer>

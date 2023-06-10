@@ -84,5 +84,6 @@ gem "googleauth"
 gem "meta-tags"
 gem "national_government_organization_holiday", path: 'lib/national_government_organization_holiday'
 gem "rails-i18n", "~> 7.0.0"
+gem "sorcery"
 gem "view_component"
 gem "view_component-contrib"

@@ -1,8 +1,8 @@
-<%= button_to(caption_with_back_icon, user_profile_url(user_id: Current.user.id), class: 'visit-start-page', role: 'link', method: :get) %>
+<%= button_to(caption_with_back_icon, user_profile_url(user_id: current_user.id), class: 'visit-start-page', role: 'link', method: :get) %>
 
 <%= form_with(model: [:survey, @approval || @issuance], data: { controller: 'survey-tasks' }) do |form| %>
   <%= render(partial: 'question', collection: @questions, as: :question,
-             locals: { user: Current.user }) %>
+             locals: { user: current_user }) %>
 
   <%= form.submit '完了にする' %>
 <% end %>

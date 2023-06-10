@@ -9,7 +9,7 @@ RSpec.describe '会員登録状況によってアクセス制御をする', type
     before do
       get '/'
       current_session_store = Session.find_by(session_id: session.id.private_id)
-      current_session_store.signin_by(registered_user)
+      current_session_store.current_user = registered_user
     end
 
     let(:registered_user) { FactoryBot.create(:user, :with_registered) }
@@ -75,7 +75,7 @@ RSpec.describe '会員登録状況によってアクセス制御をする', type
       get '/'
       anonymous_user = FactoryBot.create(:user, :with_anonymous)
       current_session_store = Session.find_by(session_id: session.id.private_id)
-      current_session_store.signin_by(anonymous_user)
+      current_session_store.current_user = anonymous_user
     end
 
     it 'ウェルカムページを表示できる' do

@@ -12,7 +12,7 @@ class Session < ActiveRecord::SessionStore::Session
     where(created_at: Range.new(7.days.ago, nil))
   }
 
-  def self.authenticate_by_session_id(session_id)
+  def self.find_current!(session_id)
     validity_days.find_by!(session_id:)
   end
 
@@ -20,7 +20,7 @@ class Session < ActiveRecord::SessionStore::Session
     validity_days.find_by!(token:)
   end
 
-  def signin_by(user)
+  def current_user=(user)
     raise ActiveRecord::RecordNotFound unless user&.id
 
     update_column(:user_id, user.id) # rubocop:disable Rails/SkipsModelValidations

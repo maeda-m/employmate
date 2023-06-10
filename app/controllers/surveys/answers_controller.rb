@@ -10,13 +10,12 @@ class Surveys::AnswersController < ApplicationController
 
     ActiveRecord::Base.transaction do
       # NOTE: 初回分析調査への回答時に匿名ユーザーとして登録する
-      signin_by(AnonymousUser.create!) unless Current.signin?
+      start_user_session(AnonymousUser.create!) unless current_user&.anonymous?
 
-      user = Current.user
-      Answer.create!(user:, survey:)
-      user.update_profile_by!(survey:, answer_values:)
+      Answer.create!(user: current_user, survey:)
+      current_user.update_profile_by!(survey:, answer_values:)
     end
 
-    redirect_to user_profile_url(user_id: Current.user.id)
+    redirect_to user_profile_url(user_id: current_user.id)
   end
 end

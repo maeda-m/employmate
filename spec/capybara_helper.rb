@@ -48,6 +48,6 @@ def current_session_store
   Session.find_by!(session_id: session_private_id_from_cookie_value)
 end
 
-def current_user
+def current_session_user
   current_session_store.user
 end

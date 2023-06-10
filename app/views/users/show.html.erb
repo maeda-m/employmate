@@ -7,7 +7,7 @@
 </section>
 
 <% if @tasks_with_category.blank? %>
-  <%= render(TransferSchedule::Component.new(user: Current.user)) %>
+  <%= render(TransferSchedule::Component.new(user: current_user)) %>
 <% else %>
   <%= render(partial: 'tasks', locals: { tasks_with_category: @tasks_with_category, done_tasks: @done_tasks }) %>
 <% end %>

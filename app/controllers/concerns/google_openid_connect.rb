@@ -6,7 +6,6 @@ module GoogleOpenIdConnect
   included do
     # rubocop:disable Rails/LexicallyScopedActionFilter
     skip_before_action :verify_authenticity_token, only: :create
-    skip_before_action :set_current_state, only: :create
     before_action :protect_id_token_forgery, only: :create
     before_action :set_authenticated_session, only: :create
     # rubocop:enable Rails/LexicallyScopedActionFilter
@@ -15,14 +14,13 @@ module GoogleOpenIdConnect
   private
 
   def authenticated_google_id
-    payload = Google::Auth::IDTokens.verify_oidc(params[:credential], aud: Employmate.config.google_client_id)
+    # See: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
+    @id_token ||= Google::Auth::IDTokens.verify_oidc(params[:credential], aud: Employmate.config.google_client_id)
+    @id_token['sub']
   rescue StandardError => e
     # See: https://www.rubydoc.info/github/google/google-auth-library-ruby/Google%2FAuth%2FIDTokens.verify_oidc
     # See: https://github.com/googleapis/google-auth-library-ruby/blob/main/test/id_tokens/verifier_test.rb
     openid_connect_error_with_reset_session(e.message)
-  else
-    # See: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
-    payload['sub']
   end
 
   # NOTE: このモジュールを利用するコントローラーの create アクションは IdP となる Google が POST する
@@ -42,7 +40,7 @@ module GoogleOpenIdConnect
   end
 
   def openid_connect_error_with_reset_session(message)
-    Rails.logger.error("[GoogleOpenIdConnect] #{message} via #{current_session_id}")
+    Rails.logger.error("[GoogleOpenIdConnect] #{message} by #{current_session_id}")
 
     reset_session
     raise ActionController::InvalidAuthenticityToken, message
