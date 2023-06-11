@@ -1,0 +1,8 @@
+div[aria-labelledby='swal2-title'] {
+  font-size: 0.625rem !important;
+  padding: 0.25rem !important;
+}
+
+h2.swal2-title {
+  text-align: center !important;
+}

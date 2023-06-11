@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
 
   <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
   <%= javascript_importmap_tags %>
@@ -24,11 +25,12 @@
   </header>
   <main class="container">
     <%= yield %>
+    <span data-controller="toast" data-toast-title-value="<%= flash[:notice] %>"></span>
   </main>
   <footer>
     <%= link_to_terms_of_service %>
     <%= link_to_privacy_policy %>
-    <%= render(DeleteUserButton::Component.new(user: Current.user)) %>
+    <%= render(DeleteUserButton::Component.new(user: current_user)) %>
     <p></p>
     <p><small>&copy; 2023 maeda-m</small></p>
   </footer>

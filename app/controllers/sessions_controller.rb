@@ -4,14 +4,15 @@ class SessionsController < ApplicationController
   include GoogleOpenIdConnect
 
   def create
-    user = User.find_by_hash_google_id(authenticated_google_id)
+    # See: https://github.com/Sorcery/sorcery/blob/v0.16.5/lib/sorcery/controller.rb#L37
+    user = login(authenticated_google_id)
 
     if user
-      signin_by(user)
+      start_user_session(user)
 
       redirect_to user_url(id: user.id), notice: 'ログインしました。'
     else
-      redirect_to root_url, alert: 'ログインできませんでした。'
+      redirect_to root_url, notice: 'ログインできませんでした。'
     end
   end
 end

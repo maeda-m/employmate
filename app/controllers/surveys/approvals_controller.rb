@@ -7,16 +7,15 @@ class Surveys::ApprovalsController < ApplicationController
 
   def create
     survey = Survey.find(params[:survey_id])
-    user = Current.user
 
     ActiveRecord::Base.transaction do
       created_on = answer_values_to_event_history
-      Approval.create!(user:, survey:, created_on:)
+      Approval.create!(user: current_user, survey:, created_on:)
 
-      user.update_profile_by!(survey:, answer_values:)
-      user.find_todo_task(survey:).done!
+      current_user.update_profile_by!(survey:, answer_values:)
+      current_user.find_todo_task(survey:).done!
     end
 
-    redirect_to user_profile_url(user_id: user.id)
+    redirect_to user_profile_url(user_id: current_user.id)
   end
 end

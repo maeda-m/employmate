@@ -15,13 +15,13 @@ step 'ユーザー:nameでログインする' do |name|
            raise NotImplementedError, name
          end
 
-  current_session_store.signin_by(user)
+  current_session_store.current_user = user
 end
 
 step 'ブラウザで:visit_pathにアクセスする' do |visit_path|
   case visit_path
   when '/users/:user_id/profile'
-    visit(visit_path.sub(':user_id', current_user.id.to_s))
+    visit(visit_path.sub(':user_id', current_session_user.id.to_s))
   else
     visit(visit_path)
   end
@@ -36,6 +36,12 @@ end
 step 'ページ本文に:contentとない' do |content|
   within('main') do
     expect(page).to have_no_text(content)
+  end
+end
+
+step 'トースト:contentがある' do |content|
+  within(find('div.swal2-container')) do
+    expect(page).to have_text(content)
   end
 end
 
@@ -126,14 +132,6 @@ end
 
 step 'セレクトボックス「月選択」の:optionを選ぶ' do |option|
   find('select#date_month').select(option)
-end
-
-step '疑似的に:visit_pathへDELETEメソッドのリクエストを送信する' do |visit_path|
-  stub_delete_method_submit(visit_path)
-end
-
-step '404エラーになる' do
-  expect(page).to have_text('NotFound')
 end
 
 step '次のとおり、表がある:' do |table|

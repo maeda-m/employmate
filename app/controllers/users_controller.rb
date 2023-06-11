@@ -6,34 +6,36 @@ class UsersController < ApplicationController
   before_action :require_registered_user, except: :create
 
   def show
-    user = Current.user
-
-    @scheduled_transfer_label = user.tasks.new(task_category: TaskCategory.sixth).about_when
-    @tasks_with_category = user.tasks.todo.group_by(&:task_category)
-    @done_tasks = user.tasks.done
+    @scheduled_transfer_label = current_user.tasks.new(task_category: TaskCategory.sixth).about_when
+    @tasks_with_category = current_user.tasks.todo.group_by(&:task_category)
+    @done_tasks = current_user.tasks.done
   end
 
   def create
-    registered_user = User.find_by_hash_google_id(authenticated_google_id)
-    if registered_user
-      signin_by(registered_user)
+    # See: https://github.com/Sorcery/sorcery/blob/v0.16.5/lib/sorcery/controller.rb#L37
+    registered_user = login(authenticated_google_id)
 
-      redirect_to user_url(id: registered_user.id), notice: 'ログインしました。'
-    else
-      anonymous_user.register(authenticated_google_id)
-      anonymous_user.create_tasks
-      signin_by(anonymous_user)
+    message = registered_user ? 'ログインしました。' : '会員登録しました。'
+    registered_user ||= RegisteredUser.create!(anonymous_user, authenticated_google_id)
 
-      redirect_to user_url(id: anonymous_user.id), notice: '会員登録しました。'
-    end
+    start_user_session(registered_user)
+    redirect_to user_url(id: registered_user.id), notice: message
   end
 
   def destroy
     user_id = params[:id]
-    raise ActiveRecord::RecordNotFound, user_id unless user_id == Current.user.id.to_s
+    raise ActiveRecord::RecordNotFound, user_id unless user_id == current_user.id.to_s
 
-    Current.user.destroy!
+    current_user.destroy!
 
+    # See: https://github.com/Sorcery/sorcery/blob/v0.16.5/lib/sorcery/controller.rb#L71
+    logout
     redirect_to root_url, notice: '退会しました。'
+  end
+
+  private
+
+  def anonymous_user
+    @authenticated_session.user
   end
 end
