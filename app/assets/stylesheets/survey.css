@@ -54,7 +54,8 @@ input[type='number']::-webkit-inner-spin-button {
   appearance: none;
 }
 
-input[data-controller='date-field'] {
+input[data-controller='date-field'],
+input[data-controller='month-field'] {
   --icon-position: 0.75rem;
   --icon-width: 1rem;
 
@@ -63,6 +64,11 @@ input[data-controller='date-field'] {
   background-position: center right var(--icon-position);
   background-size: var(--icon-width) auto;
   background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+div.flatpickr-current-month input[type='number'] {
+  text-align: center;
 }
 
 button.visit-start-page,

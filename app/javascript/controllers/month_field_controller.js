@@ -1,24 +1,19 @@
-import { Controller } from '@hotwired/stimulus'
+import Flatpickr from 'stimulus-flatpickr'
+import { Japanese } from 'flatpickr/dist/l10n/ja'
+import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect'
 
-export default class extends Controller {
+export default class extends Flatpickr {
   initialize() {
-    this.syncValue()
-  }
-
-  get yearValue() {
-    return this.element.querySelector('select#date_year').value
-  }
-
-  get monthValue() {
-    const monthElement = this.element.querySelector('select#date_month')
-    return monthElement.options[monthElement.selectedIndex].label
-  }
-
-  get valueElement() {
-    return this.element.querySelector('input[type="month"]')
-  }
-
-  syncValue() {
-    this.valueElement.value = `${this.yearValue}-${this.monthValue}`
+    this.config = {
+      locale: Japanese,
+      allowInput: true,
+      disableMobile: true,
+      ariaDateFormat: 'Y/m',
+      plugins: [
+        new monthSelectPlugin({
+          dateFormat: 'Y/m',
+        }),
+      ],
+    }
   }
 }
