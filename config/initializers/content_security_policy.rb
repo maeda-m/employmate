@@ -12,7 +12,10 @@ Rails.application.configure do
     policy.object_src  :none
     policy.script_src  :self,
                        'https://accounts.google.com', 'https://www.googletagmanager.com', 'https://kit.fontawesome.com',
-                       'https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js'
+                       'https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js',
+                       'https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js',
+                       'https://ga.jspm.io/npm:flatpickr@4.6.13/dist/l10n/ja.js',
+                       'https://ga.jspm.io/npm:stimulus-flatpickr@3.0.0-0/dist/index.m.js'
     policy.style_src :self, :https, :unsafe_inline
     # Specify URI for violation reports
     # policy.report_uri "/csp-violation-report-endpoint"

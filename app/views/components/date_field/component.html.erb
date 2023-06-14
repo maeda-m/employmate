@@ -1,5 +1,8 @@
 <%= fields_for(record_name) do |f| %>
   <h2><%= f.label(:value, subject) %></h2>
 
-  <%= f.date_field(:value, required:, min:) %>
+  <%= f.text_field(:value, required:, placeholder:, data: {
+                     controller: 'date-field',
+                     flatpickr_min_date: min_date
+                   }) %>
 <% end %>

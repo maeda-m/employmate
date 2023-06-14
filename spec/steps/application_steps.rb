@@ -118,6 +118,15 @@ step 'フィールド:labelに:valueと入力する' do |label, value|
   fill_in(label, with: value)
 end
 
+step 'カレンダー:labelに:valueと入力する' do |label, value|
+  find('label', text: label).click
+
+  year, month, day = value.split('/').map(&:to_i)
+  find('div.flatpickr-current-month input').set(year)
+  find('div.flatpickr-current-month select').select("#{month}月")
+  find(%(.flatpickr-day[aria-label="#{value}"]), text: day).click
+end
+
 step '単一選択ボタン:labelを選ぶ' do |label|
   choose(label)
 end

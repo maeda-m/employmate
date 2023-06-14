@@ -54,6 +54,17 @@ input[type='number']::-webkit-inner-spin-button {
   appearance: none;
 }
 
+input[data-controller='date-field'] {
+  --icon-position: 0.75rem;
+  --icon-width: 1rem;
+
+  padding-right: calc(var(--icon-width) + var(--icon-position));
+  background-image: var(--icon-date);
+  background-position: center right var(--icon-position);
+  background-size: var(--icon-width) auto;
+  background-repeat: no-repeat;
+}
+
 button.visit-start-page,
 button.show-prev-question {
   text-align: left;
