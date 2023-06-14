@@ -25,7 +25,7 @@
   <header>
     <%= header_content(@page_title) %>
   </header>
-  <main class="container">
+  <main class="container <%= action_name.dasherize %>">
     <%= yield %>
     <span data-controller="toast" data-toast-title-value="<%= flash[:notice] %>"></span>
   </main>

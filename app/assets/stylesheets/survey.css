@@ -23,6 +23,9 @@ label.with-radio {
 }
 
 label.with-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: calc(var(--form-element-spacing-vertical) * 1.5)
     var(--form-element-spacing-horizontal);
 }
@@ -34,6 +37,15 @@ label.with-checkbox {
 
 .grid label.with-radio {
   text-align: center;
+}
+
+.grid label.with-radio input {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.grid label.with-radio span {
+  display: block;
 }
 
 section label.with-radio:last-child {
@@ -87,10 +99,23 @@ table.task-schedule th,
 table.task-schedule td,
 table.transfer-schedule th {
   font-size: var(--discreet-font-size);
+  min-width: calc(var(--discreet-font-size) * 4.5);
 }
 
 table.task-schedule tr th:first-child,
 table.task-schedule tr td:first-child {
   padding-left: 0;
   padding-right: 0;
+}
+
+@media (width <= 400px) {
+  table.task-schedule td small {
+    margin-left: var(--discreet-font-size);
+    display: inline-block;
+  }
+
+  table.task-schedule th,
+  table.task-schedule td {
+    padding: calc(var(--spacing) / 4) calc(var(--spacing) / 4);
+  }
 }

@@ -29,7 +29,7 @@ class TaskSchedule::Component < ApplicationViewComponent
       '・キャッシュカード'
     ]
     items << '・残業時間の記載がある勤務実績表や給与明細書' if user_profile.unemployed_with_special_eligible?
-    items << '・医師の診断書（発病や負傷時、退職日前後のもの）' if user_profile.unemployed_with_special_reason?
+    items << '・医師の診断書<small>（発病や負傷時、退職日前後のもの）</small>' if user_profile.unemployed_with_special_reason?
     items << '・就労可否の証明書' if user_profile.unemployed_with_special_reason?
 
     items
