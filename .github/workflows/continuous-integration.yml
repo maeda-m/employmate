@@ -70,6 +70,7 @@ jobs:
       # See: https://docs.github.com/ja/actions/learn-github-actions/variables
       - name: RSpec
         env:
+          CI: yes
           DATABASE_URL: postgres://dbuser:mysecretpassword@localhost:5432/dbname
           GOOGLE_OPENID_CONNECT_CLIENT_ID: ${{ secrets.GOOGLE_OPENID_CONNECT_CLIENT_ID }}
         run: |

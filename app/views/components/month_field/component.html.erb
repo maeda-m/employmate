@@ -1,15 +1,8 @@
 <%= fields_for(record_name) do |f| %>
   <h2><%= f.label(:value, subject) %></h2>
 
-  <div data-controller="month-field">
-    <div class="grid">
-      <%= select_year(default_value, { start_year: min_year }, required:, data: { action: 'change->month-field#syncValue' }) %>
-      <span>年</span>
-    </div>
-    <div class="grid">
-      <%= select_month(default_value, { use_two_digit_numbers: true }, required:, data: { action: 'change->month-field#syncValue' }) %>
-      <span>月</span>
-    </div>
-    <%= f.month_field(:value, hidden: true) %>
-  </div>
+  <%= f.text_field(:value, required:, placeholder:, data: {
+                     controller: 'month-field',
+                     flatpickr_min_date: min_date
+                   }) %>
 <% end %>

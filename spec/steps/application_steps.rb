@@ -118,20 +118,55 @@ step 'フィールド:labelに:valueと入力する' do |label, value|
   fill_in(label, with: value)
 end
 
+step 'カレンダー:labelに:valueと入力する' do |label, value|
+  if ENV['CI'].presence
+    fill_in(label, with: value).send_keys(:enter)
+  else
+    find('label', text: label).click
+
+    year, month, day = value.split('/').map(&:to_i)
+    find('div.flatpickr-current-month input').set(year)
+    find('div.flatpickr-current-month select').select("#{month}月")
+    find(%(.flatpickr-day[aria-label="#{value}"]), text: day).click
+  end
+end
+
+step '年月カレンダー:labelに:valueと入力する' do |label, value|
+  if ENV['CI'].presence
+    fill_in(label, with: value).send_keys(:enter)
+  else
+    find('label', text: label).click
+
+    year, month = value.split('/').map(&:to_i)
+    page.driver.with_playwright_page do |playwright|
+      calendar = playwright.locator('div.flatpickr-calendar.open')
+      (Time.zone.now.year - year).times do
+        calendar.locator('.flatpickr-prev-month').click
+      end
+    end
+    find(%(.flatpickr-monthSelect-month[aria-label="#{value}"]), text: "#{month}月").click
+  end
+end
+
+step '年月カレンダー:labelに:valueと入力する' do |label, value|
+  find('label', text: label).click
+
+  year, month = value.split('/').map(&:to_i)
+  page.driver.with_playwright_page do |playwright|
+    calendar = playwright.locator('div.flatpickr-calendar.open')
+    (Time.zone.now.year - year).times do
+      calendar.locator('.flatpickr-prev-month').click
+    end
+  end
+  find(%(.flatpickr-monthSelect-month[aria-label="#{value}"]), text: "#{month}月").click
+end
+
 step '単一選択ボタン:labelを選ぶ' do |label|
   choose(label)
 end
 
 step 'セレクトボックス:labelの:optionを選ぶ' do |label, option|
   select(option, from: label)
-end
-
-step 'セレクトボックス「年選択」の:optionを選ぶ' do |option|
-  find('select#date_year').select(option)
-end
-
-step 'セレクトボックス「月選択」の:optionを選ぶ' do |option|
-  find('select#date_month').select(option)
 end
 
 step '次のとおり、表がある:' do |table|

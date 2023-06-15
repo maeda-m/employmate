@@ -56,7 +56,7 @@ body > main {
   padding-top: 0;
 }
 
-body > main:not(:has(article)) {
+body > main:not(.privacy-policy, .terms-of-service) {
   max-width: 400px !important;
   width: 100%;
 }
