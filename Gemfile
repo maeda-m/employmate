@@ -77,7 +77,6 @@ group :test do
   gem "turnip"
 end
 
-gem "active_decorator"
 gem "active_hash"
 gem 'activerecord-session_store'
 gem "googleauth"
