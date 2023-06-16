@@ -320,6 +320,11 @@ GEM
     ruby-next-core (0.15.3)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    sentry-rails (5.9.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.9.0)
+    sentry-ruby (5.9.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -408,6 +413,8 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-thread_safety
+  sentry-rails
+  sentry-ruby
   sorcery
   sprockets-rails
   stimulus-rails
