@@ -74,6 +74,15 @@ class User < ApplicationRecord
     end
   end
 
+  def add_follows_task(precedes_task)
+    survey = Survey.issued_employment_insurance_eligibility_card
+
+    ActiveRecord::Base.transaction do
+      tasks.create!(position: 10, task_category: TaskCategory.fifth, title: '雇用保険受給資格者証を入手する', survey:)
+      precedes_task.update!(title: '雇用保険受給資格者証を入手する（仮）')
+    end
+  end
+
   def update_profile_by!(survey:, answer_values:)
     attrs = survey.answer_values_to_profile_attributes(answer_values:)
     profile.update!(attrs)

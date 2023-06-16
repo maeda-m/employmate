@@ -70,7 +70,7 @@ module AnswerParameter
     answer_values.slice(questions.map(&:id))
   end
 
-  def answer_values_to_event_history
+  def answer_values_to_event_history_date
     answer_values.reject { |answer| answer.question.answer_gateway_rule }
                  .find { |answer| answer.question.answer_component.date? }.to_s
   end
