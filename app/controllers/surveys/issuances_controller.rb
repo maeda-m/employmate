@@ -23,6 +23,6 @@ class Surveys::IssuancesController < ApplicationController
       end
     end
 
-    redirect_to user_profile_url(user_id: current_user.id)
+    redirect_to user_path(id: current_user.id), notice: '完了にしました。'
   end
 end

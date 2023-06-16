@@ -16,6 +16,6 @@ class Surveys::ApprovalsController < ApplicationController
       current_user.find_todo_task(survey:).done!
     end
 
-    redirect_to user_profile_url(user_id: current_user.id)
+    redirect_to user_path(id: current_user.id), notice: '完了にしました。'
   end
 end
