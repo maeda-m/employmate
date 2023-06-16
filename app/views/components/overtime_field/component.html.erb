@@ -9,7 +9,7 @@
                          max: 720, min: 0, step: 1,
                          placeholder: 60, autocomplete: 'off',
                          data: {
-                           action: 'focus->overtime-field#selectAll',
+                           action: 'focus->overtime-field#selectAll keydown.enter->overtime-field#implicitSubmit:prevent',
                            overtime_field_target: 'overtime'
                          }) %>
     <span>時間</span>
