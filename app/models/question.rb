@@ -7,6 +7,10 @@ class Question < ApplicationRecord
 
   has_one :answer_condition, dependent: :destroy
 
+  delegate :survey, :survey_id, :title, to: :questionnaire
+  delegate :field_component, to: :answer_component
+  delegate :date?, :overtime?, to: :answer_component, prefix: true
+
   scope :default_order, lambda {
     order(:position)
   }
@@ -18,7 +22,7 @@ class Question < ApplicationRecord
   end
 
   def cast_value(answer_value)
-    if answer_component.overtime?
+    if answer_component_overtime?
       answer_gateway.cast_overtime(answer_value.to_a.map(&:to_i))
     else
       answer_gateway.send("cast_#{answer_component_type}", answer_value.to_s)

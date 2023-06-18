@@ -64,14 +64,13 @@ module AnswerParameter
 
   def answer_values_without_next_questions(current_question)
     position = Range.new(nil, current_question.position)
-    survey = current_question.questionnaire.survey
-    questions = survey.questions_by(position:)
+    questions = current_question.survey.questions_by(position:)
 
     answer_values.slice(questions.map(&:id))
   end
 
   def answer_values_to_event_history_date
     answer_values.reject { |answer_value| answer_value.question.answer_gateway_rule }
-                 .find { |answer_value| answer_value.question.answer_component.date? }.to_s
+                 .find { |answer_value| answer_value.question.answer_component_date? }.to_s
   end
 end

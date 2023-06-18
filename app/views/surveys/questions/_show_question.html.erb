@@ -1,4 +1,4 @@
 <script>
   document.querySelector(`#${<%== dom_id(question).to_json %>}`).hidden = false
-  document.querySelector('body > header').innerHTML = <%== header_content(question.questionnaire.title).to_json %>
+  document.querySelector('body > header').innerHTML = <%== header_content(question.title).to_json %>
 </script>

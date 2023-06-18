@@ -12,6 +12,6 @@ class Surveys::ProfilesController < ApplicationController
                        else
                          root_path
                        end
-    @page_title = @questions.first.questionnaire.title
+    @page_title = @questions.first.title
   end
 end
