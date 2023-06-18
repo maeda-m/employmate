@@ -1,10 +1,12 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
+  static values = {
+    confirm: String,
+  }
+
   confirm(event) {
-    const button = event.target
-    const message = button.dataset.turboConfirm
-    if (window.confirm(message) === false) {
+    if (window.confirm(this.confirmValue) === false) {
       event.preventDefault()
     }
   }

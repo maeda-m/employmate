@@ -1,16 +1,14 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  form(event) {
-    return event.target.form
+  static targets = ['form']
+
+  done() {
+    this.formTarget.requestSubmit()
   }
 
-  done(event) {
-    this.form(event).requestSubmit()
-  }
-
-  survey(event) {
+  survey() {
     /* global Turbo */
-    Turbo.visit(this.form(event).action)
+    Turbo.visit(this.formTarget.action)
   }
 }
