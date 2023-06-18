@@ -17,11 +17,11 @@ class Question < ApplicationRecord
     answer_condition.fulfilled?(answer_values)
   end
 
-  def to_profile_value(answer)
+  def cast_value(answer_value)
     if answer_component.overtime?
-      answer_gateway.eval_overtime(answer.to_a.map(&:to_i))
+      answer_gateway.cast_overtime(answer_value.to_a.map(&:to_i))
     else
-      answer_gateway.send("eval_#{answer_component.type}", answer.to_s)
+      answer_gateway.send("cast_#{answer_component_type}", answer_value.to_s)
     end
   end
 end

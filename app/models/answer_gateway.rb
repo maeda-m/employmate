@@ -1,23 +1,26 @@
 # frozen_string_literal: true
 
 class AnswerGateway < ActiveYaml::Base
-  def to_profile(values)
-    return Profile.new[rule] if values.empty?
+  def cast_value(answer_values, questions)
+    values = answer_values.slice(questions.map(&:id)).map(&:cast_value)
+
+    default_value = Profile.new[rule]
+    return default_value if values.empty?
 
     multiple_questions ? values.all? : values.first
   end
 
-  def eval_date(value)
+  def cast_date(value)
     return nil if value.blank?
 
     Date.parse(value)
   end
 
-  def eval_yes_or_no(value)
+  def cast_yes_or_no(value)
     value == 'yes'
   end
 
-  def eval_overtime(overtimes)
+  def cast_overtime(overtimes)
     return false unless overtimes.any? { |v| v >= 45 }
     return true if overtimes.any? { |v| v >= 100 }
 
@@ -32,12 +35,12 @@ class AnswerGateway < ActiveYaml::Base
     result
   end
 
-  def eval_with_compact_blank(value)
+  def cast_with_compact_blank(value)
     return nil if value.blank?
 
     value
   end
-  alias eval_week_type eval_with_compact_blank
-  alias eval_day_of_week eval_with_compact_blank
-  alias eval_reason_code eval_with_compact_blank
+  alias cast_week_type cast_with_compact_blank
+  alias cast_day_of_week cast_with_compact_blank
+  alias cast_reason_code cast_with_compact_blank
 end

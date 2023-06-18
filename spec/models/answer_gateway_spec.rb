@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe AnswerGateway, type: :model do
-  describe '#eval_overtime' do
+  describe '#cast_overtime' do
     context '6か月のうち、1か月単体で100時間以上の時間外労働があったとき' do
       it '戻り値が true である' do
         overtimes = [100, 0, 0, 0, 0, 0]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq true
+        expect(described_class.new.cast_overtime(overtimes)).to eq true
       end
     end
 
@@ -14,7 +14,7 @@ RSpec.describe AnswerGateway, type: :model do
       it '戻り値が true である' do
         overtimes = [0, 0, 80, 99, 0, 0]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq true
+        expect(described_class.new.cast_overtime(overtimes)).to eq true
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe AnswerGateway, type: :model do
       it '戻り値が true である' do
         overtimes = [0, 0, 0, 45, 60, 70]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq true
+        expect(described_class.new.cast_overtime(overtimes)).to eq true
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe AnswerGateway, type: :model do
       it '戻り値が false である' do
         overtimes = [0, 45, 0, 99, 0, 88]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq false
+        expect(described_class.new.cast_overtime(overtimes)).to eq false
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe AnswerGateway, type: :model do
       it '戻り値が false である' do
         overtimes = [60, 45, 0, 0, 75, 60]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq false
+        expect(described_class.new.cast_overtime(overtimes)).to eq false
       end
     end
 
@@ -46,7 +46,7 @@ RSpec.describe AnswerGateway, type: :model do
       it '戻り値が false である' do
         overtimes = [45, 0, 45, 0, 45, 0]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq false
+        expect(described_class.new.cast_overtime(overtimes)).to eq false
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe AnswerGateway, type: :model do
       it '戻り値が false である' do
         overtimes = [20, 15, 30, 40, 44, 0]
 
-        expect(described_class.new.eval_overtime(overtimes)).to eq false
+        expect(described_class.new.cast_overtime(overtimes)).to eq false
       end
     end
   end

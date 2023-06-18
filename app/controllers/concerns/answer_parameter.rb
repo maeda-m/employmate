@@ -32,8 +32,8 @@ module AnswerParameter
       @answer = answer
     end
 
-    def to_profile
-      question.to_profile_value(self)
+    def cast_value
+      question.cast_value(self)
     end
 
     def question
@@ -71,7 +71,7 @@ module AnswerParameter
   end
 
   def answer_values_to_event_history_date
-    answer_values.reject { |answer| answer.question.answer_gateway_rule }
-                 .find { |answer| answer.question.answer_component.date? }.to_s
+    answer_values.reject { |answer_value| answer_value.question.answer_gateway_rule }
+                 .find { |answer_value| answer_value.question.answer_component.date? }.to_s
   end
 end

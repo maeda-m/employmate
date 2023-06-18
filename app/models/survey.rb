@@ -76,8 +76,7 @@ class Survey < ActiveYaml::Base
 
     results = {}
     questions_with_gateway.each do |gateway, questions|
-      values = answer_values.slice(questions.map(&:id)).map(&:to_profile)
-      results[gateway.rule] = gateway.to_profile(values)
+      results[gateway.rule] = gateway.cast_value(answer_values, questions)
     end
 
     results
