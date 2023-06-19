@@ -55,10 +55,6 @@ RSpec/MultipleExpectations:
 RSpec/ExampleLength:
   Enabled: false
 
-Lint/ScriptPermission:
-  Exclude:
-    - 'lib/national_government_organization_holiday/bin/**/*'
-
 # NOTE: インラインでの無効化が効かなくなったため設定を追加した
 # See: https://github.com/rubocop/rubocop-rails/issues/231
 Rails/UniqueValidationWithoutIndex:
