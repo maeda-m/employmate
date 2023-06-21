@@ -7,6 +7,10 @@ class Question < ApplicationRecord
 
   has_one :answer_condition, dependent: :destroy
 
+  delegate :survey, :survey_id, :title, to: :questionnaire
+  delegate :field_component, to: :answer_component
+  delegate :date?, :overtime?, to: :answer_component, prefix: true
+
   scope :default_order, lambda {
     order(:position)
   }
@@ -17,11 +21,11 @@ class Question < ApplicationRecord
     answer_condition.fulfilled?(answer_values)
   end
 
-  def to_profile_value(answer)
-    if answer_component.overtime?
-      answer_gateway.eval_overtime(answer.to_a.map(&:to_i))
+  def cast_value(answer_value)
+    if answer_component_overtime?
+      answer_gateway.cast_overtime(answer_value.to_a.map(&:to_i))
     else
-      answer_gateway.send("eval_#{answer_component.type}", answer.to_s)
+      answer_gateway.send("cast_#{answer_component_type}", answer_value.to_s)
     end
   end
 end

@@ -32,8 +32,8 @@ module AnswerParameter
       @answer = answer
     end
 
-    def to_profile
-      question.to_profile_value(self)
+    def cast_value
+      question.cast_value(self)
     end
 
     def question
@@ -64,14 +64,13 @@ module AnswerParameter
 
   def answer_values_without_next_questions(current_question)
     position = Range.new(nil, current_question.position)
-    survey = current_question.questionnaire.survey
-    questions = survey.questions_by(position:)
+    questions = current_question.survey.questions_by(position:)
 
     answer_values.slice(questions.map(&:id))
   end
 
   def answer_values_to_event_history_date
-    answer_values.reject { |answer| answer.question.answer_gateway_rule }
-                 .find { |answer| answer.question.answer_component.date? }.to_s
+    answer_values.reject { |answer_value| answer_value.question.answer_gateway_rule }
+                 .find { |answer_value| answer_value.question.answer_component_date? }.to_s
   end
 end
