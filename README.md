@@ -8,6 +8,8 @@
 
 病気やケガで退職した後、働く意思がある 60 歳未満の人向けの雇用保険制度のマッチングサービスです。
 
+![病気やケガで退職した（する）あなたの状況や希望を教えてもらうことで、事情に合った雇用保険制度と初回の給付金受け取り予定日を示す動画](https://github.com/maeda-m/employmate/assets/943541/66ea9219-3ce5-49ec-b0d0-879b826dff0c)
+
 ## エレベーターピッチ
 
 病気やケガで退職した後、働く意思がある 60 歳未満の方は、スムーズかつ待ち時間なく雇用保険給付を受けるために手続きをしたいと考えています。
@@ -94,6 +96,19 @@ npm run eslint
 npm run stylelint
 npm run prettier
 npm run secretlint
+```
+
+## Test
+
+次のコマンドで test を実行します。
+
+> **Note**
+>
+> ヘッドレスブラウザでどのようにテストが実行されているかを確認したいときは `VIDEO=yes` を指定してください。 WebM 形式で動画が保存されます。
+
+```shell
+RAILS_ENV=test bin/rails db:seed
+bundle exec rspec
 ```
 
 ## License

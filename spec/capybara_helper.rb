@@ -13,6 +13,7 @@ Capybara.register_driver(:playwright) do |app|
   )
 
   if ENV['VIDEO']
+    FileUtils.mkdir_p(Capybara.save_path)
     driver.on_save_screenrecord do |video_path|
       FileUtils.mv(video_path, Capybara.save_path.join(File.basename(video_path)))
     end
