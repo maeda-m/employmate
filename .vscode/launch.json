@@ -1,0 +1,17 @@
+// See: https://techlife.cookpad.com/entry/2021/12/27/202133
+// See: https://zenn.dev/igaiga/books/rails-practice-note/viewer/ruby_rails_vscode
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Attach to Container on Rails",
+      "type": "rdbg",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "script": "bin/rails server",
+      "args": ["-b 0.0.0.0"],
+      "askParameters": true,
+      "useBundler": true
+    }
+  ]
+}

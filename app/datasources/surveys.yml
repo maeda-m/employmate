@@ -1,0 +1,12 @@
+# 回答結果作成のための調査
+- id: 1
+  name: 初回分析
+  type: initial_profile
+
+# やること完了前にする調査
+- id: 2
+  name: 離職票の受理
+  type: approved_release_form
+- id: 3
+  name: 雇用保険受給資格者証の交付
+  type: issued_employment_insurance_eligibility_card

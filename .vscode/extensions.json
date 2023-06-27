@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "smelukov.vscode-csstree",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "koichisasada.vscode-rdbg",
+    "taichi.vscode-textlint",
+    "anteprimorac.html-end-tag-labels",
+    "formulahendry.auto-close-tag",
+    "oderwat.indent-rainbow",
+    "deque-systems.vscode-axe-linter",
+    "htmlhint.vscode-htmlhint",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+    "eamodio.gitlens",
+    // See: https://karlley.hatenablog.jp/entry/2022/06/05/135045
+    "hookyqr.beautify",
+    "fnando.ruby"
+  ]
+}

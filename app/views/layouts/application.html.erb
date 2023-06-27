@@ -1,19 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Employmate</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<head>
+  <%= display_meta_tags(default_meta_tags) %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDGothic&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/monthSelect/style.css" rel="stylesheet">
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+  <%= stylesheet_link_tag 'application', "data-turbo-track": 'reload' %>
+  <%= javascript_importmap_tags %>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://kit.fontawesome.com/ca1daf3f2f.js" crossorigin="anonymous"></script>
+
+  <% measurement_id = Employmate.config.google_measurement_id %>
+  <%= render(partial: '/layouts/head/google_analytics', locals: { measurement_id: }) if measurement_id %>
+</head>
+<body>
+  <header>
+    <%= header_content(@page_title) %>
+  </header>
+  <main class="container <%= action_name.dasherize %>">
+    <%= yield %>
+    <span data-controller="toast" data-toast-title-value="<%= flash[:notice] %>"></span>
+  </main>
+  <footer>
+    <%= link_to_terms_of_service %>
+    <%= link_to_privacy_policy %>
+    <%= render(DeleteUserButton::Component.new(user: current_user)) %>
+    <p></p>
+    <p><small>&copy; 2023 maeda-m</small></p>
+  </footer>
+</body>
+
 </html>

@@ -1,0 +1,12 @@
+<h2><%= subject %></h2>
+
+<div class="<%= choice_wrapper %>">
+  <%= fields_for(record_name) do |f| %>
+    <% choices.each do |value, caption| %>
+      <%= f.label(:value, value:, class: 'with-radio') do %>
+        <%= f.radio_button(:value, value, required:, data: { action: choice_action }) %>
+        <span><%= caption %></span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

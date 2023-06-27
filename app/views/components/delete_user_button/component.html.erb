@@ -1,0 +1,9 @@
+<%= button_to('退会する', user_path(id: user_id),
+              method: :delete,
+              role: 'link',
+              data: {
+                turbo: false,
+                controller: 'button-to',
+                action: 'click->button-to#confirm',
+                button_to_confirm_value: '本当によろしいですか？'
+              }) %>

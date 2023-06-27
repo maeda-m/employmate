@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "scripts": {
+    "eslint": "eslint --max-warnings=0 \"app/javascript/**/*.js\"",
+    "eslint:fix": "eslint --fix \"app/javascript/**/*.js\"",
+    "stylelint": "stylelint \"app/assets/stylesheets/**/*.css\"",
+    "stylelint:fix": "stylelint --fix \"app/assets/stylesheets/**/*.css\"",
+    "secretlint": "secretlint --secretlintignore .gitignore \"**/*\"",
+    "prettier": "prettier --check \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
+    "prettier:fix": "prettier --write \"app/javascript/**/*.js\" \"app/assets/stylesheets/**/*.css\"",
+    "lint": "npm-run-all eslint stylelint prettier",
+    "lint:fix": "npm-run-all eslint:fix stylelint:fix prettier:fix"
+  },
+  "devDependencies": {
+    "@secretlint/secretlint-rule-preset-recommend": "^6.2.3",
+    "debug": "^4.3.4",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "glob": "^10.1.0",
+    "js2mermaid": "^0.9.2",
+    "npm-run-all": "^4.1.5",
+    "optionator": "^0.9.1",
+    "playwright": "1.32.2",
+    "prettier": "^2.8.7",
+    "secretlint": "^6.2.3",
+    "stylelint": "^15.5.0",
+    "stylelint-config-standard": "^33.0.0",
+    "textlint": "^13.3.2",
+    "textlint-rule-preset-bengo4": "^2.2.1",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-preset-jtf-style": "^2.3.13",
+    "textlint-rule-preset-smarthr": "^1.23.1"
+  }
+}

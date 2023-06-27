@@ -1,0 +1,33 @@
+ARG RUBY_VERSION
+FROM ruby:${RUBY_VERSION}-bullseye
+
+RUN set -eux; \
+  apt-get update; \
+  apt-get install -y --no-install-recommends \
+    \
+    vim \
+    libpq-dev \
+  ; \
+  rm -rf /var/lib/apt/lists/*
+
+ENV EDITOR vi
+
+# See: https://github.com/nodesource/distributions
+RUN set -eux; \
+  apt update; \
+  curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+  apt install -y --no-install-recommends \
+    \
+    nodejs \
+  ; \
+  rm -rf /var/lib/apt/lists/*
+RUN npm install --global npm yarn pnpm
+
+WORKDIR /opt/rails
+
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
+
+EXPOSE 3000
+CMD [ "bundle", "exec", "puma" ]

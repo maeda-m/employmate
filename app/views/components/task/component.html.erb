@@ -1,0 +1,6 @@
+<%= form_with(model: task, url: form_action, data: { controller: 'tasks', tasks_target: 'form' }) do |f| %>
+  <%= label_tag(field_id, class: 'with-checkbox') do %>
+    <%= f.check_box(:done, id: field_id, data: { action: done_or_survey }) %>
+    <%= task.title %>
+  <% end %>
+<% end %>

@@ -1,0 +1,17 @@
+<% first_question = question_counter.zero? %>
+<% survey_id = question.survey_id %>
+<%= turbo_frame_tag(dom_id(question), hidden: !first_question) do %>
+  <header>
+    <% if first_question %>
+      <%= button_tag(caption_with_back_icon, class: 'visit-start-page', role: 'link', form: 'visit-start-page', name: nil, data: { turbo: false }) %>
+    <% else %>
+      <%= button_tag(caption_with_back_icon, class: 'show-prev-question', role: 'link', formaction: back_survey_question_path(survey_id:, id: question.id), formnovalidate: true) %>
+    <% end %>
+  </header>
+  <section>
+    <%= render(question.field_component.new(question:)) %>
+  </section>
+  <footer>
+    <%= button_tag('次へ', data: { action: 'click->survey-profiles#showNextQuestionWithCurrentQuestionValid:prevent' }, formaction: next_survey_question_path(survey_id:, id: question.id), formnovalidate: true) %>
+  </footer>
+<% end %>

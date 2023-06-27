@@ -13,3 +13,142 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --font-size: 20px;
+  --discreet-font-size: 13px;
+  --font-family: 'BIZ UDGothic', sans-serif;
+  --primary: #2772a4 !important;
+  --primary-hover: #3498db !important;
+  --primary-focus: #c2e0f4 !important;
+  --form-element-spacing-vertical: 0.5rem !important;
+  --form-element-spacing-horizontal: 0.75rem !important;
+  --typography-spacing-vertical: 0.5rem !important;
+}
+
+@media (width <= 600px) {
+  :root {
+    --font-size: 18px;
+  }
+}
+
+body > header {
+  padding: calc(var(--spacing) / 2);
+  border-top: 5px solid var(--primary);
+}
+
+body > header hgroup > :last-child {
+  font-size: 0.5rem;
+}
+
+body > header,
+body > main,
+body > footer {
+  --block-spacing-vertical: var(--spacing);
+}
+
+body > header,
+body > footer {
+  text-align: center;
+}
+
+body > main {
+  padding-top: 0;
+}
+
+body > main:not(.privacy-policy, .terms-of-service) {
+  max-width: 400px !important;
+  width: 100%;
+}
+
+body > footer {
+  border-top: var(--border-width) solid var(--blockquote-border-color);
+}
+
+body > footer a,
+body > footer button {
+  font-size: var(--discreet-font-size);
+  padding: var(--nav-link-spacing-vertical) var(--nav-link-spacing-horizontal);
+}
+
+body > footer form {
+  display: inline-block;
+}
+
+section {
+  --block-spacing-vertical: calc(var(--spacing) * 0.5);
+}
+
+hr {
+  margin-bottom: calc(var(--typography-spacing-vertical) * 3);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  --typography-spacing-vertical: 0.5rem;
+}
+
+h1 {
+  --font-size: 1rem;
+}
+
+h2 {
+  --font-size: 0.825rem;
+}
+
+h3 {
+  --font-size: 0.75rem;
+}
+
+button[role='link'] {
+  --background-color: transparent;
+  --border-color: transparent;
+  --color: var(--primary);
+  --border-width: 0;
+
+  width: auto;
+}
+
+a[role='button'] {
+  display: block;
+}
+
+a.look-like-google-button {
+  height: 44px;
+  font-size: var(--discreet-font-size);
+}
+
+.help {
+  --font-size: 0.5rem;
+
+  padding: calc(var(--spacing) / 2);
+  background-color: #eef1f4;
+  border-radius: var(--border-radius);
+  margin: var(--typography-spacing-vertical) 0;
+}
+
+.help p.title {
+  --color: #aebdca;
+  --font-size: 0.5rem;
+
+  padding-top: var(--typography-spacing-vertical);
+  text-align: center;
+}
+
+.help p.title i {
+  font-size: 0.75rem;
+  margin-right: 0.125rem;
+  vertical-align: bottom;
+}
+
+table th,
+table td.date {
+  text-align: center;
+}
+
+table th,
+table td {
+  padding: calc(var(--spacing) / 2) calc(var(--spacing) / 2);
+}

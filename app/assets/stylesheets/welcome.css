@@ -1,0 +1,26 @@
+article {
+  margin: 0;
+  box-shadow: none;
+}
+
+article footer {
+  background-color: transparent;
+}
+
+article > p:not(:first-child),
+article address {
+  margin-left: var(--spacing);
+}
+
+article ol,
+article ul {
+  margin-left: calc(var(--spacing) * 1.5);
+}
+
+article ol li:only-of-type:not(.continue) {
+  list-style-type: none;
+}
+
+article ol > li > ol > li::marker {
+  content: '(' counter(list-item) ') ';
+}

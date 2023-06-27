@@ -1,0 +1,13 @@
+<section class="transfer-schedule">
+  <h2>
+    <small>初回の給付金振込予定日は</small>
+    <mark><%= @scheduled_transfer_label %></mark>
+    <small>です。</small>
+  </h2>
+</section>
+
+<% if @tasks_with_category.blank? %>
+  <%= render(TransferSchedule::Component.new(user: current_user)) %>
+<% else %>
+  <%= render(partial: 'tasks', locals: { tasks_with_category: @tasks_with_category, done_tasks: @done_tasks }) %>
+<% end %>

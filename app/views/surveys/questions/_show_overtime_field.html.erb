@@ -1,0 +1,11 @@
+<script>
+  (() => {
+    const labels = <%== OvertimeField::Component.generate_labels(prev_answer).to_json %>
+    const fields = document.querySelectorAll(`#${<%== dom_id(question).to_json %>} input.overtime`)
+
+    labels.forEach((label, i) => {
+      const field = fields[i]
+      document.querySelector(`label[for="${field.id}"]`).textContent = label
+    })
+  })()
+</script>

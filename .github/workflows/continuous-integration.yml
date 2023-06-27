@@ -1,0 +1,82 @@
+name: CI
+on:
+  push:
+permissions:
+  contents: read
+env:
+  LANG: ja_JP.UTF-8
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      # See: https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+      # See: https://github.com/ruby/setup-ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      # See: https://github.com/actions/setup-node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: bundle install
+      - run: npm install
+      # Ruby/JS/CSS
+      - run: bundle exec erblint app/
+      - run: bundle exec rubocop
+      - run: bundle exec brakeman
+      - run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # See: https://docs.github.com/ja/actions/using-containerized-services/creating-postgresql-service-containers
+      postgres:
+        image: postgres:15.2
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          POSTGRES_USER: dbuser
+          POSTGRES_DB: dbname
+          POSTGRES_PASSWORD: mysecretpassword
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    steps:
+      # See: https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+      # See: https://github.com/ruby/setup-ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      # See: https://github.com/actions/setup-node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      # See: https://blog.redmine.jp/articles/5_0/install/ubuntu/
+      - name: Locale
+        run: |
+          sudo locale-gen ja_JP.UTF-8
+          sudo update-locale LANG=ja_JP.UTF-8
+          locale
+      # See: https://docs.github.com/ja/actions/learn-github-actions/variables
+      - name: RSpec
+        env:
+          CI: yes
+          DATABASE_URL: postgres://dbuser:mysecretpassword@localhost:5432/dbname
+          GOOGLE_OPENID_CONNECT_CLIENT_ID: ${{ secrets.GOOGLE_OPENID_CONNECT_CLIENT_ID }}
+        run: |
+          bundle install
+          npm install
+          npx playwright install --with-deps chromium
+          bundle exec rails db:schema:load
+          bundle exec rails db:seed
+          bundle exec rspec

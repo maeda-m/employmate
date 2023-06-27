@@ -1,0 +1,62 @@
+Lint/Debugger: # don't leave binding.pry
+  Enabled: true
+  Exclude: []
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - db/seeds.rb
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - config.ru
+    - config/**/*
+    - Gemfile
+    - Rakefile
+    - spec/**/*
+
+Style/StringLiterals:
+  Exclude:
+    - config.ru
+    - config/**/*
+    - Gemfile
+    - Rakefile
+
+Style/EmptyMethod:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: true
+
+Rails/Output: # Don't leave puts-debugging
+  Enabled: true
+  Exclude: []
+
+Rails/FindEach: # each could badly affect the performance, use find_each
+  Enabled: true
+  Exclude: []
+
+Rails/UniqBeforePluck: # uniq.pluck and not pluck.uniq
+  Enabled: true
+  Exclude: []
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+# NOTE: インラインでの無効化が効かなくなったため設定を追加した
+# See: https://github.com/rubocop/rubocop-rails/issues/231
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - 'app/models/user.rb'

@@ -1,0 +1,24 @@
+<section>
+  <h2>病気やケガで退職した（する）あなたの事情に合った雇用保険の失業等給付金を探します。</h2>
+</section>
+
+<hr>
+<section>
+  <h3>あなたの状況や希望を教えてもらうことで、雇用保険制度とあなたをつなげます。</h3>
+  <%= render(StartButton::Component.new(context: StartButton::Component::STARTED_BY_TOP)) %>
+
+  <%= help_message do %>
+    <p><%= link_to_terms_of_service %>と<%= link_to_privacy_policy %>に同意した後、はじめてください。</p>
+    <p>次の書類があれば準備してください。</p>
+    <ul>
+      <li>残業時間の記載がある勤務実績表や給与明細書</li>
+      <li>医師の診断書（発病や負傷時のものと退職日前後のもの）</li>
+    </ul>
+  <% end %>
+</section>
+
+<hr>
+<section>
+  <h3>会員登録済みの方は、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定を確認できます。</h3>
+  <%= render(GoogleButton::Component.new(context: 'signin', state: current_session.token)) %>
+</section>
