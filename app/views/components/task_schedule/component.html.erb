@@ -11,7 +11,7 @@
     <% tasks.each do |task| %>
       <tr>
         <td><%= task.about_when %></td>
-        <%= simple_format(task.title, {}, wrapper_tag: 'td') %>
+        <%= simple_format(h(task.title), {}, wrapper_tag: 'td') %>
       </tr>
     <% end %>
   </tbody>

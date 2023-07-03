@@ -29,12 +29,13 @@
 
 > **Note**
 >
-> Google でログインを有効にする場合は [Google Cloud Console](https://console.cloud.google.com/) で「OAuth 同意画面」と「OAuth 2.0 クライアント ID」を設定してください。
+> Google でログインを有効にするため、 [Google Cloud Console](https://console.cloud.google.com/) で「OAuth 同意画面」と「OAuth 2.0 クライアント ID」を設定してください。
 > その後 `.env` ファイルを作成し `GOOGLE_OPENID_CONNECT_CLIENT_ID` として値を設定してください。
 
 ```shell
 docker compose up -d
 docker compose exec rails bash
+chmod +x bin/*
 bin/setup
 ```
 

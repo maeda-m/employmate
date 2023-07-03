@@ -7,5 +7,6 @@ rm -f /opt/rails/tmp/pids/server.pid
 bundle install
 rails db:migrate db:seed
 rails assets:precompile
+rm -f /opt/rails/public/robots.txt
 
 exec "$@"

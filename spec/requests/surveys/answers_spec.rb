@@ -9,10 +9,10 @@ RSpec.describe 'Surveys::Answers', type: :request do
       end
 
       let(:survey) { questionnaire.survey }
-      let(:questionnaire) { FactoryBot.create(:questionnaire, :with_initial_profile) }
-      let(:unemployed_on_question) { FactoryBot.create(:question, :with_unemployed_on, questionnaire:) }
-      let(:first_special_reason_question) { FactoryBot.create(:question, :with_special_reason, questionnaire:) }
-      let(:second_special_reason_question) { FactoryBot.create(:question, :with_special_reason, questionnaire:) }
+      let(:questionnaire) { FactoryBot.create(:questionnaire, :with_initial_profile, title: 'あなたの事情や希望から最適な雇用保険制度を探します。') }
+      let(:unemployed_on_question) { FactoryBot.create(:question, :with_unemployed_on, questionnaire:, body: '退職日を入力してください。') }
+      let(:first_special_reason_question) { FactoryBot.create(:question, :with_special_reason, questionnaire:, body: '特定理由離職者かどうかを判断する質問その１です。') }
+      let(:second_special_reason_question) { FactoryBot.create(:question, :with_special_reason, questionnaire:, body: '特定理由離職者かどうかを判断する質問その２です。') }
 
       context '質問分岐で未回答の質問が送信パラメータにあるとき' do
         before do
@@ -117,7 +117,7 @@ RSpec.describe 'Surveys::Answers', type: :request do
       context 'やりなおしをしたとき' do
         it '初回のみ匿名ユーザーが登録され、戻るボタンで回答不要の質問が送信パラメータにあっても回答が上書きされる' do
           condition_question = unemployed_on_question
-          special_eligible_question = FactoryBot.create(:question, :with_special_eligible, questionnaire:)
+          special_eligible_question = FactoryBot.create(:question, :with_special_eligible, questionnaire:, body: '特定受給資格者かどうかを判断する質問です。')
           FactoryBot.create(:answer_condition, condition_answer_value: '2023-02-28', question: special_eligible_question, condition_question:)
 
           expect do

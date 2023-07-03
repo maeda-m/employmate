@@ -393,8 +393,8 @@ DEPENDENCIES
   meta-tags
   n_plus_one_control
   national_government_organization_holiday
-  pg (~> 1.1)
-  puma (~> 5.0)
+  pg
+  puma
   rack-dev-mark
   rack-mini-profiler
   rails (~> 7.0.4, >= 7.0.4.3)

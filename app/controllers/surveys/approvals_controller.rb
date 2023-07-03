@@ -3,8 +3,6 @@
 class Surveys::ApprovalsController < ApplicationController
   include AnswerParameter
 
-  before_action :require_registered_user
-
   def create
     survey = Survey.find(params[:survey_id])
 
@@ -14,6 +12,6 @@ class Surveys::ApprovalsController < ApplicationController
       current_user.update_profile_by!(survey:, answer_values:)
     end
 
-    redirect_to user_path(id: current_user.id), notice: '完了にしました。'
+    redirect_to user_url(id: current_user.id), notice: '完了にしました。'
   end
 end

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Surveys::TasksController < ApplicationController
-  before_action :require_registered_user
-
   def index
     survey = Survey.tasks.find(params[:survey_id])
     @approval = Approval.new(survey:) if survey.approved_release_form?
