@@ -14,6 +14,6 @@ class Surveys::ApprovalsController < ApplicationController
       current_user.update_profile_by!(survey:, answer_values:)
     end
 
-    redirect_to user_path(id: current_user.id), notice: '完了にしました。'
+    redirect_to user_url(id: current_user.id), notice: '完了にしました。'
   end
 end
