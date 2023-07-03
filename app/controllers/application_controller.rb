@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :require_registered_user
+
   rescue_from ActiveHash::RecordNotFound, with: :active_hash_record_not_found
   protect_from_forgery with: :exception
 

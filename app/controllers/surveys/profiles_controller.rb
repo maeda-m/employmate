@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Surveys::ProfilesController < ApplicationController
+  skip_before_action :require_registered_user, only: :index
   before_action :require_not_registered_user
 
   def index

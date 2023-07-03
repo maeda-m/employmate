@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   include GoogleOpenIdConnect
 
-  before_action :require_registered_user, except: :create
+  skip_before_action :require_registered_user, only: :create
 
   def show
     @scheduled_transfer_label = current_user.tasks.new(task_category: TaskCategory.sixth).about_when

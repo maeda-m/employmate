@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class WelcomeController < ApplicationController
-  before_action :require_not_registered_user, only: :index
+  skip_before_action :require_registered_user, only: %i[index terms_of_service privacy_policy robots]
+  before_action :require_not_registered_user, except: %i[terms_of_service privacy_policy robots]
 
   def index
   end

@@ -3,6 +3,7 @@
 class Surveys::AnswersController < ApplicationController
   include AnswerParameter
 
+  skip_before_action :require_registered_user, only: :create
   before_action :require_not_registered_user
 
   def create

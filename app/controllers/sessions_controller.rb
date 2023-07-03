@@ -3,6 +3,8 @@
 class SessionsController < ApplicationController
   include GoogleOpenIdConnect
 
+  skip_before_action :require_registered_user, only: :create
+
   def create
     # See: https://github.com/Sorcery/sorcery/blob/v0.16.5/lib/sorcery/controller.rb#L37
     user = login(authenticated_google_id)

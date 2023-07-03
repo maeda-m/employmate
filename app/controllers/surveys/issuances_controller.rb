@@ -3,8 +3,6 @@
 class Surveys::IssuancesController < ApplicationController
   include AnswerParameter
 
-  before_action :require_registered_user
-
   def create
     survey = Survey.find(params[:survey_id])
 

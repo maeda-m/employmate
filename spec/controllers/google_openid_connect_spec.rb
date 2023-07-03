@@ -3,6 +3,8 @@ require 'rails_helper'
 class ExamplesController < ApplicationController
   include GoogleOpenIdConnect
 
+  skip_before_action :require_registered_user, only: :create
+
   def create
     authenticated_google_id
 
