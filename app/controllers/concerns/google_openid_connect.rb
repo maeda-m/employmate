@@ -20,7 +20,7 @@ module GoogleOpenIdConnect
   rescue StandardError => e
     # See: https://www.rubydoc.info/github/google/google-auth-library-ruby/Google%2FAuth%2FIDTokens.verify_oidc
     # See: https://github.com/googleapis/google-auth-library-ruby/blob/main/test/id_tokens/verifier_test.rb
-    openid_connect_error_with_reset_session(e.message)
+    openid_connect_error_with_reset_session(e.inspect)
   end
 
   # NOTE: このモジュールを利用するコントローラーの create アクションは IdP となる Google が POST する
@@ -36,7 +36,7 @@ module GoogleOpenIdConnect
     @authenticated_session = Session.authenticate_by_token(params[:state])
     @authenticated_session.destroy!
   rescue ActiveRecord::ActiveRecordError => e
-    openid_connect_error_with_reset_session(e.message)
+    openid_connect_error_with_reset_session(e.inspect)
   end
 
   def openid_connect_error_with_reset_session(message)
