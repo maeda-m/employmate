@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_001904) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_02_002820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answer_conditions", force: :cascade do |t|
     t.bigint "question_id", null: false
-    t.boolean "answered", default: false
-    t.boolean "equal", default: false
+    t.boolean "answered", default: false, null: false
+    t.boolean "equal", default: false, null: false
     t.bigint "condition_question_id", null: false
     t.string "condition_answer_value"
     t.index ["condition_question_id"], name: "index_answer_conditions_on_condition_question_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_001904) do
   create_table "issuances", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "survey_id", null: false
-    t.boolean "done", default: false
+    t.boolean "done", default: false, null: false
     t.date "created_on", comment: "交付履歴として仮発行があるためNULL制約は不要と判断した"
     t.index ["survey_id"], name: "index_issuances_on_survey_id"
     t.index ["user_id", "survey_id", "done"], name: "index_issuances_on_user_id_and_survey_id_and_done", unique: true
@@ -54,10 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_001904) do
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "unemployed_on"
-    t.boolean "recommended_to_extension_of_benefit_receivable_period", default: false
-    t.boolean "recommended_to_public_vocational_training", default: false
-    t.boolean "unemployed_with_special_eligible", default: false
-    t.boolean "unemployed_with_special_reason", default: false
+    t.boolean "recommended_to_extension_of_benefit_receivable_period", default: false, null: false
+    t.boolean "recommended_to_public_vocational_training", default: false, null: false
+    t.boolean "unemployed_with_special_eligible", default: false, null: false
+    t.boolean "unemployed_with_special_reason", default: false, null: false
     t.date "fixed_explanitory_seminar_on_for_employment_insurance"
     t.date "fixed_first_unemployment_certification_on"
     t.string "week_type_for_unemployment_certification"
@@ -68,14 +68,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_001904) do
 
   create_table "questionnaires", force: :cascade do |t|
     t.bigint "survey_id", null: false
-    t.string "title"
+    t.string "title", null: false
     t.integer "position", null: false
     t.index ["survey_id"], name: "index_questionnaires_on_survey_id"
   end
 
   create_table "questions", force: :cascade do |t|
     t.bigint "questionnaire_id", null: false
-    t.string "body"
+    t.string "body", null: false
     t.string "answer_component_type", null: false
     t.integer "position", null: false
     t.string "answer_gateway_rule"
@@ -95,11 +95,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_001904) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.bigint "user_id", null: false
     t.bigint "task_category_id", null: false
     t.bigint "survey_id"
-    t.boolean "done", default: false
+    t.boolean "done", default: false, null: false
     t.integer "position", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
