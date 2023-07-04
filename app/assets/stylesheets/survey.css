@@ -113,6 +113,30 @@ form:has(button.visit-start-page) {
   margin-bottom: 0;
 }
 
+.recommends {
+  justify-items: center;
+}
+
+.recommend {
+  --border-radius: 5rem;
+  --border-color: var(--primary-hover);
+  --background-color: transparent;
+  --color: var(--primary-hover);
+
+  max-width: 200px;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  color: var(--color);
+  font-size: var(--discreet-font-size);
+  font-weight: 900;
+  line-height: var(--line-height);
+  text-align: center;
+  pointer-events: none;
+  padding: calc(var(--form-element-spacing-vertical) / 2)
+    var(--form-element-spacing-horizontal);
+}
+
 table.task-schedule th,
 table.task-schedule td,
 table.transfer-schedule th {

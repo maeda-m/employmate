@@ -1,3 +1,9 @@
+<div class="recommends grid">
+  <% current_user.recommends.each do |recommend| %>
+    <span class="recommend"><%= recommend %></span>
+  <% end %>
+</div>
+
 <%= render(TaskSchedule::Component.new(user: current_user)) %>
 
 <%= render(StartButton::Component.new(context: StartButton::Component::STARTED_BY_REDO)) %>
