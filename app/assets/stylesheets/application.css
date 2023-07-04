@@ -16,6 +16,7 @@
 
 :root {
   --font-size: 20px;
+  --kerning: 0.075rem;
   --discreet-font-size: 13px;
   --font-family: 'BIZ UDGothic', sans-serif;
   --primary: #2772a4 !important;
@@ -34,6 +35,7 @@
 }
 
 body {
+  letter-spacing: var(--kerning);
   display: flex;
   flex-direction: column;
   min-height: 100vh;

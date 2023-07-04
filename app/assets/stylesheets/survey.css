@@ -93,12 +93,12 @@ button.show-next-question::after {
 button.visit-start-page::before,
 button.show-prev-question::before {
   content: '\f053';
-  margin-right: 0.075rem;
+  margin-right: var(--kerning);
 }
 
 button.show-next-question::after {
   content: '\f054';
-  margin-left: 0.075rem;
+  margin-left: var(--kerning);
 }
 
 button.visit-start-page,
