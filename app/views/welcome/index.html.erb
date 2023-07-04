@@ -7,8 +7,9 @@
   <h3>あなたの状況や希望を教えてもらうことで、雇用保険制度とあなたをつなげます。</h3>
   <%= render(StartButton::Component.new(context: StartButton::Component::STARTED_BY_TOP)) %>
 
+  <p class="message"><%= link_to_terms_of_service %>と<%= link_to_privacy_policy %>に同意した後、はじめてください。</p>
+
   <%= help_message do %>
-    <p><%= link_to_terms_of_service %>と<%= link_to_privacy_policy %>に同意した後、はじめてください。</p>
     <p>次の書類があれば準備してください。</p>
     <ul>
       <li>残業時間の記載がある勤務実績表や給与明細書</li>

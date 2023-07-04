@@ -130,6 +130,12 @@ a.look-like-google-button {
   font-size: var(--discreet-font-size);
 }
 
+.message {
+  --font-size: 0.625rem;
+
+  padding-top: var(--typography-spacing-vertical);
+}
+
 .help {
   --font-size: 0.5rem;
 
