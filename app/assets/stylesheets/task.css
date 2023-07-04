@@ -1,5 +1,27 @@
+.transfer-schedule {
+  text-align: center;
+  padding-top: var(--typography-spacing-vertical);
+}
+
+.transfer-schedule p {
+  font-weight: 900;
+}
+
 .transfer-schedule h2 {
   font-size: 1.5rem;
+}
+
+section.todo,
+section.done {
+  --block-spacing-vertical: calc(var(--spacing) * 1.5);
+}
+
+.todo h3,
+.done h3 {
+  border-left: 5px solid var(--primary);
+  background-color: #eef1f4;
+  padding: calc(var(--form-element-spacing-vertical) / 2)
+    var(--form-element-spacing-horizontal);
 }
 
 .todo label.with-checkbox,
