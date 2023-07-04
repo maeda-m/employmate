@@ -22,10 +22,12 @@
   --primary: #2772a4 !important;
   --primary-hover: #3498db !important;
   --primary-focus: #c2e0f4 !important;
+  --primary-timeline: #d3e8ea;
   --muted-color: rgb(33 37 41 / 40%) !important;
   --form-element-spacing-vertical: 0.5rem !important;
   --form-element-spacing-horizontal: 0.75rem !important;
   --typography-spacing-vertical: 0.5rem !important;
+  --timeline-size: 20px;
 }
 
 @media (width <= 600px) {

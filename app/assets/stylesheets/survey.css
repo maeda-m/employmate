@@ -115,6 +115,7 @@ form:has(button.visit-start-page) {
 
 .recommends {
   justify-items: center;
+  margin-bottom: var(--typography-spacing-vertical);
 }
 
 .recommend {
@@ -137,27 +138,52 @@ form:has(button.visit-start-page) {
     var(--form-element-spacing-horizontal);
 }
 
-table.task-schedule th,
-table.task-schedule td,
+h2.timeline {
+  text-align: center;
+  padding-top: var(--typography-spacing-vertical);
+}
+
+/* See: https://bootsnipp.com/snippets/xrKXW */
+ul.timeline {
+  position: relative;
+}
+
+ul.timeline::before {
+  content: ' ';
+  background-color: var(--primary-timeline);
+  display: inline-block;
+  position: absolute;
+  width: calc(var(--timeline-size) / 10);
+  height: 100%;
+}
+
+ul.timeline > li {
+  margin: var(--spacing) 0;
+  padding-left: var(--spacing);
+  list-style: none;
+}
+
+ul.timeline > li::before {
+  content: ' ';
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background-color: var(--primary-timeline);
+  left: calc(var(--timeline-size) / 2);
+  width: var(--timeline-size);
+  height: var(--timeline-size);
+}
+
+ul.timeline > li > h3 {
+  color: var(--primary);
+}
+
+ul.timeline > li > p {
+  font-size: 0.625rem;
+}
+
 table.transfer-schedule th {
   font-size: var(--discreet-font-size);
   min-width: calc(var(--discreet-font-size) * 4.5);
-}
-
-table.task-schedule tr th:first-child,
-table.task-schedule tr td:first-child {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-@media (width <= 400px) {
-  table.task-schedule td small {
-    margin-left: var(--discreet-font-size);
-    display: inline-block;
-  }
-
-  table.task-schedule th,
-  table.task-schedule td {
-    padding: calc(var(--spacing) / 4) calc(var(--spacing) / 4);
-  }
 }
