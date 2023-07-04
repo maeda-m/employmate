@@ -50,10 +50,6 @@ module ApplicationHelper
     end
   end
 
-  def caption_with_back_icon
-    tag.span('戻る', class: 'fa-solid fa-chevron-left')
-  end
-
   def link_to_terms_of_service
     link_to('利用規約', terms_of_service_path, target: '_blank', rel: 'noopener')
   end

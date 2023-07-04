@@ -83,6 +83,24 @@ div.flatpickr-current-month input[type='number'] {
   text-align: center;
 }
 
+button.visit-start-page::before,
+button.show-prev-question::before,
+button.show-next-question::after {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+button.visit-start-page::before,
+button.show-prev-question::before {
+  content: '\f053';
+  margin-right: 0.075rem;
+}
+
+button.show-next-question::after {
+  content: '\f054';
+  margin-left: 0.075rem;
+}
+
 button.visit-start-page,
 button.show-prev-question {
   text-align: left;
