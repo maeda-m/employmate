@@ -138,27 +138,34 @@ a.look-like-google-button {
   padding-top: var(--typography-spacing-vertical);
 }
 
-.help {
-  --font-size: 0.5rem;
+.help-message {
+  --font-size: 0.625rem;
+  --typography-spacing-vertical: calc(var(--spacing) / 2);
 
-  padding: calc(var(--spacing) / 2);
-  background-color: #eef1f4;
+  padding: var(--spacing) 0 calc(var(--typography-spacing-vertical) / 2)
+    var(--typography-spacing-vertical);
+  margin-bottom: var(--typography-spacing-vertical);
+  background-color: var(--primary-timeline);
   border-radius: var(--border-radius);
-  margin: var(--typography-spacing-vertical) 0;
 }
 
-.help p.title {
-  --color: #aebdca;
-  --font-size: 0.5rem;
+.help-message:last-child {
+  margin-bottom: 0;
+}
 
-  padding-top: var(--typography-spacing-vertical);
+.help-message::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f05a';
+  position: relative;
+  top: calc(-1.5 * var(--spacing));
+  display: block;
+  height: 0;
   text-align: center;
 }
 
-.help p.title i {
-  font-size: 0.75rem;
-  margin-right: 0.125rem;
-  vertical-align: bottom;
+.help-message p.title {
+  text-align: center;
 }
 
 table th,

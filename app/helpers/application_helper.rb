@@ -38,11 +38,10 @@ module ApplicationHelper
     }
   end
 
-  def help_message(title: nil)
-    tag.div(class: 'help') do
+  def help_message(title:)
+    tag.div(class: 'help-message') do
       header = tag.p(class: 'title') do
-        concat(tag.i(class: 'fa-solid fa-circle-info'))
-        concat(title)
+        simple_format(h(title), {}, wrapper_tag: 'span')
       end
 
       concat(header)
