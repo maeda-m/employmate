@@ -49,7 +49,7 @@ class User < ApplicationRecord
     !registered?
   end
 
-  def recommend
+  def recommends
     words = ['基本手当']
 
     if profile.recommended_to_public_vocational_training?
@@ -57,7 +57,7 @@ class User < ApplicationRecord
       words << '寄宿手当'
     end
 
-    words.to_sentence
+    words
   end
 
   def create_tasks

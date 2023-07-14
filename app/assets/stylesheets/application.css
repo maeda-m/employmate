@@ -16,20 +16,31 @@
 
 :root {
   --font-size: 20px;
+  --kerning: 0.075rem;
   --discreet-font-size: 13px;
   --font-family: 'BIZ UDGothic', sans-serif;
   --primary: #2772a4 !important;
   --primary-hover: #3498db !important;
   --primary-focus: #c2e0f4 !important;
+  --primary-timeline: #d3e8ea;
+  --muted-color: rgb(33 37 41 / 40%) !important;
   --form-element-spacing-vertical: 0.5rem !important;
   --form-element-spacing-horizontal: 0.75rem !important;
   --typography-spacing-vertical: 0.5rem !important;
+  --timeline-size: 20px;
 }
 
 @media (width <= 600px) {
   :root {
     --font-size: 18px;
   }
+}
+
+body {
+  letter-spacing: var(--kerning);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 body > header {
@@ -54,6 +65,7 @@ body > footer {
 
 body > main {
   padding-top: 0;
+  flex: 1;
 }
 
 body > main:not(.privacy-policy, .terms-of-service) {
@@ -120,27 +132,40 @@ a.look-like-google-button {
   font-size: var(--discreet-font-size);
 }
 
-.help {
-  --font-size: 0.5rem;
-
-  padding: calc(var(--spacing) / 2);
-  background-color: #eef1f4;
-  border-radius: var(--border-radius);
-  margin: var(--typography-spacing-vertical) 0;
-}
-
-.help p.title {
-  --color: #aebdca;
-  --font-size: 0.5rem;
+.message {
+  --font-size: 0.625rem;
 
   padding-top: var(--typography-spacing-vertical);
+}
+
+.help-message {
+  --font-size: 0.625rem;
+  --typography-spacing-vertical: calc(var(--spacing) / 2);
+
+  padding: var(--spacing) 0 calc(var(--typography-spacing-vertical) / 2)
+    var(--typography-spacing-vertical);
+  margin-bottom: var(--typography-spacing-vertical);
+  background-color: var(--primary-timeline);
+  border-radius: var(--border-radius);
+}
+
+.help-message:last-child {
+  margin-bottom: 0;
+}
+
+.help-message::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f05a';
+  position: relative;
+  top: calc(-1.5 * var(--spacing));
+  display: block;
+  height: 0;
   text-align: center;
 }
 
-.help p.title i {
-  font-size: 0.75rem;
-  margin-right: 0.125rem;
-  vertical-align: bottom;
+.help-message p.title {
+  text-align: center;
 }
 
 table th,

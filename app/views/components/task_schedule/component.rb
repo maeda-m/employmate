@@ -6,6 +6,10 @@ class TaskSchedule::Component < ApplicationViewComponent
     @user = user
   end
 
+  def tasks_with_category
+    tasks.group_by(&:task_category)
+  end
+
   def tasks
     results = []
     results << @user.tasks.new(task_category: TaskCategory.first, title: 'ハローワークで就労可否の証明書を入手する') if @user.profile.unemployed_with_special_reason?
