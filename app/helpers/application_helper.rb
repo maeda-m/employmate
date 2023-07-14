@@ -18,7 +18,7 @@ module ApplicationHelper
     {
       reverse: true,
       site: '雇用保険給付の相棒（Employmate）',
-      description: '病気やケガで退職した後、働く意思がある60歳未満のあなたと雇用保険制度をつなげるサービスです。',
+      description: '病気やケガで退職した後、働く意思がある60歳未満の方向けの、雇用保険の失業等給付（基本手当）がいつ頃になるかがわかるWebサービスです。',
       keywords: '雇用保険給付, 雇用保険制度, 雇用保険受給資格者証',
       charset: 'utf-8',
       viewport: 'width=device-width,initial-scale=1',

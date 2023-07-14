@@ -1,10 +1,10 @@
 <section>
-  <h2>病気やケガで退職した（する）あなたの事情に合った雇用保険の失業等給付金を探します。</h2>
+  <h2>病気やケガで退職した（する）あなたの状況や希望を教えてもらうことで、事情に合わせた雇用保険制度を調べます。</h2>
 </section>
 
 <hr>
 <section>
-  <h3>あなたの状況や希望を教えてもらうことで、雇用保険制度とあなたをつなげます。</h3>
+  <h3>いくつか質問に回答すると、あなたの事情に合わせた雇用保険制度（ハローワーク訪問時期・頻度と用意する書類）と大まかな初回の給付金振込予定日がわかります。</h3>
   <%= render(StartButton::Component.new(context: StartButton::Component::STARTED_BY_TOP)) %>
 
   <p class="message"><%= link_to_terms_of_service %>と<%= link_to_privacy_policy %>に同意した後、はじめてください。</p>
@@ -19,6 +19,7 @@
 
 <hr>
 <section>
-  <h3>会員登録済みの方は、より正確に給付がいつ頃受けられるか、初回の失業認定日までの予定を確認できます。</h3>
+  <h3>会員登録済みの方は、チェックリストが提供されます。ハローワーク訪問時期や頻度、用意する書類などが明確になります。</h3>
+  <p class="message">チェックリストを完了していくと、雇用保険受給資格者証を受け取るまでの進行度や、より正確な初回の給付金振込予定日がわかるようになります。</p>
   <%= render(GoogleButton::Component.new(context: 'signin', state: current_session.token)) %>
 </section>
