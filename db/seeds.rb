@@ -198,7 +198,6 @@ ActiveRecord::Base.transaction do
       end
     end
   end
-
 rescue StandardError => e
   Rails.logger.debug e.inspect
   raise ActiveRecord::Rollback
