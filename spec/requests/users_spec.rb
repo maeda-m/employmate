@@ -10,7 +10,9 @@ RSpec.describe 'Users', type: :request do
         current_session_store.current_user = current_session_user
 
         other_user = FactoryBot.create(:user, :with_registered)
-        expect { delete "/users/#{other_user.id}" }.to raise_error(ActiveRecord::RecordNotFound)
+        delete "/users/#{other_user.id}"
+
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

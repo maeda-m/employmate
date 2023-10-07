@@ -23,6 +23,11 @@ module Employmate
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w[assets tasks])
+
     # Use default logging formatter so that PID and timestamp are not suppressed.
     config.log_formatter = ::Logger::Formatter.new
 
@@ -49,6 +54,8 @@ module Employmate
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja
     config.i18n.available_locales = [:ja]
+
+    # Don't generate system test files.
     config.generators.system_tests = nil
   end
 end

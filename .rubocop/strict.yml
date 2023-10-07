@@ -60,3 +60,4 @@ RSpec/ExampleLength:
 Rails/UniqueValidationWithoutIndex:
   Exclude:
     - 'app/models/user.rb'
+    - 'app/models/approval.rb'
