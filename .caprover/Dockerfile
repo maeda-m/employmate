@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-bullseye
+FROM ruby:3.3.1-bullseye
 
 RUN set -eux; \
   apt-get update; \

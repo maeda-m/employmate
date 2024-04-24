@@ -15,7 +15,7 @@ jobs:
       # See: https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.3'
           bundler-cache: true
       # See: https://github.com/actions/setup-node
       - uses: actions/setup-node@v3
@@ -55,7 +55,7 @@ jobs:
       # See: https://github.com/ruby/setup-ruby
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.3'
           bundler-cache: true
       # See: https://github.com/actions/setup-node
       - uses: actions/setup-node@v3
