@@ -8,7 +8,7 @@ services:
     stdin_open: true
     volumes:
       - .:/opt/rails
-      - ruby32:/usr/local/bundle
+      - ruby3:/usr/local/bundle
       - history:/histfile
       - node_modules:/opt/rails/node_modules
       - vscode:/root/.vscode-server
@@ -23,7 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile.ap
       args:
-        RUBY_VERSION: '3.2.2'
+        RUBY_VERSION: '3.3.1'
     ports:
       - '3000:3000'
     depends_on:
@@ -48,7 +48,7 @@ services:
         POSTGRES_VERSION: '15.2'
 
 volumes:
-  ruby32:
+  ruby3:
   postgres15:
   history:
   node_modules:
